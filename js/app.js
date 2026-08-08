@@ -1,6 +1,6 @@
 /* ==========================================================================
    VEDANT KAPIL — EDITORIAL AI ENGINEERING PORTFOLIO LOGIC
-   With Cyber Ant Crawling Animation, Eye Tracking, Eye Blink & Progress Dashboard
+   With Line-Walking Cyber Ant, Skill Absorption Fade & Eye Double-Blink
    ========================================================================== */
 
 let soundEnabled = false;
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   INTERACTIVE EYE CLICK -> CYBER ANT CRAWL, EYE BLINK & PROGRESS UNLOCK
+   INTERACTIVE EYE CLICK -> LINE-WALKING CYBER ANT, SKILL ABSORPTION FADE & BLINK
    ========================================================================== */
 function triggerEyeVisionMode(e) {
     if (e) e.stopPropagation();
@@ -167,51 +167,73 @@ function triggerEyeVisionMode(e) {
         statusText.textContent = isVision ? '🐜 ANTIGRAVITY INJECTED // REASONING ACTIVE' : 'AGENTIC SYSTEM // ONLINE';
     }
 
-    // Play futuristic audio sound
     playFuturisticVisionSound();
     renderEcosystemGraph();
 
     if (isVision) {
-        // Run Cyber Ant Crawling & Eye Tracking Animation
-        animateCyberAntCrawl();
+        // Run Cyber Ant Line-Walking Animation
+        animateCyberAntLineCrawl();
     } else {
         if (progressPanel) progressPanel.classList.remove('active');
     }
 }
 
-function animateCyberAntCrawl() {
+function animateCyberAntLineCrawl() {
     const antWrapper = document.getElementById('cyberAntWrapper');
+    const antPayload = document.getElementById('antPayload');
     const eyeVedant = document.getElementById('heroEyeVedant');
     const eyeWhitesVedant = document.getElementById('eyeWhitesVedant');
     const eyePupilVedant = document.getElementById('eyePupilVedant');
     const eyePupilKapil = document.getElementById('eyePupilKapil');
+    const marqueeLine = document.getElementById('marqueeLineWrapper');
     const progressPanel = document.getElementById('liveProgressPanel');
 
     if (!antWrapper || !eyeVedant) return;
 
     isAntAnimating = true;
 
+    // Position Y along the horizontal line under VEDANT (marquee line top border)
+    let lineY = window.innerHeight * 0.48;
+    if (marqueeLine) {
+        const mRect = marqueeLine.getBoundingClientRect();
+        lineY = mRect.top + 10;
+    }
+
     // Get Target Eye Center Position
     const eyeRect = eyeVedant.getBoundingClientRect();
     const targetX = eyeRect.left + eyeRect.width / 2;
     const targetY = eyeRect.top + eyeRect.height / 2;
 
-    // Reset Ant to Left Screen Edge
+    // Reset Ant & Payload State
     antWrapper.style.display = 'flex';
-    antWrapper.style.left = '-150px';
-    antWrapper.style.top = `${targetY - 20}px`;
     antWrapper.style.opacity = '1';
+    antWrapper.style.left = '-180px';
+    antWrapper.style.top = `${lineY}px`;
 
-    let currentX = -150;
-    const speed = (targetX + 150) / 100; // 100 steps animation
+    if (antPayload) {
+        antPayload.style.opacity = '1';
+    }
+
+    let currentX = -180;
+    const totalDistance = targetX + 180;
+    const speed = totalDistance / 110; // Smooth 110 steps
 
     function stepCrawl() {
         currentX += speed;
         antWrapper.style.left = `${currentX}px`;
 
-        // Eyes Follow Ant Position!
+        // Calculate progress (0 to 1)
+        const progress = Math.min(1, Math.max(0, (currentX + 180) / totalDistance));
+
+        // Gradually decrease transparency of skill payload badge (dissolves & absorbs into ant as it walks!)
+        if (antPayload) {
+            const opacityVal = Math.max(0, 1 - progress * 1.3);
+            antPayload.style.opacity = opacityVal.toString();
+        }
+
+        // Eyes Follow Ant Position along the Line!
         const antX = currentX + 20;
-        const antY = targetY;
+        const antY = lineY;
 
         [eyePupilVedant, eyePupilKapil].forEach(pupil => {
             if (pupil) {
@@ -227,7 +249,7 @@ function animateCyberAntCrawl() {
         if (currentX < targetX - 25) {
             requestAnimationFrame(stepCrawl);
         } else {
-            // Ant reaches Eye! Absorb Ant & Double Blink Eye!
+            // Ant reaches Eye! Ant gets absorbed into the Eye!
             if (window.gsap) {
                 gsap.to(antWrapper, {
                     scale: 0.1,
@@ -237,7 +259,7 @@ function animateCyberAntCrawl() {
                         antWrapper.style.display = 'none';
                         antWrapper.style.scale = '1';
 
-                        // Eye Double Blink!
+                        // Eye Performs Double Blink Animation!
                         if (eyeWhitesVedant) {
                             eyeWhitesVedant.classList.add('blinking');
                             if (soundEnabled) playClickSound(900, 0.15);

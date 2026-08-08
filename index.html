@@ -24,24 +24,24 @@
         <span class="pulse-live"></span> 👁️ AI VISION MODE ACTIVATED // NEURAL SYSTEM UNLOCKED
     </div>
 
-    <!-- CYBER ANT CRAWLER & SKILL PAYLOAD -->
+    <!-- CYBER ANT CRAWLER & DISSOLVING SKILL PAYLOAD (HIDDEN BY DEFAULT, VISIBLE ONLY IN AI MODE) -->
     <div class="cyber-ant-wrapper" id="cyberAntWrapper">
         <div class="ant-payload-badge" id="antPayload">
-            <span class="payload-icon">⚡</span> CARRYING: LANGGRAPH & TRANSFORMER FINE-TUNING
+            <span class="payload-icon">⚡</span> LANGGRAPH & TRANSFORMER FINE-TUNING
         </div>
-        <!-- SVG Cyber Ant -->
-        <svg class="cyber-ant-svg" viewBox="0 0 100 100" width="45" height="45">
-            <ellipse cx="50" cy="70" rx="16" ry="20" fill="#22C55E" />
-            <ellipse cx="50" cy="45" rx="10" ry="12" fill="#16A34A" />
-            <circle cx="50" cy="25" r="10" fill="#22C55E" />
-            <!-- Eyes -->
-            <circle cx="45" cy="20" r="3" fill="#FFFFFF" />
-            <circle cx="55" cy="20" r="3" fill="#FFFFFF" />
-            <circle cx="45" cy="20" r="1.5" fill="#000000" />
-            <circle cx="55" cy="20" r="1.5" fill="#000000" />
-            <!-- Legs -->
-            <path d="M 40 45 L 20 35 M 40 50 L 15 50 M 40 55 L 20 65" stroke="#22C55E" stroke-width="3" stroke-linecap="round"/>
-            <path d="M 60 45 L 80 35 M 60 50 L 85 50 M 60 55 L 80 65" stroke="#22C55E" stroke-width="3" stroke-linecap="round"/>
+        <!-- SVG Cyber Ant Walking on Line -->
+        <svg class="cyber-ant-svg" viewBox="0 0 100 100" width="40" height="40">
+            <ellipse cx="50" cy="70" rx="15" ry="18" fill="#22C55E" />
+            <ellipse cx="50" cy="45" rx="9" ry="11" fill="#16A34A" />
+            <circle cx="50" cy="25" r="9" fill="#22C55E" />
+            <!-- Ant Eyes -->
+            <circle cx="46" cy="20" r="2.5" fill="#FFFFFF" />
+            <circle cx="54" cy="20" r="2.5" fill="#FFFFFF" />
+            <circle cx="46" cy="20" r="1.2" fill="#000000" />
+            <circle cx="54" cy="20" r="1.2" fill="#000000" />
+            <!-- Walking Legs -->
+            <path d="M 40 45 L 18 35 M 40 50 L 12 50 M 40 55 L 18 65" stroke="#22C55E" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 60 45 L 82 35 M 60 50 L 88 50 M 60 55 L 82 65" stroke="#22C55E" stroke-width="3" stroke-linecap="round"/>
             <!-- Antennae -->
             <path d="M 45 18 L 35 5 M 55 18 L 65 5" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round"/>
         </svg>
@@ -50,7 +50,6 @@
     <!-- Top Navigation Bar -->
     <header class="site-header">
         <div class="nav-container">
-            <!-- REFINED CLEAN LOGO WITH PERFECT ALIGNMENT -->
             <a href="#" class="brand-logo">
                 <span class="dot-live"></span>
                 <span class="brand-name">VK</span>
@@ -147,8 +146,8 @@
                 </div>
             </div>
 
-            <!-- MIDDLE RUNNING MARQUEE STREAM -->
-            <div class="marquee-wrapper">
+            <!-- MIDDLE RUNNING MARQUEE STREAM (LINE WHERE ANT WALKS) -->
+            <div class="marquee-wrapper" id="marqueeLineWrapper">
                 <div class="marquee-content">
                     <div class="marquee-track">
                         <span>INTELLIGENT SYSTEMS ARCHITECT</span> <span class="marquee-sep">•</span>
