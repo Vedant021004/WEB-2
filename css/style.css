@@ -1,18 +1,18 @@
 /* ==========================================================================
    VEDANT KAPIL — EDITORIAL AI ENGINEERING PORTFOLIO STYLES
-   With Refined Warm Champagne Editorial Colors & Chatbot Close Cross Button
+   With Restored Signature Yellow Palette & AI-Vision-Only Telemetry Panel
    ========================================================================== */
 
 :root {
-    --bg-yellow: #F4EBD9; /* Refined Warm Champagne Gold */
-    --bg-cream: #FAF8F5;  /* Soft Pearl Cream */
+    --bg-yellow: #F8CB74; /* Restored Original Signature Yellow Color */
+    --bg-cream: #FAF6EE;
     --bg-card: #FFFFFF;
-    --text-primary: #0B0E14;
-    --text-secondary: #2D3748;
-    --text-muted: #718096;
-    --border-color: #1A202C;
-    --border-subtle: rgba(26, 32, 44, 0.15);
-    --code-bg: #0F172A;
+    --text-primary: #000000;
+    --text-secondary: #222222;
+    --text-muted: #666666;
+    --border-color: #000000;
+    --border-subtle: rgba(0, 0, 0, 0.15);
+    --code-bg: #111317;
     --code-text: #E2E8F0;
 
     --font-heading: 'Oswald', 'Syne', sans-serif;
@@ -24,14 +24,14 @@
 }
 
 body.theme-dark {
-    --bg-yellow: #0F172A;
-    --bg-cream: #1E293B;
-    --bg-card: #334155;
-    --text-primary: #F8FAFC;
-    --text-secondary: #CBD5E1;
-    --text-muted: #94A3B8;
-    --border-color: #F8FAFC;
-    --border-subtle: rgba(248, 250, 252, 0.18);
+    --bg-yellow: #121418;
+    --bg-cream: #1A1D24;
+    --bg-card: #222630;
+    --text-primary: #F5F4F0;
+    --text-secondary: #CCCCCC;
+    --text-muted: #888888;
+    --border-color: #F5F4F0;
+    --border-subtle: rgba(255, 255, 255, 0.15);
 }
 
 body.ai-vision-mode {
@@ -186,6 +186,7 @@ body.eye-rage-mode .title---eye-pupils {
 .brand-sep { opacity: 0.4; font-weight: 400; }
 .brand-role { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.08em; }
 
+/* TELEMETRY PANEL: STRICTLY HIDDEN UNLESS AI VISION MODE IS ACTIVE! */
 .live-progress-panel {
     max-width: 1400px;
     margin: 2rem auto;
@@ -196,13 +197,13 @@ body.eye-rage-mode .title---eye-pupils {
     border: 1px solid rgba(56, 189, 248, 0.35);
     border-radius: 16px;
     padding: 2rem;
-    display: none;
+    display: none !important;
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     color: #F8FAFC;
 }
 
-.live-progress-panel.active {
-    display: block;
+body.ai-vision-mode .live-progress-panel.active {
+    display: block !important;
     animation: luxuryPanelSlideDown 0.6s var(--ease-bounce);
 }
 
@@ -314,7 +315,7 @@ body.eye-rage-mode .title---eye-pupils {
     transition: width 1.2s var(--ease-smooth);
 }
 
-/* INTERACTIVE CHATBOT TERMINAL & PROMINENT CLOSE CROSS BUTTON */
+/* INTERACTIVE CHATBOT TERMINAL & CLOSE BUTTON */
 .vk-terminal-window {
     width: 100%;
     max-width: 680px;

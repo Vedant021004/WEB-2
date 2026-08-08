@@ -1,6 +1,6 @@
 /* ==========================================================================
    VEDANT KAPIL — EDITORIAL AI ENGINEERING PORTFOLIO LOGIC
-   With Refined Warm Champagne Colors, Chatbot Close Button & Backdrop Dismiss
+   With Restored Signature Yellow Palette & AI-Vision-Only Telemetry Panel Rule
    ========================================================================== */
 
 let soundEnabled = false;
@@ -26,6 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
             start: "top 75%",
             onEnter: () => triggerPortfolioWaveAnimation()
         });
+    }
+
+    // Ensure Telemetry Panel is strictly hidden on initial page load
+    const progressPanel = document.getElementById('liveProgressPanel');
+    if (progressPanel) {
+        progressPanel.classList.remove('active');
     }
 
     // 2. Audio Toggle
@@ -272,7 +278,7 @@ function triggerPortfolioWaveAnimation() {
 }
 
 /* ==========================================================================
-   SLOW CINEMATIC ANT LINE CRAWL (DYNAMICALLY LINE-LOCKED)
+   SLOW CINEMATIC ANT LINE CRAWL (DYNAMICALLY LINE-LOCKED & STRICT AI MODE PANEL)
    ========================================================================== */
 function triggerEyeVisionMode(e) {
     if (e) e.stopPropagation();
@@ -303,7 +309,10 @@ function triggerEyeVisionMode(e) {
     if (isVision) {
         animateCyberAntSlowLineCrawl();
     } else {
-        if (progressPanel) progressPanel.classList.remove('active');
+        // STRICTLY HIDE TELEMETRY PANEL WHEN AI VISION MODE IS TURNED OFF
+        if (progressPanel) {
+            progressPanel.classList.remove('active');
+        }
     }
 }
 
@@ -388,7 +397,8 @@ function animateCyberAntSlowLineCrawl() {
                                 eyeWhitesVedant.classList.remove('blinking');
                                 isAntAnimating = false;
 
-                                if (progressPanel) {
+                                // REVEAL TELEMETRY PANEL ONLY IN AI VISION MODE!
+                                if (progressPanel && document.body.classList.contains('ai-vision-mode')) {
                                     progressPanel.classList.add('active');
                                     progressPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                                 }
@@ -630,9 +640,9 @@ function initEcosystemCanvas() {
         const isVision = document.body.classList.contains('ai-vision-mode');
         const isRage = document.body.classList.contains('eye-rage-mode');
         const isDark = document.body.classList.contains('theme-dark') || isVision || isRage;
-        const nodeColor = isRage ? '#EF4444' : (isVision ? '#38BDF8' : (isDark ? '#F5F4F0' : '#0B0E14'));
-        const lineBaseColor = isRage ? 'rgba(239, 68, 68, 0.25)' : (isVision ? 'rgba(56, 189, 248, 0.25)' : (isDark ? 'rgba(245, 244, 240, 0.15)' : 'rgba(11, 14, 20, 0.18)'));
-        const lineActiveColor = isRage ? '#DC2626' : (isVision ? '#22C55E' : (isDark ? '#E2B859' : '#0B0E14'));
+        const nodeColor = isRage ? '#EF4444' : (isVision ? '#38BDF8' : (isDark ? '#F5F4F0' : '#000000'));
+        const lineBaseColor = isRage ? 'rgba(239, 68, 68, 0.25)' : (isVision ? 'rgba(56, 189, 248, 0.25)' : (isDark ? 'rgba(245, 244, 240, 0.15)' : 'rgba(0, 0, 0, 0.15)'));
+        const lineActiveColor = isRage ? '#DC2626' : (isVision ? '#22C55E' : (isDark ? '#E2B859' : '#000000'));
         const packetColor = isRage ? '#EF4444' : (isVision ? '#22C55E' : '#E2B859');
 
         techNodesData.forEach(node => {
@@ -700,7 +710,7 @@ function initEcosystemCanvas() {
 
             ctx.beginPath();
             ctx.arc(nodeX, nodeY, isActive ? 12 : 8, 0, Math.PI * 2);
-            ctx.fillStyle = isActive ? (isRage ? '#EF4444' : (isVision ? '#22C55E' : (isDark ? '#E2B859' : '#0B0E14'))) : (isDark ? '#1A1D24' : '#FAF6EE');
+            ctx.fillStyle = isActive ? (isRage ? '#EF4444' : (isVision ? '#22C55E' : (isDark ? '#E2B859' : '#000000'))) : (isDark ? '#1A1D24' : '#FAF6EE');
             ctx.fill();
             ctx.strokeStyle = nodeColor;
             ctx.lineWidth = 2;
