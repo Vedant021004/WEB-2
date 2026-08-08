@@ -1,6 +1,6 @@
 /* ==========================================================================
    VEDANT KAPIL — EDITORIAL AI ENGINEERING PORTFOLIO LOGIC
-   With Restored Signature Yellow Palette & AI-Vision-Only Telemetry Panel Rule
+   With Automatic 10-Second Auto-Reset for Red Eye Rage Boss Mode
    ========================================================================== */
 
 let soundEnabled = false;
@@ -10,6 +10,7 @@ let isAntAnimating = false;
 let totalEyeRollRotation = 0;
 let lastEyeAngle = null;
 let isRageActive = false;
+let rageTimeoutId = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Initialize Lucide Icons
@@ -49,7 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggleBtn = document.getElementById('themeToggle');
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
+            clearTimeout(rageTimeoutId);
             document.body.classList.remove('ai-vision-mode', 'eye-rage-mode');
+            isRageActive = false;
             document.body.classList.toggle('theme-dark');
             const isDark = document.body.classList.contains('theme-dark');
             const toggleText = themeToggleBtn.querySelector('.toggle-text');
@@ -207,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   RED EYE RAGE BOSS MODE (TRIGGERED BY ROLLING CURSOR IN CIRCLES AROUND EYE!)
+   RED EYE RAGE BOSS MODE (WITH AUTOMATIC 10-SECOND AUTO-RESET TIMEOUT)
    ========================================================================== */
 function triggerRedEyeRageBossMode() {
     isRageActive = true;
@@ -221,7 +224,6 @@ function triggerRedEyeRageBossMode() {
 
     if (warningBanner) {
         warningBanner.classList.add('active');
-        setTimeout(() => warningBanner.classList.remove('active'), 5000);
     }
 
     if (statusText) {
@@ -231,8 +233,8 @@ function triggerRedEyeRageBossMode() {
     playRageAlarmSound();
 
     setTimeout(() => {
-        if (terminalModal) terminalModal.classList.add('active');
-        if (container) {
+        if (terminalModal && isRageActive) terminalModal.classList.add('active');
+        if (container && isRageActive) {
             const bossMsg = document.createElement('div');
             bossMsg.className = 'term-msg bot-msg';
             bossMsg.style.borderColor = '#EF4444';
@@ -241,6 +243,30 @@ function triggerRedEyeRageBossMode() {
             container.scrollTop = container.scrollHeight;
         }
     }, 600);
+
+    // AUTOMATIC 10-SECOND DEACTIVATION TIMEOUT
+    clearTimeout(rageTimeoutId);
+    rageTimeoutId = setTimeout(() => {
+        deactivateRedEyeRageBossMode();
+    }, 10000); // 10 seconds exact!
+}
+
+function deactivateRedEyeRageBossMode() {
+    isRageActive = false;
+    document.body.classList.remove('eye-rage-mode');
+
+    const warningBanner = document.getElementById('bossWarningBanner');
+    const statusText = document.getElementById('headerStatusText');
+
+    if (warningBanner) {
+        warningBanner.classList.remove('active');
+    }
+
+    if (statusText) {
+        statusText.textContent = 'AGENTIC SYSTEM // ONLINE';
+    }
+
+    renderEcosystemGraph();
 }
 
 function playRageAlarmSound() {
@@ -284,8 +310,7 @@ function triggerEyeVisionMode(e) {
     if (e) e.stopPropagation();
 
     if (isRageActive) {
-        document.body.classList.remove('eye-rage-mode');
-        isRageActive = false;
+        deactivateRedEyeRageBossMode();
     }
 
     document.body.classList.toggle('ai-vision-mode');
@@ -309,7 +334,6 @@ function triggerEyeVisionMode(e) {
     if (isVision) {
         animateCyberAntSlowLineCrawl();
     } else {
-        // STRICTLY HIDE TELEMETRY PANEL WHEN AI VISION MODE IS TURNED OFF
         if (progressPanel) {
             progressPanel.classList.remove('active');
         }
@@ -397,7 +421,6 @@ function animateCyberAntSlowLineCrawl() {
                                 eyeWhitesVedant.classList.remove('blinking');
                                 isAntAnimating = false;
 
-                                // REVEAL TELEMETRY PANEL ONLY IN AI VISION MODE!
                                 if (progressPanel && document.body.classList.contains('ai-vision-mode')) {
                                     progressPanel.classList.add('active');
                                     progressPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
