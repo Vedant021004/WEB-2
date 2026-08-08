@@ -14,15 +14,17 @@ let isRageActive = false;
 let rageTimeoutId = null;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Initialize Lenis Smooth Scroll Engine
+    // 1. Initialize Lenis Smooth Scroll Engine with Luxurious Cinematic Weight & Inertia
     if (window.Lenis) {
         lenis = new Lenis({
-            duration: 1.4,
+            duration: 2.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            touchMultiplier: 2.2,
-            wheelMultiplier: 1.1,
+            lerp: 0.05,
+            touchMultiplier: 1.5,
+            wheelMultiplier: 0.85,
             infinite: false,
-            smoothWheel: true
+            smoothWheel: true,
+            smoothTouch: true
         });
 
         function raf(time) {
@@ -48,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const targetEl = document.querySelector(targetId);
                     if (targetEl) {
                         e.preventDefault();
-                        lenis.scrollTo(targetEl, { offset: -50, duration: 1.3 });
+                        lenis.scrollTo(targetEl, { offset: -50, duration: 2.0, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
                     }
                 }
             });
