@@ -19,16 +19,43 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="theme-editorial">
-    <!-- AI Vision Mode Banner Notification -->
+    <!-- AI Vision Banner -->
     <div class="ai-vision-banner" id="aiVisionBanner">
         <span class="pulse-live"></span> 👁️ AI VISION MODE ACTIVATED // NEURAL SYSTEM UNLOCKED
+    </div>
+
+    <!-- CYBER ANT CRAWLER & SKILL PAYLOAD -->
+    <div class="cyber-ant-wrapper" id="cyberAntWrapper">
+        <div class="ant-payload-badge" id="antPayload">
+            <span class="payload-icon">⚡</span> CARRYING: LANGGRAPH & TRANSFORMER FINE-TUNING
+        </div>
+        <!-- SVG Cyber Ant -->
+        <svg class="cyber-ant-svg" viewBox="0 0 100 100" width="45" height="45">
+            <ellipse cx="50" cy="70" rx="16" ry="20" fill="#22C55E" />
+            <ellipse cx="50" cy="45" rx="10" ry="12" fill="#16A34A" />
+            <circle cx="50" cy="25" r="10" fill="#22C55E" />
+            <!-- Eyes -->
+            <circle cx="45" cy="20" r="3" fill="#FFFFFF" />
+            <circle cx="55" cy="20" r="3" fill="#FFFFFF" />
+            <circle cx="45" cy="20" r="1.5" fill="#000000" />
+            <circle cx="55" cy="20" r="1.5" fill="#000000" />
+            <!-- Legs -->
+            <path d="M 40 45 L 20 35 M 40 50 L 15 50 M 40 55 L 20 65" stroke="#22C55E" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 60 45 L 80 35 M 60 50 L 85 50 M 60 55 L 80 65" stroke="#22C55E" stroke-width="3" stroke-linecap="round"/>
+            <!-- Antennae -->
+            <path d="M 45 18 L 35 5 M 55 18 L 65 5" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
     </div>
 
     <!-- Top Navigation Bar -->
     <header class="site-header">
         <div class="nav-container">
+            <!-- REFINED CLEAN LOGO WITH PERFECT ALIGNMENT -->
             <a href="#" class="brand-logo">
-                <span class="dot pulse-live"></span> VK // AI ARCHITECT
+                <span class="dot-live"></span>
+                <span class="brand-name">VK</span>
+                <span class="brand-sep">//</span>
+                <span class="brand-role">AI ARCHITECT</span>
             </a>
 
             <!-- System Live Status -->
@@ -48,12 +75,10 @@
             </nav>
 
             <div class="nav-controls">
-                <!-- Sound Toggle -->
                 <button class="sound-toggle" id="soundToggle" title="Toggle UI Audio Effects">
                     <span id="soundIcon">🔇</span> SOUND
                 </button>
 
-                <!-- Theme Mode Toggle -->
                 <div class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
                     <span class="toggle-icon">👁️</span>
                     <span class="toggle-text">MODE</span>
@@ -71,15 +96,54 @@
                     <span class="title-char">V</span>
                     <span class="title-char">E</span>
                     <span class="title-char">D</span>
-                    <!-- Interactive Eye: Clicking triggers AI Vision Mode! -->
-                    <div class="title---eye-wrapper eye-interactive" id="heroEyeVedant" onclick="triggerEyeVisionMode(event)" title="Click to Activate AI Vision Mode!">
+                    <!-- Interactive Eye: Clicking triggers Ant Animation & AI Vision Mode! -->
+                    <div class="title---eye-wrapper eye-interactive" id="heroEyeVedant" onclick="triggerEyeVisionMode(event)" title="Click to Activate AI Vision & Antigravity Animation!">
                         <span class="eye-letter-bg">A</span>
-                        <div class="title---eye-whites">
-                            <div class="title---eye-pupils"></div>
+                        <div class="title---eye-whites" id="eyeWhitesVedant">
+                            <div class="title---eye-pupils" id="eyePupilVedant"></div>
                         </div>
                     </div>
                     <span class="title-char">N</span>
                     <span class="title-char">T</span>
+                </div>
+            </div>
+
+            <!-- LIVE CURRENT RESEARCH & WORK PROGRESS DASHBOARD (UNLOCKED IN AI MODE) -->
+            <div class="live-progress-panel" id="liveProgressPanel">
+                <div class="panel-header">
+                    <span class="panel-tag"><span class="dot-live red"></span> CURRENT WORK & RESEARCH PROGRESS</span>
+                    <span class="panel-status">LIVE TELEMETRY</span>
+                </div>
+                <div class="progress-items-grid">
+                    <div class="prog-card">
+                        <div class="prog-meta">
+                            <span class="prog-tech">LANGGRAPH</span>
+                            <span class="prog-pct">88% COMPLETE</span>
+                        </div>
+                        <h4>Multi-Agent Stateful Graph Execution</h4>
+                        <p>Architecting fault-tolerant cyclic DAGs with state persistence, checkpointing, and human-in-the-loop tool approval gates.</p>
+                        <div class="bar-container"><div class="bar-fill" style="width: 88%;"></div></div>
+                    </div>
+
+                    <div class="prog-card">
+                        <div class="prog-meta">
+                            <span class="prog-tech">LLM FINE-TUNING</span>
+                            <span class="prog-pct">94% COMPLETE</span>
+                        </div>
+                        <h4>Transformer Fine-Tuning (QLoRA & PEFT)</h4>
+                        <p>Fine-tuning Llama-3 8B & Mistral models on specialized dataset pairs for deterministic SQL construction and structured JSON response schemas.</p>
+                        <div class="bar-container"><div class="bar-fill" style="width: 94%;"></div></div>
+                    </div>
+
+                    <div class="prog-card">
+                        <div class="prog-meta">
+                            <span class="prog-tech">HYBRID RAG & MLOPS</span>
+                            <span class="prog-pct">96% COMPLETE</span>
+                        </div>
+                        <h4>Sub-50ms Vector Search & FastAPI Microservices</h4>
+                        <p>Deploying hybrid sparse BM25 + dense vector indexing pipelines with Cohere re-ranking on async FastAPI microservice nodes.</p>
+                        <div class="bar-container"><div class="bar-fill" style="width: 96%;"></div></div>
+                    </div>
                 </div>
             </div>
 
@@ -115,11 +179,10 @@
             <div class="title-container title---kapil">
                 <div class="title---line">
                     <span class="title-char">K</span>
-                    <!-- Interactive Eye: Clicking triggers AI Vision Mode! -->
-                    <div class="title---eye-wrapper eye-interactive" id="heroEyeKapil" onclick="triggerEyeVisionMode(event)" title="Click to Activate AI Vision Mode!">
+                    <div class="title---eye-wrapper eye-interactive" id="heroEyeKapil" onclick="triggerEyeVisionMode(event)" title="Click to Activate AI Vision & Antigravity Animation!">
                         <span class="eye-letter-bg">A</span>
-                        <div class="title---eye-whites">
-                            <div class="title---eye-pupils"></div>
+                        <div class="title---eye-whites" id="eyeWhitesKapil">
+                            <div class="title---eye-pupils" id="eyePupilKapil"></div>
                         </div>
                     </div>
                     <span class="title-char">P</span>

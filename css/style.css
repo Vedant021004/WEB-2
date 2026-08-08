@@ -1,6 +1,6 @@
 /* ==========================================================================
    VEDANT KAPIL — EDITORIAL AI ENGINEERING PORTFOLIO STYLES
-   With Interactive Eye Click -> AI Vision Neural Mode Trigger
+   With Refined Logo, Cyber Ant Crawler, Eye Tracking & Live Progress Panel
    ========================================================================== */
 
 :root {
@@ -23,7 +23,6 @@
     --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Midnight Dark Theme */
 body.theme-dark {
     --bg-yellow: #121418;
     --bg-cream: #1A1D24;
@@ -35,7 +34,7 @@ body.theme-dark {
     --border-subtle: rgba(255, 255, 255, 0.15);
 }
 
-/* AI VISION MODE (TRIGGERED BY CLICKING THE EYE!) */
+/* AI VISION MODE */
 body.ai-vision-mode {
     --bg-yellow: #05080E;
     --bg-cream: #090E17;
@@ -58,9 +57,7 @@ body.ai-vision-mode .expanding-letter-pill {
     box-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
 }
 
-body.ai-vision-mode .pill-text-content {
-    color: #05080E;
-}
+body.ai-vision-mode .pill-text-content { color: #05080E; }
 
 @keyframes eyeGlowPulse {
     0% { transform: scale(1); box-shadow: 0 0 20px #38BDF8; }
@@ -88,8 +85,195 @@ body.ai-vision-mode .pill-text-content {
     transition: top 0.4s var(--ease-bounce);
 }
 
-.ai-vision-banner.active {
-    top: 1.2rem;
+.ai-vision-banner.active { top: 1.2rem; }
+
+/* CYBER ANT CRAWLER & PAYLOAD */
+.cyber-ant-wrapper {
+    position: fixed;
+    top: 30vh;
+    left: -150px;
+    z-index: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    transition: transform 0.05s linear;
+}
+
+.ant-payload-badge {
+    background-color: #22C55E;
+    color: #000000;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    white-space: nowrap;
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.8);
+    margin-bottom: 6px;
+}
+
+.cyber-ant-svg {
+    filter: drop-shadow(0 0 8px #22C55E);
+    animation: antWiggle 0.15s infinite alternate;
+}
+
+@keyframes antWiggle {
+    0% { transform: rotate(-3deg); }
+    100% { transform: rotate(3deg); }
+}
+
+/* EYE BLINK ANIMATION */
+.title---eye-whites.blinking {
+    animation: eyeBlinkAnim 0.25s 2 cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes eyeBlinkAnim {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.05); }
+}
+
+/* REFINED LOGO STYLING (EXACT MATCH TO SCREENSHOT, CLEAN & INLINE) */
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 0.05em;
+    color: var(--text-primary);
+}
+
+.dot-live {
+    width: 9px;
+    height: 9px;
+    background-color: #22C55E;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px #22C55E;
+}
+
+.dot-live.red {
+    background-color: #EF4444;
+    box-shadow: 0 0 8px #EF4444;
+}
+
+.brand-name {
+    font-weight: 800;
+}
+
+.brand-sep {
+    opacity: 0.4;
+    font-weight: 400;
+}
+
+.brand-role {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+}
+
+/* LIVE RESEARCH & WORK PROGRESS PANEL */
+.live-progress-panel {
+    max-width: 1400px;
+    margin: 1.5rem auto;
+    width: 90%;
+    background-color: var(--bg-card);
+    border: 2px solid var(--border-color);
+    padding: 1.8rem;
+    display: none;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.live-progress-panel.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    margin-bottom: 1.2rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.panel-tag {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.panel-status {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    background-color: #22C55E;
+    color: #000000;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+}
+
+.progress-items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.prog-card {
+    background-color: var(--bg-yellow);
+    border: 1.5px solid var(--border-color);
+    padding: 1.2rem;
+}
+
+.prog-meta {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+}
+
+.prog-tech {
+    color: var(--text-muted);
+}
+
+.prog-pct {
+    color: var(--text-primary);
+}
+
+.prog-card h4 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+
+.prog-card p {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.bar-container {
+    width: 100%;
+    height: 6px;
+    background-color: rgba(0,0,0,0.15);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    background-color: var(--text-primary);
+    transition: width 1s ease-out;
 }
 
 * {
@@ -118,7 +302,7 @@ html, body {
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
 
-/* HEADER & LIVE STATUS */
+/* HEADER */
 .site-header {
     position: fixed;
     top: 0;
@@ -138,28 +322,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     align-items: center;
     justify-content: space-between;
 }
-
-.brand-logo {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 1.25rem;
-    letter-spacing: 0.08em;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.brand-logo .dot {
-    width: 10px;
-    height: 10px;
-    background-color: #22C55E;
-    border-radius: 50%;
-    display: inline-block;
-    box-shadow: 0 0 8px #22C55E;
-}
-
-.pulse-live { animation: pulseDot 1.5s infinite; }
-@keyframes pulseDot { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.4); opacity: 0.5; } }
 
 .header-system-status {
     display: flex;

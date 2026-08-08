@@ -1,9 +1,10 @@
 /* ==========================================================================
    VEDANT KAPIL — EDITORIAL AI ENGINEERING PORTFOLIO LOGIC
-   With Interactive Eye Vision Mode, VK-AI Copilot Terminal & Live DAG Simulator
+   With Cyber Ant Crawling Animation, Eye Tracking, Eye Blink & Progress Dashboard
    ========================================================================== */
 
 let soundEnabled = false;
+let isAntAnimating = false;
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Initialize Lucide Icons
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Theme Toggle (Editorial Yellow vs Dark)
+    // 3. Theme Toggle
     const themeToggleBtn = document.getElementById('themeToggle');
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
@@ -38,11 +39,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Eye Pupil Cursor Motion Tracking
+    // 4. Standard Eye Pupil Cursor Motion Tracking
     const heroPupils = document.querySelectorAll('.title---eye-pupils');
     const nodePupils = document.querySelectorAll('.inner-pupil');
 
     document.addEventListener('mousemove', (e) => {
+        if (isAntAnimating) return; // Ant animation takes over pupil tracking during crawl!
+
         const mouseX = e.clientX;
         const mouseY = e.clientY;
 
@@ -73,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const titleBars = document.querySelectorAll('.section-title-bar');
     titleBars.forEach(bar => {
         bar.addEventListener('click', (e) => {
-            // Prevent double triggering if clicked directly on pill
             if (e.target.closest('.expanding-letter-pill')) return;
 
             const targetId = bar.getAttribute('data-target');
@@ -145,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   INTERACTIVE EYE CLICK -> TRIGGER AI VISION NEURAL MODE
+   INTERACTIVE EYE CLICK -> CYBER ANT CRAWL, EYE BLINK & PROGRESS UNLOCK
    ========================================================================== */
 function triggerEyeVisionMode(e) {
     if (e) e.stopPropagation();
@@ -154,21 +156,110 @@ function triggerEyeVisionMode(e) {
     const isVision = document.body.classList.contains('ai-vision-mode');
     const banner = document.getElementById('aiVisionBanner');
     const statusText = document.getElementById('headerStatusText');
+    const progressPanel = document.getElementById('liveProgressPanel');
 
-    if (banner) {
-        if (isVision) {
-            banner.classList.add('active');
-            setTimeout(() => banner.classList.remove('active'), 3500);
-        }
+    if (banner && isVision) {
+        banner.classList.add('active');
+        setTimeout(() => banner.classList.remove('active'), 3500);
     }
 
     if (statusText) {
-        statusText.textContent = isVision ? '👁️ AI VISION MODE // NEURAL ACTIVE' : 'AGENTIC SYSTEM // ONLINE';
+        statusText.textContent = isVision ? '🐜 ANTIGRAVITY INJECTED // REASONING ACTIVE' : 'AGENTIC SYSTEM // ONLINE';
     }
 
-    // Play futuristic sound effect
+    // Play futuristic audio sound
     playFuturisticVisionSound();
     renderEcosystemGraph();
+
+    if (isVision) {
+        // Run Cyber Ant Crawling & Eye Tracking Animation
+        animateCyberAntCrawl();
+    } else {
+        if (progressPanel) progressPanel.classList.remove('active');
+    }
+}
+
+function animateCyberAntCrawl() {
+    const antWrapper = document.getElementById('cyberAntWrapper');
+    const eyeVedant = document.getElementById('heroEyeVedant');
+    const eyeWhitesVedant = document.getElementById('eyeWhitesVedant');
+    const eyePupilVedant = document.getElementById('eyePupilVedant');
+    const eyePupilKapil = document.getElementById('eyePupilKapil');
+    const progressPanel = document.getElementById('liveProgressPanel');
+
+    if (!antWrapper || !eyeVedant) return;
+
+    isAntAnimating = true;
+
+    // Get Target Eye Center Position
+    const eyeRect = eyeVedant.getBoundingClientRect();
+    const targetX = eyeRect.left + eyeRect.width / 2;
+    const targetY = eyeRect.top + eyeRect.height / 2;
+
+    // Reset Ant to Left Screen Edge
+    antWrapper.style.display = 'flex';
+    antWrapper.style.left = '-150px';
+    antWrapper.style.top = `${targetY - 20}px`;
+    antWrapper.style.opacity = '1';
+
+    let currentX = -150;
+    const speed = (targetX + 150) / 100; // 100 steps animation
+
+    function stepCrawl() {
+        currentX += speed;
+        antWrapper.style.left = `${currentX}px`;
+
+        // Eyes Follow Ant Position!
+        const antX = currentX + 20;
+        const antY = targetY;
+
+        [eyePupilVedant, eyePupilKapil].forEach(pupil => {
+            if (pupil) {
+                const pRect = pupil.getBoundingClientRect();
+                const pX = pRect.left + pRect.width / 2;
+                const pY = pRect.top + pRect.height / 2;
+                const angle = Math.atan2(antY - pY, antX - pX);
+                const distance = Math.min(14, Math.hypot(antX - pX, antY - pY) / 15);
+                pupil.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
+            }
+        });
+
+        if (currentX < targetX - 25) {
+            requestAnimationFrame(stepCrawl);
+        } else {
+            // Ant reaches Eye! Absorb Ant & Double Blink Eye!
+            if (window.gsap) {
+                gsap.to(antWrapper, {
+                    scale: 0.1,
+                    opacity: 0,
+                    duration: 0.4,
+                    onComplete: () => {
+                        antWrapper.style.display = 'none';
+                        antWrapper.style.scale = '1';
+
+                        // Eye Double Blink!
+                        if (eyeWhitesVedant) {
+                            eyeWhitesVedant.classList.add('blinking');
+                            if (soundEnabled) playClickSound(900, 0.15);
+
+                            setTimeout(() => {
+                                eyeWhitesVedant.classList.remove('blinking');
+                                isAntAnimating = false;
+
+                                // Unlock & Reveal Current Work Progress Dashboard!
+                                if (progressPanel) {
+                                    progressPanel.classList.add('active');
+                                    progressPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                }
+                            }, 600);
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+    requestAnimationFrame(stepCrawl);
 }
 
 function playFuturisticVisionSound() {
@@ -177,7 +268,6 @@ function playFuturisticVisionSound() {
         if (!AudioCtx) return;
         const ctx = new AudioCtx();
         
-        // Multi-frequency chime
         const frequencies = [523.25, 659.25, 783.99, 1046.50];
         frequencies.forEach((freq, idx) => {
             const osc = ctx.createOscillator();
@@ -195,9 +285,6 @@ function playFuturisticVisionSound() {
     } catch (err) { console.error(err); }
 }
 
-/* ==========================================================================
-   WEB AUDIO API SYNTHESIZED SOUND EFFECTS
-   ========================================================================== */
 function playClickSound(freq = 440, duration = 0.05) {
     if (!soundEnabled) return;
     try {
