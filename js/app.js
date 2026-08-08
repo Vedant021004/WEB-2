@@ -1,6 +1,6 @@
 /* ==========================================================================
    VEDANT KAPIL — EDITORIAL AI ENGINEERING PORTFOLIO LOGIC
-   With Fixed Canvas Label Offsets, Chip Wrapping & Cursor Rolling Rage Detector
+   With Dynamic Animated Ecosystem Canvas, Fixed Line-Walking Ant & Eye Rolling Detector
    ========================================================================== */
 
 let soundEnabled = false;
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lucide.createIcons();
     }
 
-    // Register GSAP ScrollTrigger if available
+    // Register GSAP ScrollTrigger
     if (window.gsap && window.ScrollTrigger) {
         gsap.registerPlugin(ScrollTrigger);
         
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Standard Eye Pupil Tracking & CURSOR EYE ROLLING DETECTOR!
+    // 4. Standard Eye Pupil Tracking & ULTRA-RESPONSIVE CURSOR EYE ROLLING DETECTOR
     const heroPupils = document.querySelectorAll('.title---eye-pupils');
     const nodePupils = document.querySelectorAll('.inner-pupil');
     const heroEyeVedant = document.getElementById('heroEyeVedant');
@@ -89,15 +89,14 @@ document.addEventListener('DOMContentLoaded', () => {
             pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
         });
 
-        // EYE CIRCLE / ROLLING DETECTOR (If user circles mouse around hero eye!)
+        // EYE CIRCLE / ROLLING DETECTOR (Super responsive radius < 320px)
         if (heroEyeVedant) {
             const eRect = heroEyeVedant.getBoundingClientRect();
             const eyeCenterX = eRect.left + eRect.width / 2;
             const eyeCenterY = eRect.top + eRect.height / 2;
             const distToEye = Math.hypot(mouseX - eyeCenterX, mouseY - eyeCenterY);
 
-            // If mouse is within 180px of Eye
-            if (distToEye < 180) {
+            if (distToEye < 320) {
                 const currentAngle = Math.atan2(mouseY - eyeCenterY, mouseX - eyeCenterX);
 
                 if (lastEyeAngle !== null) {
@@ -107,16 +106,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     totalEyeRollRotation += diff;
 
-                    // If user completes 3 full 360-degree circles (6 * PI) around the Eye!
-                    if (Math.abs(totalEyeRollRotation) >= Math.PI * 6 && !isRageActive) {
+                    // Visual feedback: Rotate the eye slightly as you roll!
+                    heroEyeVedant.style.transform = `scale(1.15) rotate(${totalEyeRollRotation * 20}deg)`;
+
+                    // Trigger Red Eye Rage if rotation exceeds 3.5 * PI (~1.7 circles)
+                    if (Math.abs(totalEyeRollRotation) >= Math.PI * 3.5 && !isRageActive) {
                         triggerRedEyeRageBossMode();
-                        totalEyeRollRotation = 0; // reset
+                        totalEyeRollRotation = 0;
                     }
                 }
                 lastEyeAngle = currentAngle;
             } else {
                 totalEyeRollRotation = 0;
                 lastEyeAngle = null;
+                heroEyeVedant.style.transform = '';
             }
         }
     });
@@ -195,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 8. Ecosystem Canvas
+    // 8. Dynamic Animated Ecosystem Canvas
     initEcosystemCanvas();
 });
 
@@ -271,7 +274,7 @@ function triggerPortfolioWaveAnimation() {
 }
 
 /* ==========================================================================
-   SLOW CINEMATIC ANT LINE CRAWL & DISSOLVE PAYLOAD (LINE-LOCKED POSITION)
+   SLOW CINEMATIC ANT LINE CRAWL (DYNAMICALLY LINE-LOCKED)
    ========================================================================== */
 function triggerEyeVisionMode(e) {
     if (e) e.stopPropagation();
@@ -336,6 +339,7 @@ function animateCyberAntSlowLineCrawl() {
     const speed = totalDistance / 340;
 
     function stepCrawl() {
+        // DYNAMIC LINE LOCKING: Position ant directly on top border of marquee line
         let currentLineY = window.innerHeight * 0.48;
         if (marqueeLine) {
             const mRect = marqueeLine.getBoundingClientRect();
@@ -508,11 +512,11 @@ function sendTerminalPrompt(text) {
     }
 }
 
-handleTerminalKeyPress = function(e) {
+function handleTerminalKeyPress(e) {
     if (e.key === 'Enter') {
         sendTerminalMessage();
     }
-};
+}
 
 function sendTerminalMessage() {
     const input = document.getElementById('terminalInput');
@@ -558,7 +562,7 @@ function generateCopilotResponse(query) {
 }
 
 /* ==========================================================================
-   INTERACTIVE TECHNOLOGY ECOSYSTEM CANVAS (LABEL OVERLAP FIX)
+   DYNAMIC CONTINUOUS ANIMATED ECOSYSTEM CANVAS ENGINE
    ========================================================================== */
 const techNodesData = [
     { id: 'ml', label: 'Machine Learning', category: 'Core ML', x: 0.25, y: 0.35, connects: ['dl', 'llm', 'fastapi', 'cloud'] },
@@ -587,6 +591,7 @@ const techDescriptions = {
 };
 
 let activeNodeId = 'agentic';
+let canvasAnimId = null;
 
 function initEcosystemCanvas() {
     const canvas = document.getElementById('ecosystemCanvas');
@@ -601,13 +606,23 @@ function initEcosystemCanvas() {
         canvas.width = width * window.devicePixelRatio;
         canvas.height = height * window.devicePixelRatio;
         ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-        draw();
     }
 
     window.addEventListener('resize', resize);
     resize();
 
-    function draw() {
+    // Data Packets traveling on lines
+    const packets = [];
+    techNodesData.forEach(node => {
+        node.connects.forEach(tId => {
+            packets.push({ from: node.id, to: tId, progress: Math.random(), speed: 0.003 + Math.random() * 0.004 });
+        });
+    });
+
+    let time = 0;
+
+    function animate() {
+        time += 0.03;
         ctx.clearRect(0, 0, width, height);
 
         const isVision = document.body.classList.contains('ai-vision-mode');
@@ -616,16 +631,21 @@ function initEcosystemCanvas() {
         const nodeColor = isRage ? '#EF4444' : (isVision ? '#38BDF8' : (isDark ? '#F5F4F0' : '#000000'));
         const lineBaseColor = isRage ? 'rgba(239, 68, 68, 0.25)' : (isVision ? 'rgba(56, 189, 248, 0.25)' : (isDark ? 'rgba(245, 244, 240, 0.15)' : 'rgba(0, 0, 0, 0.15)'));
         const lineActiveColor = isRage ? '#DC2626' : (isVision ? '#22C55E' : (isDark ? '#E2B859' : '#000000'));
+        const packetColor = isRage ? '#EF4444' : (isVision ? '#22C55E' : '#E2B859');
 
+        // Draw Connection Lines
         techNodesData.forEach(node => {
+            // Floating node Y offset
+            const nodeYOffset = Math.sin(time + node.x * 10) * 4;
             const nodeX = node.x * width;
-            const nodeY = node.y * height;
+            const nodeY = node.y * height + nodeYOffset;
 
             node.connects.forEach(targetId => {
                 const targetNode = techNodesData.find(n => n.id === targetId);
                 if (targetNode) {
+                    const targetYOffset = Math.sin(time + targetNode.x * 10) * 4;
                     const targetX = targetNode.x * width;
-                    const targetY = targetNode.y * height;
+                    const targetY = targetNode.y * height + targetYOffset;
                     const isConnectedToActive = (node.id === activeNodeId || targetId === activeNodeId);
 
                     ctx.beginPath();
@@ -638,10 +658,48 @@ function initEcosystemCanvas() {
             });
         });
 
+        // Draw Pulsing Data Packets Traveling on Lines
+        packets.forEach(p => {
+            p.progress += p.speed;
+            if (p.progress > 1) p.progress = 0;
+
+            const fromNode = techNodesData.find(n => n.id === p.from);
+            const toNode = techNodesData.find(n => n.id === p.to);
+            if (fromNode && toNode) {
+                const fromX = fromNode.x * width;
+                const fromY = fromNode.y * height + Math.sin(time + fromNode.x * 10) * 4;
+                const toX = toNode.x * width;
+                const toY = toNode.y * height + Math.sin(time + toNode.x * 10) * 4;
+
+                const curX = fromX + (toX - fromX) * p.progress;
+                const curY = fromY + (toY - fromY) * p.progress;
+
+                ctx.beginPath();
+                ctx.arc(curX, curY, 3, 0, Math.PI * 2);
+                ctx.fillStyle = packetColor;
+                ctx.shadowColor = packetColor;
+                ctx.shadowBlur = 8;
+                ctx.fill();
+                ctx.shadowBlur = 0; // reset
+            }
+        });
+
+        // Draw Nodes & Labels
         techNodesData.forEach(node => {
+            const nodeYOffset = Math.sin(time + node.x * 10) * 4;
             const nodeX = node.x * width;
-            const nodeY = node.y * height;
+            const nodeY = node.y * height + nodeYOffset;
             const isActive = (node.id === activeNodeId);
+
+            // Pulsing Aura Ring for Active Node
+            if (isActive) {
+                const auraRadius = 16 + Math.sin(time * 3) * 4;
+                ctx.beginPath();
+                ctx.arc(nodeX, nodeY, auraRadius, 0, Math.PI * 2);
+                ctx.strokeStyle = lineActiveColor;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+            }
 
             ctx.beginPath();
             ctx.arc(nodeX, nodeY, isActive ? 12 : 8, 0, Math.PI * 2);
@@ -651,13 +709,17 @@ function initEcosystemCanvas() {
             ctx.lineWidth = 2;
             ctx.stroke();
 
-            // FIXED: CLEAN LABEL OFFSET THAT NEVER OVERLAPS THE NODE CIRCLE!
             ctx.font = `${isActive ? 'bold 13px' : '600 11px'} "JetBrains Mono", monospace`;
             ctx.fillStyle = nodeColor;
             ctx.textBaseline = 'middle';
             ctx.fillText(node.label, nodeX + (isActive ? 18 : 14), nodeY);
         });
+
+        canvasAnimId = requestAnimationFrame(animate);
     }
+
+    if (canvasAnimId) cancelAnimationFrame(canvasAnimId);
+    animate();
 
     canvas.addEventListener('click', (e) => {
         const rect = canvas.getBoundingClientRect();
@@ -665,14 +727,14 @@ function initEcosystemCanvas() {
         const clickY = e.clientY - rect.top;
 
         techNodesData.forEach(node => {
+            const nodeYOffset = Math.sin(time + node.x * 10) * 4;
             const nodeX = node.x * width;
-            const nodeY = node.y * height;
+            const nodeY = node.y * height + nodeYOffset;
             const dist = Math.hypot(clickX - nodeX, clickY - nodeY);
 
             if (dist < 25) {
                 activeNodeId = node.id;
                 updateTechDetailCard(node);
-                draw();
                 if (soundEnabled) playClickSound(650, 0.04);
             }
         });
