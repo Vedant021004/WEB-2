@@ -15,6 +15,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <!-- GSAP for Smooth Motion -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -24,13 +25,13 @@
         <span class="pulse-live"></span> 👁️ AI VISION MODE ACTIVATED // NEURAL SYSTEM UNLOCKED
     </div>
 
-    <!-- CYBER ANT CRAWLER & DISSOLVING SKILL PAYLOAD (HIDDEN BY DEFAULT, VISIBLE ONLY IN AI MODE) -->
+    <!-- CYBER ANT CRAWLER & DISSOLVING SKILL PAYLOAD (HIDDEN BY DEFAULT) -->
     <div class="cyber-ant-wrapper" id="cyberAntWrapper">
         <div class="ant-payload-badge" id="antPayload">
             <span class="payload-icon">⚡</span> LANGGRAPH & TRANSFORMER FINE-TUNING
         </div>
         <!-- SVG Cyber Ant Walking on Line -->
-        <svg class="cyber-ant-svg" viewBox="0 0 100 100" width="40" height="40">
+        <svg class="cyber-ant-svg" viewBox="0 0 100 100" width="38" height="38">
             <ellipse cx="50" cy="70" rx="15" ry="18" fill="#22C55E" />
             <ellipse cx="50" cy="45" rx="9" ry="11" fill="#16A34A" />
             <circle cx="50" cy="25" r="9" fill="#22C55E" />
@@ -107,17 +108,20 @@
                 </div>
             </div>
 
-            <!-- LIVE CURRENT RESEARCH & WORK PROGRESS DASHBOARD (UNLOCKED IN AI MODE) -->
+            <!-- RE-DESIGNED SLEEK LUXURY PROGRESS PANEL -->
             <div class="live-progress-panel" id="liveProgressPanel">
                 <div class="panel-header">
-                    <span class="panel-tag"><span class="dot-live red"></span> CURRENT WORK & RESEARCH PROGRESS</span>
-                    <span class="panel-status">LIVE TELEMETRY</span>
+                    <div class="panel-header-left">
+                        <span class="pulse-live-dot"></span>
+                        <span class="panel-title-text">ACTIVE RESEARCH & LIVE DEVELOPMENT</span>
+                    </div>
+                    <span class="panel-status-chip">TELEMETRY // ONLINE</span>
                 </div>
                 <div class="progress-items-grid">
                     <div class="prog-card">
                         <div class="prog-meta">
-                            <span class="prog-tech">LANGGRAPH</span>
-                            <span class="prog-pct">88% COMPLETE</span>
+                            <span class="prog-tech">LANGGRAPH ARCHITECTURE</span>
+                            <span class="prog-pct">88%</span>
                         </div>
                         <h4>Multi-Agent Stateful Graph Execution</h4>
                         <p>Architecting fault-tolerant cyclic DAGs with state persistence, checkpointing, and human-in-the-loop tool approval gates.</p>
@@ -126,10 +130,10 @@
 
                     <div class="prog-card">
                         <div class="prog-meta">
-                            <span class="prog-tech">LLM FINE-TUNING</span>
-                            <span class="prog-pct">94% COMPLETE</span>
+                            <span class="prog-tech">TRANSFORMER FINE-TUNING</span>
+                            <span class="prog-pct">94%</span>
                         </div>
-                        <h4>Transformer Fine-Tuning (QLoRA & PEFT)</h4>
+                        <h4>QLoRA & PEFT Domain Adaptation</h4>
                         <p>Fine-tuning Llama-3 8B & Mistral models on specialized dataset pairs for deterministic SQL construction and structured JSON response schemas.</p>
                         <div class="bar-container"><div class="bar-fill" style="width: 94%;"></div></div>
                     </div>
@@ -137,16 +141,16 @@
                     <div class="prog-card">
                         <div class="prog-meta">
                             <span class="prog-tech">HYBRID RAG & MLOPS</span>
-                            <span class="prog-pct">96% COMPLETE</span>
+                            <span class="prog-pct">96%</span>
                         </div>
-                        <h4>Sub-50ms Vector Search & FastAPI Microservices</h4>
+                        <h4>Sub-50ms Hybrid Vector Search</h4>
                         <p>Deploying hybrid sparse BM25 + dense vector indexing pipelines with Cohere re-ranking on async FastAPI microservice nodes.</p>
                         <div class="bar-container"><div class="bar-fill" style="width: 96%;"></div></div>
                     </div>
                 </div>
             </div>
 
-            <!-- MIDDLE RUNNING MARQUEE STREAM (LINE WHERE ANT WALKS) -->
+            <!-- MIDDLE RUNNING MARQUEE STREAM (LINE BETWEEN VEDANT & KAPIL) -->
             <div class="marquee-wrapper" id="marqueeLineWrapper">
                 <div class="marquee-content">
                     <div class="marquee-track">
@@ -380,7 +384,7 @@
             </div>
         </section>
 
-        <!-- SECTION 4: PORTFOLIO -->
+        <!-- SECTION 4: PORTFOLIO (WITH STAGGERED WAVE ANIMATION CARDS) -->
         <section class="h2-band-section band-cream" id="portfolio">
             <div class="section-title-bar" data-target="portfolio-content">
                 <h2 class="editorial-word">
@@ -392,9 +396,9 @@
             </div>
 
             <div class="section-expand-content active" id="portfolio-content">
-                <div class="pill-cards-carousel">
+                <div class="pill-cards-carousel" id="portfolioCardsContainer">
                     
-                    <article class="pill-capsule-card" onclick="openProjectModal(1)">
+                    <article class="pill-capsule-card wave-card" onclick="openProjectModal(1)">
                         <img src="assets/images/ai_data_analyst_copilot.jpg" alt="AI Data Analyst Copilot" class="pill-card-bg">
                         <div class="pill-card-overlay">
                             <span class="pill-tag">01 // AGENTIC SQL</span>
@@ -403,7 +407,7 @@
                         </div>
                     </article>
 
-                    <article class="pill-capsule-card" onclick="openProjectModal(2)">
+                    <article class="pill-capsule-card wave-card" onclick="openProjectModal(2)">
                         <img src="assets/images/amazon_product_rag.jpg" alt="Amazon Product RAG" class="pill-card-bg">
                         <div class="pill-card-overlay">
                             <span class="pill-tag">02 // HYBRID RAG</span>
@@ -412,7 +416,7 @@
                         </div>
                     </article>
 
-                    <article class="pill-capsule-card" onclick="openProjectModal(3)">
+                    <article class="pill-capsule-card wave-card" onclick="openProjectModal(3)">
                         <img src="assets/images/smart_school_ai.jpg" alt="Smart School AI" class="pill-card-bg">
                         <div class="pill-card-overlay">
                             <span class="pill-tag">03 // EDTECH AGENTS</span>
@@ -421,7 +425,7 @@
                         </div>
                     </article>
 
-                    <article class="pill-capsule-card" onclick="openProjectModal(4)">
+                    <article class="pill-capsule-card wave-card" onclick="openProjectModal(4)">
                         <img src="assets/images/sindhu_construction.jpg" alt="Sindhu Construction AI" class="pill-card-bg">
                         <div class="pill-card-overlay">
                             <span class="pill-tag">04 // DOC INTELLIGENCE</span>
@@ -430,7 +434,7 @@
                         </div>
                     </article>
 
-                    <article class="pill-capsule-card" onclick="openProjectModal(5)">
+                    <article class="pill-capsule-card wave-card" onclick="openProjectModal(5)">
                         <img src="assets/images/traffic_ml_project.jpg" alt="Traffic ML Project" class="pill-card-bg">
                         <div class="pill-card-overlay">
                             <span class="pill-tag">05 // COMPUTER VISION</span>

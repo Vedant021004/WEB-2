@@ -1,6 +1,6 @@
 /* ==========================================================================
    VEDANT KAPIL — EDITORIAL AI ENGINEERING PORTFOLIO LOGIC
-   With Line-Walking Cyber Ant, Skill Absorption Fade & Eye Double-Blink
+   With Slow Cinematic Ant Line Crawl, Glassmorphism Telemetry & Staggered Wave Cards
    ========================================================================== */
 
 let soundEnabled = false;
@@ -10,6 +10,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Initialize Lucide Icons
     if (window.lucide) {
         lucide.createIcons();
+    }
+
+    // Register GSAP ScrollTrigger if available
+    if (window.gsap && window.ScrollTrigger) {
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Trigger Wave Animation on Portfolio Cards when scrolling into view
+        ScrollTrigger.create({
+            trigger: "#portfolio",
+            start: "top 75%",
+            onEnter: () => triggerPortfolioWaveAnimation()
+        });
     }
 
     // 2. Audio Toggle
@@ -88,6 +100,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (soundEnabled) playClickSound(isActive ? 300 : 500, 0.06);
 
+                if (targetId === 'portfolio-content' && !isActive) {
+                    triggerPortfolioWaveAnimation();
+                }
+
                 if (window.gsap && targetContent && !isActive) {
                     gsap.fromTo(targetContent, 
                         { opacity: 0, y: -15 }, 
@@ -147,7 +163,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   INTERACTIVE EYE CLICK -> LINE-WALKING CYBER ANT, SKILL ABSORPTION FADE & BLINK
+   PORTFOLIO STAGGERED WAVE CARDS ANIMATION
+   ========================================================================== */
+function triggerPortfolioWaveAnimation() {
+    if (window.gsap) {
+        gsap.fromTo('.wave-card', 
+            { opacity: 0, y: 75, scale: 0.88, rotateX: 15 }, 
+            { opacity: 1, y: 0, scale: 1, rotateX: 0, duration: 0.9, stagger: 0.14, ease: "back.out(1.5)" }
+        );
+    }
+}
+
+/* ==========================================================================
+   SLOW CINEMATIC ANT LINE CRAWL & DISSOLVE PAYLOAD
    ========================================================================== */
 function triggerEyeVisionMode(e) {
     if (e) e.stopPropagation();
@@ -171,14 +199,13 @@ function triggerEyeVisionMode(e) {
     renderEcosystemGraph();
 
     if (isVision) {
-        // Run Cyber Ant Line-Walking Animation
-        animateCyberAntLineCrawl();
+        animateCyberAntSlowLineCrawl();
     } else {
         if (progressPanel) progressPanel.classList.remove('active');
     }
 }
 
-function animateCyberAntLineCrawl() {
+function animateCyberAntSlowLineCrawl() {
     const antWrapper = document.getElementById('cyberAntWrapper');
     const antPayload = document.getElementById('antPayload');
     const eyeVedant = document.getElementById('heroEyeVedant');
@@ -192,11 +219,11 @@ function animateCyberAntLineCrawl() {
 
     isAntAnimating = true;
 
-    // Position Y along the horizontal line under VEDANT (marquee line top border)
+    // Position Y EXACTLY on the horizontal dividing line between VEDANT & KAPIL
     let lineY = window.innerHeight * 0.48;
     if (marqueeLine) {
         const mRect = marqueeLine.getBoundingClientRect();
-        lineY = mRect.top + 10;
+        lineY = mRect.top; // Exact line position!
     }
 
     // Get Target Eye Center Position
@@ -216,7 +243,8 @@ function animateCyberAntLineCrawl() {
 
     let currentX = -180;
     const totalDistance = targetX + 180;
-    const speed = totalDistance / 110; // Smooth 110 steps
+    // Slow, deliberate cinematic crawling speed (340 steps)
+    const speed = totalDistance / 340;
 
     function stepCrawl() {
         currentX += speed;
@@ -225,9 +253,9 @@ function animateCyberAntLineCrawl() {
         // Calculate progress (0 to 1)
         const progress = Math.min(1, Math.max(0, (currentX + 180) / totalDistance));
 
-        // Gradually decrease transparency of skill payload badge (dissolves & absorbs into ant as it walks!)
+        // Slowly decrease transparency of skill payload badge (dissolves & absorbs into ant as it walks!)
         if (antPayload) {
-            const opacityVal = Math.max(0, 1 - progress * 1.3);
+            const opacityVal = Math.max(0, 1 - progress * 1.35);
             antPayload.style.opacity = opacityVal.toString();
         }
 
@@ -254,7 +282,7 @@ function animateCyberAntLineCrawl() {
                 gsap.to(antWrapper, {
                     scale: 0.1,
                     opacity: 0,
-                    duration: 0.4,
+                    duration: 0.5,
                     onComplete: () => {
                         antWrapper.style.display = 'none';
                         antWrapper.style.scale = '1';
@@ -268,7 +296,7 @@ function animateCyberAntLineCrawl() {
                                 eyeWhitesVedant.classList.remove('blinking');
                                 isAntAnimating = false;
 
-                                // Unlock & Reveal Current Work Progress Dashboard!
+                                // Reveal Luxury Glassmorphism Telemetry Dashboard!
                                 if (progressPanel) {
                                     progressPanel.classList.add('active');
                                     progressPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
