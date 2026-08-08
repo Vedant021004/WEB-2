@@ -17,9 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Initialize Lenis Smooth Scroll Engine
     if (window.Lenis) {
         lenis = new Lenis({
-            duration: 1.3,
+            duration: 1.4,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            touchMultiplier: 1.8,
+            touchMultiplier: 2.2,
+            wheelMultiplier: 1.1,
             infinite: false,
             smoothWheel: true
         });
@@ -38,6 +39,20 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             gsap.ticker.lagSmoothing(0);
         }
+
+        // Smooth scroll for internal anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                const targetId = anchor.getAttribute('href');
+                if (targetId && targetId !== '#') {
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        e.preventDefault();
+                        lenis.scrollTo(targetEl, { offset: -50, duration: 1.3 });
+                    }
+                }
+            });
+        });
     }
 
     // 2. Initialize Lucide Icons
