@@ -708,16 +708,16 @@ function generateCopilotResponse(query) {
    DYNAMIC CONTINUOUS ANIMATED ECOSYSTEM CANVAS ENGINE
    ========================================================================== */
 const techNodesData = [
-    { id: 'ml', label: 'Machine Learning', category: 'Core ML', x: 0.25, y: 0.35, connects: ['dl', 'llm', 'fastapi', 'cloud'] },
-    { id: 'dl', label: 'Deep Learning', category: 'Core ML', x: 0.45, y: 0.25, connects: ['llm', 'rag', 'ml'] },
-    { id: 'llm', label: 'LLMs', category: 'AI Models', x: 0.55, y: 0.45, connects: ['agentic', 'langchain', 'langgraph', 'rag'] },
-    { id: 'agentic', label: 'Agentic AI', category: 'Orchestration', x: 0.70, y: 0.30, connects: ['langgraph', 'langchain', 'fastapi'] },
-    { id: 'langchain', label: 'LangChain', category: 'Framework', x: 0.40, y: 0.65, connects: ['llm', 'rag', 'agentic'] },
-    { id: 'langgraph', label: 'LangGraph', category: 'Framework', x: 0.65, y: 0.65, connects: ['agentic', 'llm', 'fastapi'] },
-    { id: 'rag', label: 'RAG', category: 'Search Engine', x: 0.30, y: 0.55, connects: ['llm', 'langchain', 'dl', 'fastapi'] },
-    { id: 'fastapi', label: 'FastAPI', category: 'Infrastructure', x: 0.50, y: 0.80, connects: ['mlops', 'agentic', 'cloud'] },
-    { id: 'mlops', label: 'MLOps', category: 'Operations', x: 0.75, y: 0.75, connects: ['fastapi', 'cloud', 'ml'] },
-    { id: 'cloud', label: 'Cloud', category: 'Infrastructure', x: 0.85, y: 0.50, connects: ['mlops', 'fastapi', 'ml'] }
+    { id: 'ml', label: 'Machine Learning', category: 'Core ML', x: 0.50, y: 0.25, connects: ['dl', 'llm', 'fastapi', 'cloud'] },
+    { id: 'dl', label: 'Deep Learning', category: 'Core ML', x: 0.72, y: 0.20, connects: ['llm', 'rag', 'ml'] },
+    { id: 'llm', label: 'LLMs', category: 'AI Models', x: 0.58, y: 0.45, connects: ['agentic', 'langchain', 'langgraph', 'rag'] },
+    { id: 'agentic', label: 'Agentic AI', category: 'Orchestration', x: 0.82, y: 0.30, connects: ['langgraph', 'langchain', 'fastapi'] },
+    { id: 'langchain', label: 'LangChain', category: 'Framework', x: 0.48, y: 0.65, connects: ['llm', 'rag', 'agentic'] },
+    { id: 'langgraph', label: 'LangGraph', category: 'Framework', x: 0.76, y: 0.62, connects: ['agentic', 'llm', 'fastapi'] },
+    { id: 'rag', label: 'RAG', category: 'Search Engine', x: 0.42, y: 0.42, connects: ['llm', 'langchain', 'dl', 'fastapi'] },
+    { id: 'fastapi', label: 'FastAPI', category: 'Infrastructure', x: 0.58, y: 0.82, connects: ['mlops', 'agentic', 'cloud'] },
+    { id: 'mlops', label: 'MLOps', category: 'Operations', x: 0.82, y: 0.80, connects: ['fastapi', 'cloud', 'ml'] },
+    { id: 'cloud', label: 'Cloud', category: 'Infrastructure', x: 0.88, y: 0.50, connects: ['mlops', 'fastapi', 'ml'] }
 ];
 
 const techDescriptions = {
