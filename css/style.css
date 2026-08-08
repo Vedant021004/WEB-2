@@ -361,8 +361,9 @@ body.ai-vision-mode .live-progress-panel.active {
 .tech-detail-card {
     position: absolute;
     bottom: 1.5rem;
-    right: 1.5rem;
-    max-width: 440px;
+    left: 1.5rem;
+    right: auto;
+    max-width: 420px;
     width: calc(100% - 3rem);
     background-color: var(--bg-yellow);
     border: 2px solid var(--border-color);
@@ -622,7 +623,30 @@ body {
     .pill-cards-carousel { flex-direction: column; align-items: center; gap: 1.5rem; }
     .pill-capsule-card { width: 90vw; max-width: 320px; height: 420px; border-radius: 40px; }
 
-    .canvas-wrapper { height: 380px; }
+    .canvas-wrapper { 
+        height: auto; 
+        display: flex; 
+        flex-direction: column; 
+        overflow: visible; 
+        background: transparent; 
+        border: none; 
+    }
+    #ecosystemCanvas { 
+        height: 320px; 
+        background-color: var(--bg-card); 
+        border: 2px solid var(--border-color); 
+    }
+    .tech-detail-card { 
+        position: relative; 
+        bottom: auto; 
+        left: auto; 
+        right: auto; 
+        width: 100%; 
+        max-width: 100%; 
+        margin-top: 1rem; 
+        border-radius: 8px; 
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+    }
     
     .editorial-contact-box { padding: 2.5rem 1.2rem; }
     .contact-action-bar { flex-direction: column; gap: 1rem; }
