@@ -1,6 +1,6 @@
 /* ==========================================================================
    VEDANT KAPIL — EDITORIAL AI ENGINEERING PORTFOLIO LOGIC
-   With Dynamic Animated Ecosystem Canvas, Fixed Line-Walking Ant & Eye Rolling Detector
+   With Refined Warm Champagne Colors, Chatbot Close Button & Backdrop Dismiss
    ========================================================================== */
 
 let soundEnabled = false;
@@ -106,10 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     totalEyeRollRotation += diff;
 
-                    // Visual feedback: Rotate the eye slightly as you roll!
                     heroEyeVedant.style.transform = `scale(1.15) rotate(${totalEyeRollRotation * 20}deg)`;
 
-                    // Trigger Red Eye Rage if rotation exceeds 3.5 * PI (~1.7 circles)
                     if (Math.abs(totalEyeRollRotation) >= Math.PI * 3.5 && !isRageActive) {
                         triggerRedEyeRageBossMode();
                         totalEyeRollRotation = 0;
@@ -339,7 +337,6 @@ function animateCyberAntSlowLineCrawl() {
     const speed = totalDistance / 340;
 
     function stepCrawl() {
-        // DYNAMIC LINE LOCKING: Position ant directly on top border of marquee line
         let currentLineY = window.innerHeight * 0.48;
         if (marqueeLine) {
             const mRect = marqueeLine.getBoundingClientRect();
@@ -504,6 +501,12 @@ function toggleVkAiTerminal() {
     }
 }
 
+function handleTerminalBackdropClick(e) {
+    if (e.target.classList.contains('vk-terminal-modal')) {
+        toggleVkAiTerminal();
+    }
+}
+
 function sendTerminalPrompt(text) {
     const input = document.getElementById('terminalInput');
     if (input) {
@@ -611,7 +614,6 @@ function initEcosystemCanvas() {
     window.addEventListener('resize', resize);
     resize();
 
-    // Data Packets traveling on lines
     const packets = [];
     techNodesData.forEach(node => {
         node.connects.forEach(tId => {
@@ -628,14 +630,12 @@ function initEcosystemCanvas() {
         const isVision = document.body.classList.contains('ai-vision-mode');
         const isRage = document.body.classList.contains('eye-rage-mode');
         const isDark = document.body.classList.contains('theme-dark') || isVision || isRage;
-        const nodeColor = isRage ? '#EF4444' : (isVision ? '#38BDF8' : (isDark ? '#F5F4F0' : '#000000'));
-        const lineBaseColor = isRage ? 'rgba(239, 68, 68, 0.25)' : (isVision ? 'rgba(56, 189, 248, 0.25)' : (isDark ? 'rgba(245, 244, 240, 0.15)' : 'rgba(0, 0, 0, 0.15)'));
-        const lineActiveColor = isRage ? '#DC2626' : (isVision ? '#22C55E' : (isDark ? '#E2B859' : '#000000'));
+        const nodeColor = isRage ? '#EF4444' : (isVision ? '#38BDF8' : (isDark ? '#F5F4F0' : '#0B0E14'));
+        const lineBaseColor = isRage ? 'rgba(239, 68, 68, 0.25)' : (isVision ? 'rgba(56, 189, 248, 0.25)' : (isDark ? 'rgba(245, 244, 240, 0.15)' : 'rgba(11, 14, 20, 0.18)'));
+        const lineActiveColor = isRage ? '#DC2626' : (isVision ? '#22C55E' : (isDark ? '#E2B859' : '#0B0E14'));
         const packetColor = isRage ? '#EF4444' : (isVision ? '#22C55E' : '#E2B859');
 
-        // Draw Connection Lines
         techNodesData.forEach(node => {
-            // Floating node Y offset
             const nodeYOffset = Math.sin(time + node.x * 10) * 4;
             const nodeX = node.x * width;
             const nodeY = node.y * height + nodeYOffset;
@@ -658,7 +658,6 @@ function initEcosystemCanvas() {
             });
         });
 
-        // Draw Pulsing Data Packets Traveling on Lines
         packets.forEach(p => {
             p.progress += p.speed;
             if (p.progress > 1) p.progress = 0;
@@ -680,18 +679,16 @@ function initEcosystemCanvas() {
                 ctx.shadowColor = packetColor;
                 ctx.shadowBlur = 8;
                 ctx.fill();
-                ctx.shadowBlur = 0; // reset
+                ctx.shadowBlur = 0;
             }
         });
 
-        // Draw Nodes & Labels
         techNodesData.forEach(node => {
             const nodeYOffset = Math.sin(time + node.x * 10) * 4;
             const nodeX = node.x * width;
             const nodeY = node.y * height + nodeYOffset;
             const isActive = (node.id === activeNodeId);
 
-            // Pulsing Aura Ring for Active Node
             if (isActive) {
                 const auraRadius = 16 + Math.sin(time * 3) * 4;
                 ctx.beginPath();
@@ -703,7 +700,7 @@ function initEcosystemCanvas() {
 
             ctx.beginPath();
             ctx.arc(nodeX, nodeY, isActive ? 12 : 8, 0, Math.PI * 2);
-            ctx.fillStyle = isActive ? (isRage ? '#EF4444' : (isVision ? '#22C55E' : (isDark ? '#E2B859' : '#000000'))) : (isDark ? '#1A1D24' : '#FAF6EE');
+            ctx.fillStyle = isActive ? (isRage ? '#EF4444' : (isVision ? '#22C55E' : (isDark ? '#E2B859' : '#0B0E14'))) : (isDark ? '#1A1D24' : '#FAF6EE');
             ctx.fill();
             ctx.strokeStyle = nodeColor;
             ctx.lineWidth = 2;

@@ -564,16 +564,20 @@
         <i data-lucide="bot"></i> ASK VK-AI
     </button>
 
-    <!-- INTERACTIVE VK-AI COPILOT TERMINAL MODAL -->
-    <div class="vk-terminal-modal" id="vkTerminalModal">
+    <!-- INTERACTIVE VK-AI COPILOT TERMINAL MODAL (WITH EXPLICIT CLOSE CROSS BUTTON & BACKDROP CLICK TO EXIT) -->
+    <div class="vk-terminal-modal" id="vkTerminalModal" onclick="handleTerminalBackdropClick(event)">
         <div class="vk-terminal-window">
             <div class="vk-terminal-header">
                 <div class="terminal-dots">
-                    <span class="t-dot close" onclick="toggleVkAiTerminal()"></span>
+                    <span class="t-dot close" onclick="toggleVkAiTerminal()" title="Close Terminal"></span>
                     <span class="t-dot min"></span>
                     <span class="t-dot max"></span>
                 </div>
                 <div class="terminal-title">VK-AI COPILOT // REASONING ENGINE v2.4</div>
+                <!-- PROMINENT CLOSE CROSS BUTTON -->
+                <button class="terminal-close-btn" onclick="toggleVkAiTerminal()" title="Exit Chatbot (Close)">
+                    <i data-lucide="x"></i>
+                </button>
             </div>
             
             <div class="vk-terminal-messages" id="terminalMessages">
