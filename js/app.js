@@ -1,6 +1,6 @@
 /* ==========================================================================
    VEDANT KAPIL — EDITORIAL AI ENGINEERING PORTFOLIO LOGIC
-   With Automatic 10-Second Auto-Reset for Red Eye Rage Boss Mode
+   With Updated Email Address (vedantkp79@gmail.com)
    ========================================================================== */
 
 let soundEnabled = false;
@@ -244,11 +244,10 @@ function triggerRedEyeRageBossMode() {
         }
     }, 600);
 
-    // AUTOMATIC 10-SECOND DEACTIVATION TIMEOUT
     clearTimeout(rageTimeoutId);
     rageTimeoutId = setTimeout(() => {
         deactivateRedEyeRageBossMode();
-    }, 10000); // 10 seconds exact!
+    }, 10000);
 }
 
 function deactivateRedEyeRageBossMode() {
@@ -591,7 +590,7 @@ function generateCopilotResponse(query) {
     } else if (q.includes('copilot') || q.includes('data analyst')) {
         return "The AI Data Analyst Copilot is built on LangGraph with stateful cyclic self-correction. It converts natural language into SQL, runs sandboxed validation, and achieves 98.4% accuracy.";
     } else if (q.includes('contact') || q.includes('hire') || q.includes('email')) {
-        return "You can reach Vedant directly via email at <strong>vedantkapil.ai@gmail.com</strong> or via LinkedIn/GitHub links on this site!";
+        return "You can reach Vedant directly via email at <strong>vedantkp79@gmail.com</strong> or via LinkedIn/GitHub links on this site!";
     } else {
         return "Vedant is an AI Engineer dedicated to building deterministic reliability into non-deterministic AI intelligence. Feel free to explore his Systems visualizer and project blueprints!";
     }
@@ -964,7 +963,7 @@ function escapeHtml(str) {
 }
 
 function copyEmail() {
-    const emailText = "vedantkapil.ai@gmail.com";
+    const emailText = "vedantkp79@gmail.com";
     navigator.clipboard.writeText(emailText).then(() => {
         showToast();
     }).catch(err => console.error(err));
