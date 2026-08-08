@@ -9,10 +9,13 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- GSAP for Smooth Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -24,15 +27,15 @@
                 <span class="dot"></span> VK // AI ARCHITECT
             </a>
             <nav class="nav-links">
-                <a href="#about" class="nav-item">IDENTITY</a>
+                <a href="#about" class="nav-item">ABOUT</a>
                 <a href="#thinking" class="nav-item">THINKING</a>
                 <a href="#systems" class="nav-item">SYSTEMS</a>
-                <a href="#portfolio" class="nav-item">PROJECTS</a>
+                <a href="#portfolio" class="nav-item">PORTFOLIO</a>
                 <a href="#tech-ecosystem" class="nav-item">ECOSYSTEM</a>
                 <a href="#future" class="nav-item">FUTURE</a>
                 <a href="#contact" class="nav-item nav-btn">CONTACT</a>
             </nav>
-            <div class="theme-toggle" id="themeToggle" title="Toggle Editorial / Dark Mode">
+            <div class="theme-toggle" id="themeToggle" title="Toggle Theme">
                 <span class="toggle-icon">👁️</span>
                 <span class="toggle-text">MODE</span>
             </div>
@@ -48,8 +51,7 @@
                     <span class="title-char">V</span>
                     <span class="title-char">E</span>
                     <span class="title-char">D</span>
-                    <!-- Interactive Eye Pupil in letter A -->
-                    <div class="title---eye-wrapper" id="eyeVedant">
+                    <div class="title---eye-wrapper eye-interactive">
                         <span class="eye-letter-bg">A</span>
                         <div class="title---eye-whites">
                             <div class="title---eye-pupils"></div>
@@ -92,8 +94,7 @@
             <div class="title-container title---kapil">
                 <div class="title---line">
                     <span class="title-char">K</span>
-                    <!-- Interactive Eye Pupil in letter A -->
-                    <div class="title---eye-wrapper" id="eyeKapil">
+                    <div class="title---eye-wrapper eye-interactive">
                         <span class="eye-letter-bg">A</span>
                         <div class="title---eye-whites">
                             <div class="title---eye-pupils"></div>
@@ -120,16 +121,13 @@
             </div>
         </section>
 
-        <!-- SECTION 1: IDENTITY (ABOUT) -->
-        <section class="h2---section" id="about">
-            <div class="h2-linkblock section-accordion" data-target="about-content">
-                <h2 class="h2---text">Ab</h2>
-                <div class="h2---o about-o">
-                    <div class="eye-pulse"></div>
-                    <span class="o-label">IDENTITY</span>
-                </div>
-                <h2 class="h2---text">UT</h2>
-                <i data-lucide="plus" class="accordion-icon"></i>
+        <!-- SECTION 1: ABOUT (BAND COLOR 1: YELLOW) -->
+        <section class="h2-band-section band-yellow" id="about">
+            <div class="section-title-bar" data-target="about-content">
+                <h2 class="editorial-word">
+                    AB<span class="solid-eye-node"><span class="inner-pupil"></span></span>UT
+                </h2>
+                <span class="toggle-indicator"><i data-lucide="chevron-down"></i></span>
             </div>
             
             <div class="section-expand-content active" id="about-content">
@@ -157,16 +155,13 @@
             </div>
         </section>
 
-        <!-- SECTION 2: THINKING (PHILOSOPHY & MENTAL MODELS) -->
-        <section class="h2---section" id="thinking">
-            <div class="h2-linkblock section-accordion" data-target="thinking-content">
-                <h2 class="h2---text">Thi</h2>
-                <div class="h2---o thinking-o">
-                    <div class="eye-pulse"></div>
-                    <span class="o-label">LOGIC</span>
-                </div>
-                <h2 class="h2---text">nking</h2>
-                <i data-lucide="plus" class="accordion-icon"></i>
+        <!-- SECTION 2: THINKING (BAND COLOR 2: CREAM) -->
+        <section class="h2-band-section band-cream" id="thinking">
+            <div class="section-title-bar" data-target="thinking-content">
+                <h2 class="editorial-word">
+                    THI<span class="solid-eye-node"><span class="inner-pupil"></span></span>KING
+                </h2>
+                <span class="toggle-indicator"><i data-lucide="chevron-down"></i></span>
             </div>
 
             <div class="section-expand-content" id="thinking-content">
@@ -210,16 +205,13 @@
             </div>
         </section>
 
-        <!-- SECTION 3: SYSTEMS ARCHITECTURE (INTERACTIVE DAG VISUALIZER) -->
-        <section class="h2---section" id="systems">
-            <div class="h2-linkblock section-accordion" data-target="systems-content">
-                <h2 class="h2---text">Syst</h2>
-                <div class="h2---o systems-o">
-                    <div class="eye-pulse"></div>
-                    <span class="o-label">DAG</span>
-                </div>
-                <h2 class="h2---text">Ems</h2>
-                <i data-lucide="plus" class="accordion-icon"></i>
+        <!-- SECTION 3: SYSTEMS (BAND COLOR 3: YELLOW) -->
+        <section class="h2-band-section band-yellow" id="systems">
+            <div class="section-title-bar" data-target="systems-content">
+                <h2 class="editorial-word">
+                    SYST<span class="solid-eye-node"><span class="inner-pupil"></span></span>MS
+                </h2>
+                <span class="toggle-indicator"><i data-lucide="chevron-down"></i></span>
             </div>
 
             <div class="section-expand-content" id="systems-content">
@@ -298,16 +290,13 @@
             </div>
         </section>
 
-        <!-- SECTION 4: PROJECTS (ENGINEERING CASE STUDIES) -->
-        <section class="h2---section" id="portfolio">
-            <div class="h2-linkblock section-accordion" data-target="portfolio-content">
-                <h2 class="h2---text">Portf</h2>
-                <div class="h2---o work-o">
-                    <div class="eye-pulse"></div>
-                    <span class="o-label">CASES</span>
-                </div>
-                <h2 class="h2---text">OLio</h2>
-                <i data-lucide="plus" class="accordion-icon"></i>
+        <!-- SECTION 4: PORTFOLIO (BAND COLOR 4: CREAM) -->
+        <section class="h2-band-section band-cream" id="portfolio">
+            <div class="section-title-bar" data-target="portfolio-content">
+                <h2 class="editorial-word">
+                    PORTF<span class="solid-eye-node"><span class="inner-pupil"></span></span>LIO
+                </h2>
+                <span class="toggle-indicator"><i data-lucide="chevron-down"></i></span>
             </div>
 
             <div class="section-expand-content active" id="portfolio-content">
@@ -467,16 +456,13 @@
             </div>
         </section>
 
-        <!-- SECTION 5: TECHNOLOGY (CONNECTED ECOSYSTEM NODE GRAPH) -->
-        <section class="h2---section" id="tech-ecosystem">
-            <div class="h2-linkblock section-accordion" data-target="tech-content">
-                <h2 class="h2---text">Tech</h2>
-                <div class="h2---o tech-o">
-                    <div class="eye-pulse"></div>
-                    <span class="o-label">GRAPH</span>
-                </div>
-                <h2 class="h2---text">Nology</h2>
-                <i data-lucide="plus" class="accordion-icon"></i>
+        <!-- SECTION 5: ECOSYSTEM (BAND COLOR 5: YELLOW) -->
+        <section class="h2-band-section band-yellow" id="tech-ecosystem">
+            <div class="section-title-bar" data-target="tech-content">
+                <h2 class="editorial-word">
+                    EC<span class="solid-eye-node"><span class="inner-pupil"></span></span>SYSTEM
+                </h2>
+                <span class="toggle-indicator"><i data-lucide="chevron-down"></i></span>
             </div>
 
             <div class="section-expand-content active" id="tech-content">
@@ -498,16 +484,13 @@
             </div>
         </section>
 
-        <!-- SECTION 6: FUTURE (VISION & ROADMAP) -->
-        <section class="h2---section" id="future">
-            <div class="h2-linkblock section-accordion" data-target="future-content">
-                <h2 class="h2---text">Fut</h2>
-                <div class="h2---o future-o">
-                    <div class="eye-pulse"></div>
-                    <span class="o-label">HORIZON</span>
-                </div>
-                <h2 class="h2---text">Ure</h2>
-                <i data-lucide="plus" class="accordion-icon"></i>
+        <!-- SECTION 6: FUTURE (BAND COLOR 6: CREAM) -->
+        <section class="h2-band-section band-cream" id="future">
+            <div class="section-title-bar" data-target="future-content">
+                <h2 class="editorial-word">
+                    FUTUR<span class="solid-eye-node"><span class="inner-pupil"></span></span>
+                </h2>
+                <span class="toggle-indicator"><i data-lucide="chevron-down"></i></span>
             </div>
 
             <div class="section-expand-content" id="future-content">
@@ -531,16 +514,13 @@
             </div>
         </section>
 
-        <!-- SECTION 7: CONTACT (EDITORIAL DIRECT CONNECT) -->
-        <section class="h2---section" id="contact">
-            <div class="h2-linkblock section-accordion" data-target="contact-content">
-                <h2 class="h2---text">c</h2>
-                <div class="h2---o contact-o">
-                    <div class="eye-pulse"></div>
-                    <span class="o-label">CONNECT</span>
-                </div>
-                <h2 class="h2---text">ntact</h2>
-                <i data-lucide="plus" class="accordion-icon"></i>
+        <!-- SECTION 7: CONTACT (BAND COLOR 7: YELLOW) -->
+        <section class="h2-band-section band-yellow" id="contact">
+            <div class="section-title-bar" data-target="contact-content">
+                <h2 class="editorial-word">
+                    C<span class="solid-eye-node"><span class="inner-pupil"></span></span>NTACT
+                </h2>
+                <span class="toggle-indicator"><i data-lucide="chevron-down"></i></span>
             </div>
 
             <div class="section-expand-content active" id="contact-content">
@@ -560,27 +540,27 @@
                         </a>
                     </div>
 
-                    <div class="social-links-bar">
-                        <a href="https://linkedin.com" target="_blank" class="social-chip"><i data-lucide="linkedin"></i> LINKEDIN</a>
-                        <a href="https://github.com" target="_blank" class="social-chip"><i data-lucide="github"></i> GITHUB</a>
-                        <a href="https://kaggle.com" target="_blank" class="social-chip"><i data-lucide="terminal"></i> KAGGLE</a>
-                        <a href="https://twitter.com" target="_blank" class="social-chip"><i data-lucide="twitter"></i> X (TWITTER)</a>
+                    <!-- MINIMALIST SOCIAL ICONS MATCHING SCREENSHOT -->
+                    <div class="social-icon-row">
+                        <a href="https://linkedin.com" target="_blank" class="icon-link-btn" title="LinkedIn">
+                            <i data-lucide="linkedin"></i>
+                        </a>
+                        <a href="https://github.com" target="_blank" class="icon-link-btn" title="GitHub">
+                            <i data-lucide="github"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" class="icon-link-btn" title="Twitter / X">
+                            <i data-lucide="twitter"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- FOOTER STATEMENT -->
+    <!-- FOOTER STATEMENT MATCHING SCREENSHOT -->
     <footer class="site-footer">
         <div class="footer-container">
-            <div class="footer-left">
-                <span class="footer-brand">VEDANT KAPIL</span>
-                <span class="footer-copy">© 2026 VEDANT KAPIL. ALL RIGHTS RESERVED.</span>
-            </div>
-            <div class="footer-right">
-                <span>DESIGNED WITH EDITORIAL RESTRAINT & AI RIGOR.</span>
-            </div>
+            <span class="footer-copy">© Vedant Kapil 2026</span>
         </div>
     </footer>
 

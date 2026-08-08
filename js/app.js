@@ -1,5 +1,6 @@
 /* ==========================================================================
    VEDANT KAPIL — EDITORIAL AI ENGINEERING PORTFOLIO LOGIC
+   GSAP Motion & Interactive Eye Nodes
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lucide.createIcons();
     }
 
-    // 2. Theme Toggle (Editorial Warm Yellow vs Midnight Dark)
+    // 2. Theme Toggle (Editorial Yellow vs Midnight Dark)
     const themeToggleBtn = document.getElementById('themeToggle');
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
@@ -18,42 +19,65 @@ document.addEventListener('DOMContentLoaded', () => {
             if (toggleText) {
                 toggleText.textContent = isDark ? 'DARK' : 'MODE';
             }
-            // Re-render ecosystem canvas colors
             renderEcosystemGraph();
         });
     }
 
-    // 3. Interactive Eye Pupil Tracking for VEDANT & KAPIL Headings
-    const pupils = document.querySelectorAll('.title---eye-pupils');
+    // 3. Eye Pupil Motion Tracking for Hero & Solid Letter Nodes (.inner-pupil & .title---eye-pupils)
+    const heroPupils = document.querySelectorAll('.title---eye-pupils');
+    const nodePupils = document.querySelectorAll('.inner-pupil');
+
     document.addEventListener('mousemove', (e) => {
         const mouseX = e.clientX;
         const mouseY = e.clientY;
 
-        pupils.forEach(pupil => {
+        // Track Hero Pupils
+        heroPupils.forEach(pupil => {
             const rect = pupil.getBoundingClientRect();
             const pupilX = rect.left + rect.width / 2;
             const pupilY = rect.top + rect.height / 2;
-
             const angle = Math.atan2(mouseY - pupilY, mouseX - pupilX);
             const distance = Math.min(14, Math.hypot(mouseX - pupilX, mouseY - pupilY) / 15);
-
             const moveX = Math.cos(angle) * distance;
             const moveY = Math.sin(angle) * distance;
+            pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
 
+        // Track Band Section Letter Pupils
+        nodePupils.forEach(pupil => {
+            const rect = pupil.getBoundingClientRect();
+            const pupilX = rect.left + rect.width / 2;
+            const pupilY = rect.top + rect.height / 2;
+            const angle = Math.atan2(mouseY - pupilY, mouseX - pupilX);
+            const distance = Math.min(10, Math.hypot(mouseX - pupilX, mouseY - pupilY) / 20);
+            const moveX = Math.cos(angle) * distance;
+            const moveY = Math.sin(angle) * distance;
             pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
         });
     });
 
-    // 4. Editorial Accordion Section Toggles (Ab[OUT], Syst[E]ms, etc.)
-    const accordions = document.querySelectorAll('.section-accordion');
-    accordions.forEach(acc => {
-        acc.addEventListener('click', () => {
-            const targetId = acc.getAttribute('data-target');
+    // 4. GSAP Accordion Section Toggles
+    const titleBars = document.querySelectorAll('.section-title-bar');
+    titleBars.forEach(bar => {
+        bar.addEventListener('click', () => {
+            const targetId = bar.getAttribute('data-target');
             const targetContent = document.getElementById(targetId);
 
             if (targetContent) {
-                acc.classList.toggle('active');
+                const isActive = bar.classList.contains('active');
+                
+                // Toggle active state
+                bar.classList.toggle('active');
                 targetContent.classList.toggle('active');
+
+                if (window.gsap && targetContent) {
+                    if (!isActive) {
+                        gsap.fromTo(targetContent, 
+                            { opacity: 0, y: -15 }, 
+                            { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+                        );
+                    }
+                }
             }
         });
     });
@@ -71,11 +95,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetPane = document.getElementById(tabId);
             if (targetPane) {
                 targetPane.classList.add('active');
+                if (window.gsap) {
+                    gsap.fromTo(targetPane, { opacity: 0, x: 10 }, { opacity: 1, x: 0, duration: 0.4 });
+                }
             }
         });
     });
 
-    // 6. Systems Architecture DAG Visualizer Controls
+    // 6. Systems Architecture Visualizer Controls
     const sysButtons = document.querySelectorAll('.sys-toggle-btn');
     const diagramViews = document.querySelectorAll('.diagram-view');
     sysButtons.forEach(btn => {
@@ -88,6 +115,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetDiag = document.getElementById(`diag-${diagramType}`);
             if (targetDiag) {
                 targetDiag.classList.add('active');
+                if (window.gsap) {
+                    gsap.fromTo(targetDiag, { opacity: 0, scale: 0.98 }, { opacity: 1, scale: 1, duration: 0.4 });
+                }
             }
         });
     });
@@ -105,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 7. Interactive Technology Ecosystem Node Canvas
+    // 7. Interactive Technology Ecosystem Canvas
     initEcosystemCanvas();
 });
 
@@ -163,11 +193,11 @@ function initEcosystemCanvas() {
         ctx.clearRect(0, 0, width, height);
 
         const isDark = document.body.classList.contains('theme-dark');
-        const nodeColor = isDark ? '#F4F3EF' : '#080808';
-        const lineBaseColor = isDark ? 'rgba(244, 243, 239, 0.15)' : 'rgba(8, 8, 8, 0.15)';
-        const lineActiveColor = isDark ? '#E2B859' : '#080808';
+        const nodeColor = isDark ? '#F5F4F0' : '#000000';
+        const lineBaseColor = isDark ? 'rgba(245, 244, 240, 0.15)' : 'rgba(0, 0, 0, 0.15)';
+        const lineActiveColor = isDark ? '#E2B859' : '#000000';
 
-        // Draw Connection Lines
+        // Connection Lines
         techNodesData.forEach(node => {
             const nodeX = node.x * width;
             const nodeY = node.y * height;
@@ -177,7 +207,6 @@ function initEcosystemCanvas() {
                 if (targetNode) {
                     const targetX = targetNode.x * width;
                     const targetY = targetNode.y * height;
-
                     const isConnectedToActive = (node.id === activeNodeId || targetId === activeNodeId);
 
                     ctx.beginPath();
@@ -190,29 +219,26 @@ function initEcosystemCanvas() {
             });
         });
 
-        // Draw Nodes
+        // Nodes
         techNodesData.forEach(node => {
             const nodeX = node.x * width;
             const nodeY = node.y * height;
             const isActive = (node.id === activeNodeId);
 
-            // Node Circle
             ctx.beginPath();
             ctx.arc(nodeX, nodeY, isActive ? 12 : 8, 0, Math.PI * 2);
-            ctx.fillStyle = isActive ? (isDark ? '#E2B859' : '#080808') : (isDark ? '#14161A' : '#FAF6EE');
+            ctx.fillStyle = isActive ? (isDark ? '#E2B859' : '#000000') : (isDark ? '#1A1D24' : '#FAF6EE');
             ctx.fill();
             ctx.strokeStyle = nodeColor;
             ctx.lineWidth = 2;
             ctx.stroke();
 
-            // Label Text
             ctx.font = `${isActive ? 'bold 14px' : '500 12px'} "JetBrains Mono", monospace`;
             ctx.fillStyle = nodeColor;
             ctx.fillText(node.label, nodeX + 16, nodeY + 4);
         });
     }
 
-    // Canvas Mouse Click Interaction
     canvas.addEventListener('click', (e) => {
         const rect = canvas.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
@@ -231,7 +257,6 @@ function initEcosystemCanvas() {
         });
     });
 
-    // Default detail card setup
     const defaultNode = techNodesData.find(n => n.id === activeNodeId);
     if (defaultNode) updateTechDetailCard(defaultNode);
 }
@@ -257,7 +282,7 @@ function renderEcosystemGraph() {
 }
 
 /* ==========================================================================
-   CASE STUDY MODAL & BLUEPRINT DATA
+   CASE STUDY MODAL BLUEPRINT DATA
    ========================================================================== */
 const projectsData = {
     1: {
@@ -420,16 +445,12 @@ function closeProjectModal() {
     }
 }
 
-// Helper to escape HTML tags in code snippets
 function escapeHtml(str) {
     return str.replace(/&/g, "&amp;")
               .replace(/</g, "&lt;")
               .replace(/>/g, "&gt;");
 }
 
-/* ==========================================================================
-   CLIPBOARD UTILITIES
-   ========================================================================== */
 function copyEmail() {
     const emailText = "vedantkapil.ai@gmail.com";
     navigator.clipboard.writeText(emailText).then(() => {
