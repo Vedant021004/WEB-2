@@ -1,10 +1,11 @@
 /* ==========================================================================
    VEDANT KAPIL — EDITORIAL AI ENGINEERING PORTFOLIO LOGIC
-   With Updated GitHub (Vedant021004) and LinkedIn Links
+   With Lenis Smooth Scroll Engine + GSAP Buttery Motion
    ========================================================================== */
 
 let soundEnabled = false;
 let isAntAnimating = false;
+let lenis = null;
 
 // Eye Cursor Circling / Rolling State Variables
 let totalEyeRollRotation = 0;
@@ -13,20 +14,82 @@ let isRageActive = false;
 let rageTimeoutId = null;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Initialize Lucide Icons
+    // 1. Initialize Lenis Smooth Scroll Engine
+    if (window.Lenis) {
+        lenis = new Lenis({
+            duration: 1.3,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            touchMultiplier: 1.8,
+            infinite: false,
+            smoothWheel: true
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Sync GSAP ScrollTrigger with Lenis
+        if (window.gsap && window.ScrollTrigger) {
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add((time) => {
+                lenis.raf(time * 1000);
+            });
+            gsap.ticker.lagSmoothing(0);
+        }
+    }
+
+    // 2. Initialize Lucide Icons
     if (window.lucide) {
         lucide.createIcons();
     }
 
-    // Register GSAP ScrollTrigger
+    // 3. GSAP ScrollTrigger Smooth Reveals
     if (window.gsap && window.ScrollTrigger) {
         gsap.registerPlugin(ScrollTrigger);
         
+        // Portfolio wave animation
         ScrollTrigger.create({
             trigger: "#portfolio",
-            start: "top 75%",
+            start: "top 80%",
             onEnter: () => triggerPortfolioWaveAnimation()
         });
+
+        // Smooth staggered section title bar reveals
+        gsap.utils.toArray('.h2-band-section').forEach(section => {
+            gsap.fromTo(section, 
+                { opacity: 0, y: 40 }, 
+                { 
+                    opacity: 1, 
+                    y: 0, 
+                    duration: 1.0, 
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 88%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
+        });
+
+        // Smooth staggered future cards reveal
+        gsap.fromTo('.future-card', 
+            { opacity: 0, y: 50, scale: 0.95 },
+            { 
+                opacity: 1, 
+                y: 0, 
+                scale: 1, 
+                duration: 0.9, 
+                stagger: 0.18, 
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: "#future",
+                    start: "top 78%"
+                }
+            }
+        );
     }
 
     // Ensure Telemetry Panel is strictly hidden on initial page load
@@ -35,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         progressPanel.classList.remove('active');
     }
 
-    // 2. Audio Toggle
+    // 4. Audio Toggle
     const soundToggle = document.getElementById('soundToggle');
     const soundIcon = document.getElementById('soundIcon');
     if (soundToggle) {
@@ -46,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Theme Toggle
+    // 5. Theme Toggle
     const themeToggleBtn = document.getElementById('themeToggle');
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
@@ -64,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Standard Eye Pupil Tracking & ULTRA-RESPONSIVE CURSOR EYE ROLLING DETECTOR
+    // 6. Smooth Pupil Tracking & ULTRA-RESPONSIVE CURSOR EYE ROLLING DETECTOR
     const heroPupils = document.querySelectorAll('.title---eye-pupils');
     const nodePupils = document.querySelectorAll('.inner-pupil');
     const heroEyeVedant = document.getElementById('heroEyeVedant');
@@ -75,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const mouseX = e.clientX;
         const mouseY = e.clientY;
 
-        // Pupil tracking
+        // Pupil tracking with smooth lerp / interpolation
         heroPupils.forEach(pupil => {
             const rect = pupil.getBoundingClientRect();
             const pupilX = rect.left + rect.width / 2;
@@ -84,7 +147,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const distance = Math.min(14, Math.hypot(mouseX - pupilX, mouseY - pupilY) / 15);
             const moveX = Math.cos(angle) * distance;
             const moveY = Math.sin(angle) * distance;
-            pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            
+            if (window.gsap) {
+                gsap.to(pupil, { x: moveX, y: moveY, duration: 0.25, ease: "power2.out" });
+            } else {
+                pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            }
         });
 
         nodePupils.forEach(pupil => {
@@ -95,7 +163,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const distance = Math.min(10, Math.hypot(mouseX - pupilX, mouseY - pupilY) / 20);
             const moveX = Math.cos(angle) * distance;
             const moveY = Math.sin(angle) * distance;
-            pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            
+            if (window.gsap) {
+                gsap.to(pupil, { x: moveX, y: moveY, duration: 0.25, ease: "power2.out" });
+            } else {
+                pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            }
         });
 
         // EYE CIRCLE / ROLLING DETECTOR (Super responsive radius < 320px)
@@ -115,7 +188,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     totalEyeRollRotation += diff;
 
-                    heroEyeVedant.style.transform = `scale(1.15) rotate(${totalEyeRollRotation * 20}deg)`;
+                    if (window.gsap) {
+                        gsap.to(heroEyeVedant, { 
+                            scale: 1.15, 
+                            rotation: totalEyeRollRotation * 20, 
+                            duration: 0.15, 
+                            ease: "power1.out" 
+                        });
+                    } else {
+                        heroEyeVedant.style.transform = `scale(1.15) rotate(${totalEyeRollRotation * 20}deg)`;
+                    }
 
                     if (Math.abs(totalEyeRollRotation) >= Math.PI * 3.5 && !isRageActive) {
                         triggerRedEyeRageBossMode();
@@ -126,12 +208,16 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 totalEyeRollRotation = 0;
                 lastEyeAngle = null;
-                heroEyeVedant.style.transform = '';
+                if (window.gsap) {
+                    gsap.to(heroEyeVedant, { scale: 1, rotation: 0, duration: 0.4, ease: "power2.out" });
+                } else {
+                    heroEyeVedant.style.transform = '';
+                }
             }
         }
     });
 
-    // 5. Section Accordion Toggles
+    // 7. Section Accordion Toggles
     const titleBars = document.querySelectorAll('.section-title-bar');
     titleBars.forEach(bar => {
         bar.addEventListener('click', (e) => {
@@ -153,15 +239,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (window.gsap && targetContent && !isActive) {
                     gsap.fromTo(targetContent, 
-                        { opacity: 0, y: -15 }, 
-                        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+                        { opacity: 0, y: -20, scale: 0.98 }, 
+                        { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power3.out" }
                     );
                 }
             }
         });
     });
 
-    // 6. Thinking Section Tabs
+    // 8. Thinking Section Tabs
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
     tabBtns.forEach(btn => {
@@ -176,13 +262,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 targetPane.classList.add('active');
                 if (soundEnabled) playClickSound(550, 0.04);
                 if (window.gsap) {
-                    gsap.fromTo(targetPane, { opacity: 0, x: 10 }, { opacity: 1, x: 0, duration: 0.4 });
+                    gsap.fromTo(targetPane, { opacity: 0, x: 15 }, { opacity: 1, x: 0, duration: 0.45, ease: "power2.out" });
                 }
             }
         });
     });
 
-    // 7. Systems Diagram Toggle Buttons
+    // 9. Systems Diagram Toggle Buttons
     const sysButtons = document.querySelectorAll('.sys-toggle-btn');
     const diagramViews = document.querySelectorAll('.diagram-view');
     sysButtons.forEach(btn => {
@@ -199,13 +285,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 targetDiag.classList.add('active');
                 if (soundEnabled) playClickSound(500, 0.05);
                 if (window.gsap) {
-                    gsap.fromTo(targetDiag, { opacity: 0, scale: 0.98 }, { opacity: 1, scale: 1, duration: 0.4 });
+                    gsap.fromTo(targetDiag, { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.45, ease: "power2.out" });
                 }
             }
         });
     });
 
-    // 8. Dynamic Animated Ecosystem Canvas
+    // 10. Dynamic Animated Ecosystem Canvas
     initEcosystemCanvas();
 });
 
@@ -296,8 +382,8 @@ function playRageAlarmSound() {
 function triggerPortfolioWaveAnimation() {
     if (window.gsap) {
         gsap.fromTo('.wave-card', 
-            { opacity: 0, y: 75, scale: 0.88, rotateX: 15 }, 
-            { opacity: 1, y: 0, scale: 1, rotateX: 0, duration: 0.9, stagger: 0.14, ease: "back.out(1.5)" }
+            { opacity: 0, y: 80, scale: 0.85, rotateX: 18 }, 
+            { opacity: 1, y: 0, scale: 1, rotateX: 0, duration: 1.1, stagger: 0.12, ease: "power3.out" }
         );
     }
 }
@@ -407,7 +493,8 @@ function animateCyberAntSlowLineCrawl() {
                 gsap.to(antWrapper, {
                     scale: 0.1,
                     opacity: 0,
-                    duration: 0.5,
+                    duration: 0.6,
+                    ease: "power2.inOut",
                     onComplete: () => {
                         antWrapper.style.display = 'none';
                         antWrapper.style.scale = '1';
@@ -422,7 +509,11 @@ function animateCyberAntSlowLineCrawl() {
 
                                 if (progressPanel && document.body.classList.contains('ai-vision-mode')) {
                                     progressPanel.classList.add('active');
-                                    progressPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                    if (lenis) {
+                                        lenis.scrollTo(progressPanel, { offset: -80, duration: 1.2 });
+                                    } else {
+                                        progressPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                    }
                                 }
                             }, 600);
                         }
@@ -656,7 +747,7 @@ function initEcosystemCanvas() {
     let time = 0;
 
     function animate() {
-        time += 0.03;
+        time += 0.025;
         ctx.clearRect(0, 0, width, height);
 
         const isVision = document.body.classList.contains('ai-vision-mode');
