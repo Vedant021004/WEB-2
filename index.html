@@ -13,9 +13,8 @@
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- GSAP for Smooth Animations -->
+    <!-- GSAP for Smooth Pill Morph & Motion -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -121,13 +120,15 @@
             </div>
         </section>
 
-        <!-- SECTION 1: ABOUT (BAND COLOR 1: YELLOW) -->
+        <!-- SECTION 1: ABOUT (EXPANDING O PILL CAPSULE) -->
         <section class="h2-band-section band-yellow" id="about">
             <div class="section-title-bar" data-target="about-content">
                 <h2 class="editorial-word">
-                    AB<span class="solid-eye-node"><span class="inner-pupil"></span></span>UT
+                    AB<div class="expanding-letter-pill">
+                        <span class="pill-text-content">HELLO, I'M VEDANT KAPIL • AI ENGINEER & ARCHITECT</span>
+                        <span class="inner-pupil"></span>
+                    </div>UT
                 </h2>
-                <span class="toggle-indicator"><i data-lucide="chevron-down"></i></span>
             </div>
             
             <div class="section-expand-content active" id="about-content">
@@ -155,13 +156,15 @@
             </div>
         </section>
 
-        <!-- SECTION 2: THINKING (BAND COLOR 2: CREAM) -->
+        <!-- SECTION 2: THINKING -->
         <section class="h2-band-section band-cream" id="thinking">
             <div class="section-title-bar" data-target="thinking-content">
                 <h2 class="editorial-word">
-                    THI<span class="solid-eye-node"><span class="inner-pupil"></span></span>KING
+                    THI<div class="expanding-letter-pill">
+                        <span class="pill-text-content">SYSTEM OVER PROMPT • AGENTIC SELF-CORRECTION</span>
+                        <span class="inner-pupil"></span>
+                    </div>KING
                 </h2>
-                <span class="toggle-indicator"><i data-lucide="chevron-down"></i></span>
             </div>
 
             <div class="section-expand-content" id="thinking-content">
@@ -205,13 +208,15 @@
             </div>
         </section>
 
-        <!-- SECTION 3: SYSTEMS (BAND COLOR 3: YELLOW) -->
+        <!-- SECTION 3: SYSTEMS -->
         <section class="h2-band-section band-yellow" id="systems">
             <div class="section-title-bar" data-target="systems-content">
                 <h2 class="editorial-word">
-                    SYST<span class="solid-eye-node"><span class="inner-pupil"></span></span>MS
+                    SYST<div class="expanding-letter-pill">
+                        <span class="pill-text-content">LANGGRAPH DAG & HYBRID RAG ARCHITECTURE</span>
+                        <span class="inner-pupil"></span>
+                    </div>MS
                 </h2>
-                <span class="toggle-indicator"><i data-lucide="chevron-down"></i></span>
             </div>
 
             <div class="section-expand-content" id="systems-content">
@@ -290,165 +295,68 @@
             </div>
         </section>
 
-        <!-- SECTION 4: PORTFOLIO (BAND COLOR 4: CREAM) -->
+        <!-- SECTION 4: PORTFOLIO (PILL CAPSULE CARDS MATCHING SCREENSHOT) -->
         <section class="h2-band-section band-cream" id="portfolio">
             <div class="section-title-bar" data-target="portfolio-content">
                 <h2 class="editorial-word">
-                    PORTF<span class="solid-eye-node"><span class="inner-pupil"></span></span>LIO
+                    PORTF<div class="expanding-letter-pill">
+                        <span class="pill-text-content">5 ENGINEERING CASE STUDIES // REAL AI BLUEPRINTS</span>
+                        <span class="inner-pupil"></span>
+                    </div>LIO
                 </h2>
-                <span class="toggle-indicator"><i data-lucide="chevron-down"></i></span>
             </div>
 
             <div class="section-expand-content active" id="portfolio-content">
-                <div class="projects-editorial-grid">
+                <!-- HORIZONTAL PILL CAPSULE CARDS GRID (EXACT COLIN MOY MATCH) -->
+                <div class="pill-cards-carousel">
                     
-                    <!-- CASE STUDY 1: AI DATA ANALYST COPILOT -->
-                    <article class="project-case-card" data-project="1">
-                        <div class="case-image-wrapper">
-                            <img src="assets/images/ai_data_analyst_copilot.jpg" alt="AI Data Analyst Copilot" class="case-img">
-                            <div class="case-overlay">
-                                <span class="case-tag">CASE STUDY // 01</span>
-                                <button class="view-blueprint-btn" onclick="openProjectModal(1)">VIEW BLUEPRINT <i data-lucide="arrow-up-right"></i></button>
-                            </div>
-                        </div>
-                        <div class="case-info">
-                            <div class="case-meta">
-                                <span class="meta-item">AGENTIC SQL</span>
-                                <span class="meta-item">LANGGRAPH</span>
-                                <span class="meta-item">FASTAPI</span>
-                            </div>
-                            <h3 class="case-title">AI Data Analyst Copilot</h3>
-                            <p class="case-summary">Autonomous natural language to SQL engine with schema discovery, multi-turn conversational memory, self-correcting query execution, and dynamic chart generation.</p>
-                            <div class="case-metrics">
-                                <div class="metric-box">
-                                    <span class="metric-val">98.4%</span>
-                                    <span class="metric-lbl">SQL Accuracy</span>
-                                </div>
-                                <div class="metric-box">
-                                    <span class="metric-val">&lt; 1.2s</span>
-                                    <span class="metric-lbl">Query Latency</span>
-                                </div>
-                            </div>
+                    <!-- PILL CARD 1: AI DATA ANALYST COPILOT -->
+                    <article class="pill-capsule-card" onclick="openProjectModal(1)">
+                        <img src="assets/images/ai_data_analyst_copilot.jpg" alt="AI Data Analyst Copilot" class="pill-card-bg">
+                        <div class="pill-card-overlay">
+                            <span class="pill-tag">01 // AGENTIC SQL</span>
+                            <h3 class="pill-card-title">AI DATA ANALYST COPILOT</h3>
+                            <button class="pill-action-btn">VIEW BLUEPRINT <i data-lucide="arrow-up-right"></i></button>
                         </div>
                     </article>
 
-                    <!-- CASE STUDY 2: AMAZON PRODUCT RAG -->
-                    <article class="project-case-card" data-project="2">
-                        <div class="case-image-wrapper">
-                            <img src="assets/images/amazon_product_rag.jpg" alt="Amazon Product RAG" class="case-img">
-                            <div class="case-overlay">
-                                <span class="case-tag">CASE STUDY // 02</span>
-                                <button class="view-blueprint-btn" onclick="openProjectModal(2)">VIEW BLUEPRINT <i data-lucide="arrow-up-right"></i></button>
-                            </div>
-                        </div>
-                        <div class="case-info">
-                            <div class="case-meta">
-                                <span class="meta-item">HYBRID RAG</span>
-                                <span class="meta-item">VECTOR SEARCH</span>
-                                <span class="meta-item">RE-RANKING</span>
-                            </div>
-                            <h3 class="case-title">Amazon Product RAG Engine</h3>
-                            <p class="case-summary">Large-scale e-commerce semantic search and recommendation engine leveraging dense vector embeddings, BM25 sparse indices, cross-encoder re-ranking, and grounded product attribute synthesis.</p>
-                            <div class="case-metrics">
-                                <div class="metric-box">
-                                    <span class="metric-val">100K+</span>
-                                    <span class="metric-lbl">Products Indexed</span>
-                                </div>
-                                <div class="metric-box">
-                                    <span class="metric-val">+42%</span>
-                                    <span class="metric-lbl">Search Relevance</span>
-                                </div>
-                            </div>
+                    <!-- PILL CARD 2: AMAZON PRODUCT RAG -->
+                    <article class="pill-capsule-card" onclick="openProjectModal(2)">
+                        <img src="assets/images/amazon_product_rag.jpg" alt="Amazon Product RAG" class="pill-card-bg">
+                        <div class="pill-card-overlay">
+                            <span class="pill-tag">02 // HYBRID RAG</span>
+                            <h3 class="pill-card-title">AMAZON PRODUCT RAG</h3>
+                            <button class="pill-action-btn">VIEW BLUEPRINT <i data-lucide="arrow-up-right"></i></button>
                         </div>
                     </article>
 
-                    <!-- CASE STUDY 3: SMART SCHOOL AI -->
-                    <article class="project-case-card" data-project="3">
-                        <div class="case-image-wrapper">
-                            <img src="assets/images/smart_school_ai.jpg" alt="Smart School AI" class="case-img">
-                            <div class="case-overlay">
-                                <span class="case-tag">CASE STUDY // 03</span>
-                                <button class="view-blueprint-btn" onclick="openProjectModal(3)">VIEW BLUEPRINT <i data-lucide="arrow-up-right"></i></button>
-                            </div>
-                        </div>
-                        <div class="case-info">
-                            <div class="case-meta">
-                                <span class="meta-item">EDTECH AGENTS</span>
-                                <span class="meta-item">LLMS</span>
-                                <span class="meta-item">ADAPTIVE LEARNING</span>
-                            </div>
-                            <h3 class="case-title">Smart School AI Platform</h3>
-                            <p class="case-summary">Multi-agent educational workspace providing personalized adaptive learning paths, automated essay grading with feedback loops, and intelligent query resolution for students.</p>
-                            <div class="case-metrics">
-                                <div class="metric-box">
-                                    <span class="metric-val">15K+</span>
-                                    <span class="metric-lbl">Active Students</span>
-                                </div>
-                                <div class="metric-box">
-                                    <span class="metric-val">3x</span>
-                                    <span class="metric-lbl">Engagement Boost</span>
-                                </div>
-                            </div>
+                    <!-- PILL CARD 3: SMART SCHOOL AI -->
+                    <article class="pill-capsule-card" onclick="openProjectModal(3)">
+                        <img src="assets/images/smart_school_ai.jpg" alt="Smart School AI" class="pill-card-bg">
+                        <div class="pill-card-overlay">
+                            <span class="pill-tag">03 // EDTECH AGENTS</span>
+                            <h3 class="pill-card-title">SMART SCHOOL AI</h3>
+                            <button class="pill-action-btn">VIEW BLUEPRINT <i data-lucide="arrow-up-right"></i></button>
                         </div>
                     </article>
 
-                    <!-- CASE STUDY 4: SINDHU CONSTRUCTION AI -->
-                    <article class="project-case-card" data-project="4">
-                        <div class="case-image-wrapper">
-                            <img src="assets/images/sindhu_construction.jpg" alt="Sindhu Construction AI" class="case-img">
-                            <div class="case-overlay">
-                                <span class="case-tag">CASE STUDY // 04</span>
-                                <button class="view-blueprint-btn" onclick="openProjectModal(4)">VIEW BLUEPRINT <i data-lucide="arrow-up-right"></i></button>
-                            </div>
-                        </div>
-                        <div class="case-info">
-                            <div class="case-meta">
-                                <span class="meta-item">DOCUMENT PARSING</span>
-                                <span class="meta-item">BOQ EXTRACTION</span>
-                                <span class="meta-item">CIVIL TECH</span>
-                            </div>
-                            <h3 class="case-title">Sindhu Construction Document Intelligence</h3>
-                            <p class="case-summary">Architectural blueprint and project tender document parser utilizing multi-modal LLMs to automatically extract material quantities, estimate costs, and generate structured BOQ reports.</p>
-                            <div class="case-metrics">
-                                <div class="metric-box">
-                                    <span class="metric-val">90%</span>
-                                    <span class="metric-lbl">Time Saved</span>
-                                </div>
-                                <div class="metric-box">
-                                    <span class="metric-val">0.01%</span>
-                                    <span class="metric-lbl">Estimation Variance</span>
-                                </div>
-                            </div>
+                    <!-- PILL CARD 4: SINDHU CONSTRUCTION -->
+                    <article class="pill-capsule-card" onclick="openProjectModal(4)">
+                        <img src="assets/images/sindhu_construction.jpg" alt="Sindhu Construction AI" class="pill-card-bg">
+                        <div class="pill-card-overlay">
+                            <span class="pill-tag">04 // DOC INTELLIGENCE</span>
+                            <h3 class="pill-card-title">SINDHU CONSTRUCTION</h3>
+                            <button class="pill-action-btn">VIEW BLUEPRINT <i data-lucide="arrow-up-right"></i></button>
                         </div>
                     </article>
 
-                    <!-- CASE STUDY 5: TRAFFIC ML PROJECT -->
-                    <article class="project-case-card" data-project="5">
-                        <div class="case-image-wrapper">
-                            <img src="assets/images/traffic_ml_project.jpg" alt="Traffic ML Project" class="case-img">
-                            <div class="case-overlay">
-                                <span class="case-tag">CASE STUDY // 05</span>
-                                <button class="view-blueprint-btn" onclick="openProjectModal(5)">VIEW BLUEPRINT <i data-lucide="arrow-up-right"></i></button>
-                            </div>
-                        </div>
-                        <div class="case-info">
-                            <div class="case-meta">
-                                <span class="meta-item">COMPUTER VISION</span>
-                                <span class="meta-item">TIME SERIES ML</span>
-                                <span class="meta-item">CONGESTION MODEL</span>
-                            </div>
-                            <h3 class="case-title">Traffic ML Flow & Congestion Predictor</h3>
-                            <p class="case-summary">Real-time spatio-temporal machine learning model integrating live CCTV video feeds with traffic flow forecasting algorithms to dynamically optimize signal timing and reduce urban congestion.</p>
-                            <div class="case-metrics">
-                                <div class="metric-box">
-                                    <span class="metric-val">94.2%</span>
-                                    <span class="metric-lbl">Forecast Precision</span>
-                                </div>
-                                <div class="metric-box">
-                                    <span class="metric-val">60 FPS</span>
-                                    <span class="metric-lbl">Real-time Feed</span>
-                                </div>
-                            </div>
+                    <!-- PILL CARD 5: TRAFFIC ML PROJECT -->
+                    <article class="pill-capsule-card" onclick="openProjectModal(5)">
+                        <img src="assets/images/traffic_ml_project.jpg" alt="Traffic ML Project" class="pill-card-bg">
+                        <div class="pill-card-overlay">
+                            <span class="pill-tag">05 // COMPUTER VISION</span>
+                            <h3 class="pill-card-title">TRAFFIC ML PREDICTOR</h3>
+                            <button class="pill-action-btn">VIEW BLUEPRINT <i data-lucide="arrow-up-right"></i></button>
                         </div>
                     </article>
 
@@ -456,13 +364,15 @@
             </div>
         </section>
 
-        <!-- SECTION 5: ECOSYSTEM (BAND COLOR 5: YELLOW) -->
+        <!-- SECTION 5: ECOSYSTEM -->
         <section class="h2-band-section band-yellow" id="tech-ecosystem">
             <div class="section-title-bar" data-target="tech-content">
                 <h2 class="editorial-word">
-                    EC<span class="solid-eye-node"><span class="inner-pupil"></span></span>SYSTEM
+                    EC<div class="expanding-letter-pill">
+                        <span class="pill-text-content">CONNECTED TECHNOLOGY ECOSYSTEM NETWORK</span>
+                        <span class="inner-pupil"></span>
+                    </div>SYSTEM
                 </h2>
-                <span class="toggle-indicator"><i data-lucide="chevron-down"></i></span>
             </div>
 
             <div class="section-expand-content active" id="tech-content">
@@ -484,13 +394,15 @@
             </div>
         </section>
 
-        <!-- SECTION 6: FUTURE (BAND COLOR 6: CREAM) -->
+        <!-- SECTION 6: FUTURE -->
         <section class="h2-band-section band-cream" id="future">
             <div class="section-title-bar" data-target="future-content">
                 <h2 class="editorial-word">
-                    FUTUR<span class="solid-eye-node"><span class="inner-pupil"></span></span>
+                    FUTUR<div class="expanding-letter-pill">
+                        <span class="pill-text-content">AUTONOMOUS MULTI-AGENT DAGS • EDGE LLMS</span>
+                        <span class="inner-pupil"></span>
+                    </div>E
                 </h2>
-                <span class="toggle-indicator"><i data-lucide="chevron-down"></i></span>
             </div>
 
             <div class="section-expand-content" id="future-content">
@@ -514,13 +426,15 @@
             </div>
         </section>
 
-        <!-- SECTION 7: CONTACT (BAND COLOR 7: YELLOW) -->
+        <!-- SECTION 7: CONTACT (EXACT COLIN MOY MATCH WITH HOW CAN I HELP PILL) -->
         <section class="h2-band-section band-yellow" id="contact">
             <div class="section-title-bar" data-target="contact-content">
                 <h2 class="editorial-word">
-                    C<span class="solid-eye-node"><span class="inner-pupil"></span></span>NTACT
+                    C<div class="expanding-letter-pill pill-contact">
+                        <span class="pill-text-content">HOW CAN I HELP? // LET'S BUILD INTELLIGENT SYSTEMS</span>
+                        <span class="inner-pupil"></span>
+                    </div>NTACT
                 </h2>
-                <span class="toggle-indicator"><i data-lucide="chevron-down"></i></span>
             </div>
 
             <div class="section-expand-content active" id="contact-content">
@@ -540,7 +454,7 @@
                         </a>
                     </div>
 
-                    <!-- MINIMALIST SOCIAL ICONS MATCHING SCREENSHOT -->
+                    <!-- MINIMALIST SOCIAL ICONS -->
                     <div class="social-icon-row">
                         <a href="https://linkedin.com" target="_blank" class="icon-link-btn" title="LinkedIn">
                             <i data-lucide="linkedin"></i>
@@ -557,7 +471,7 @@
         </section>
     </main>
 
-    <!-- FOOTER STATEMENT MATCHING SCREENSHOT -->
+    <!-- FOOTER STATEMENT -->
     <footer class="site-footer">
         <div class="footer-container">
             <span class="footer-copy">© Vedant Kapil 2026</span>

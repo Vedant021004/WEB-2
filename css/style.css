@@ -1,11 +1,10 @@
 /* ==========================================================================
    VEDANT KAPIL — EDITORIAL AI ENGINEERING PORTFOLIO STYLES
-   Exact Colin Moy Band Aesthetics & Ultra-Smooth Animations
+   Colin Moy Expanding Pill Capsule Animations & Vertical Pill Cards
    ========================================================================== */
 
 /* 1. CSS VARIABLES & THEME TOKENS */
 :root {
-    /* Signature Colin Moy Editorial Palette */
     --bg-yellow: #F8CB74;
     --bg-cream: #FAF6EE;
     --bg-card: #FFFFFF;
@@ -17,17 +16,14 @@
     --code-bg: #111317;
     --code-text: #E2E8F0;
 
-    /* Typography */
     --font-heading: 'Oswald', 'Syne', sans-serif;
     --font-body: 'Plus Jakarta Sans', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
 
-    /* Easing */
     --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Dark Mode Alternate */
 body.theme-dark {
     --bg-yellow: #121418;
     --bg-cream: #1A1D24;
@@ -127,7 +123,6 @@ button {
     letter-spacing: 0.08em;
     padding: 0.2rem 0;
     position: relative;
-    transition: color 0.2s ease;
 }
 
 .nav-item::after {
@@ -151,15 +146,6 @@ button {
     border-radius: 4px;
     background-color: var(--text-primary);
     color: var(--bg-yellow);
-    transition: transform 0.2s ease;
-}
-
-.nav-btn:hover {
-    transform: translateY(-2px);
-}
-
-.nav-btn::after {
-    display: none;
 }
 
 .theme-toggle {
@@ -217,7 +203,6 @@ button {
     transform: scaleY(1.04);
 }
 
-/* Interactive Eye Pupil in Hero */
 .title---eye-wrapper {
     position: relative;
     display: inline-flex;
@@ -273,7 +258,7 @@ button {
     border-radius: 50%;
 }
 
-/* Marquee Stream */
+/* Marquee Banner */
 .marquee-wrapper {
     width: 100%;
     overflow: hidden;
@@ -352,14 +337,9 @@ button {
     font-size: 0.9rem;
     font-weight: 700;
     letter-spacing: 0.05em;
-    transition: transform 0.2s ease;
 }
 
-.scroll-indicator:hover {
-    transform: translateY(4px);
-}
-
-/* 5. ALTERNATING BAND SECTIONS (EXACT COLIN MOY STYLE MATCH) */
+/* 5. ALTERNATING BANDS & DYNAMIC EXPANDING LETTER "O" PILL CAPSULE */
 .h2-band-section {
     width: 100%;
     border-bottom: 2px solid var(--border-color);
@@ -380,14 +360,8 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
     cursor: pointer;
     user-select: none;
-    transition: transform var(--ease-bounce), opacity 0.3s ease;
-}
-
-.section-title-bar:hover {
-    transform: scale(1.02);
 }
 
 .editorial-word {
@@ -404,23 +378,46 @@ button {
     color: var(--text-primary);
 }
 
-/* Solid Black Circle Node for Letter O (Exact Match to Screenshot) */
-.solid-eye-node {
+/* DYNAMIC EXPANDING LETTER PILL (EXACT COLIN MOY MATCH TO IMAGE 2) */
+.expanding-letter-pill {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: clamp(2.8rem, 8vw, 7.5rem);
-    height: clamp(2.8rem, 8vw, 7.5rem);
+    height: clamp(3rem, 8.5vw, 8rem);
+    width: clamp(3rem, 8.5vw, 8rem);
     background-color: var(--text-primary);
-    border-radius: 50%;
+    color: var(--bg-yellow);
+    border-radius: 999px;
     position: relative;
-    margin: 0 0.05em;
+    overflow: hidden;
+    margin: 0 0.1em;
+    padding: 0 1.5rem;
+    white-space: nowrap;
     vertical-align: middle;
-    transition: transform var(--ease-bounce), background-color 0.3s ease;
+    cursor: pointer;
+    transition: width 0.6s var(--ease-smooth), transform 0.4s var(--ease-bounce);
 }
 
-.section-title-bar:hover .solid-eye-node {
-    transform: scale(1.12);
+.section-title-bar:hover .expanding-letter-pill,
+.section-title-bar.active .expanding-letter-pill {
+    width: clamp(22rem, 58vw, 48rem);
+}
+
+.pill-text-content {
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 2.5vw, 2.4rem);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--bg-yellow);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease 0.1s, transform 0.4s var(--ease-smooth) 0.1s;
+}
+
+.section-title-bar:hover .pill-text-content,
+.section-title-bar.active .pill-text-content {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .inner-pupil {
@@ -429,21 +426,15 @@ button {
     background-color: var(--bg-yellow);
     border-radius: 50%;
     position: absolute;
-    transition: transform 0.05s linear;
+    transition: opacity 0.3s ease, transform 0.05s linear;
 }
 
-.toggle-indicator {
-    position: absolute;
-    right: 3rem;
-    font-size: 2rem;
-    transition: transform 0.4s var(--ease-smooth);
+.section-title-bar:hover .inner-pupil,
+.section-title-bar.active .inner-pupil {
+    opacity: 0;
 }
 
-.section-title-bar.active .toggle-indicator {
-    transform: rotate(180deg);
-}
-
-/* 6. EXPANDABLE CONTENT SECTION */
+/* 6. EXPANDABLE CONTENT CONTAINER */
 .section-expand-content {
     max-height: 0;
     overflow: hidden;
@@ -506,7 +497,7 @@ button {
     background-color: var(--bg-card);
 }
 
-/* 8. THINKING SECTION TABS */
+/* 8. THINKING TABS */
 .thinking-tabs-wrapper {
     max-width: 1400px;
     margin: 0 auto;
@@ -611,7 +602,6 @@ button {
     padding: 0.5rem 1rem;
     border: 1px solid var(--border-color);
     background-color: var(--bg-yellow);
-    transition: all 0.2s ease;
 }
 
 .sys-toggle-btn.active {
@@ -681,146 +671,98 @@ button {
     margin-top: 1rem;
 }
 
-/* 10. PROJECTS CASE STUDIES */
-.projects-editorial-grid {
-    max-width: 1400px;
+/* 10. PORTFOLIO PILL-SHAPED VERTICAL CAPSULE CARDS (EXACT COLIN MOY MATCH TO IMAGE 1) */
+.pill-cards-carousel {
+    max-width: 1500px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 3rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1rem 0;
 }
 
-.project-case-card {
-    background-color: var(--bg-card);
-    border: 2px solid var(--border-color);
-    overflow: hidden;
-    transition: transform var(--ease-bounce), box-shadow 0.3s ease;
-}
-
-.project-case-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-}
-
-.case-image-wrapper {
+.pill-capsule-card {
+    width: 260px;
+    height: 480px;
+    border-radius: 130px;
+    border: 3px solid var(--border-color);
     position: relative;
-    width: 100%;
-    height: 260px;
     overflow: hidden;
-    border-bottom: 2px solid var(--border-color);
+    cursor: pointer;
+    background-color: #000000;
+    transition: transform 0.4s var(--ease-bounce), box-shadow 0.3s ease;
 }
 
-.case-img {
+.pill-capsule-card:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.pill-card-bg {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s var(--ease-smooth);
+    opacity: 0.55;
+    transition: transform 0.6s var(--ease-smooth), opacity 0.3s ease;
 }
 
-.project-case-card:hover .case-img {
-    transform: scale(1.05);
+.pill-capsule-card:hover .pill-card-bg {
+    transform: scale(1.1);
+    opacity: 0.75;
 }
 
-.case-overlay {
+.pill-card-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.7));
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 1.2rem;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.project-case-card:hover .case-overlay {
-    opacity: 1;
-}
-
-.case-tag {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 700;
-    background-color: #000000;
-    color: #FFFFFF;
-    padding: 0.3rem 0.6rem;
-    width: max-content;
-}
-
-.view-blueprint-btn {
-    align-self: flex-end;
-    font-family: var(--font-heading);
-    font-size: 0.9rem;
-    font-weight: 700;
-    background-color: var(--bg-yellow);
-    color: var(--text-primary);
-    padding: 0.6rem 1.2rem;
-    border: 2px solid var(--border-color);
-    display: flex;
     align-items: center;
-    gap: 0.4rem;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    color: #FFFFFF;
 }
 
-.case-info {
-    padding: 2rem;
-}
-
-.case-meta {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 0.8rem;
-}
-
-.meta-item {
+.pill-tag {
     font-family: var(--font-mono);
     font-size: 0.7rem;
     font-weight: 700;
-    color: var(--text-muted);
-    background-color: var(--bg-cream);
-    padding: 0.2rem 0.5rem;
-    border: 1px solid var(--border-color);
+    background-color: #000000;
+    color: var(--bg-yellow);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
 }
 
-.case-title {
+.pill-card-title {
     font-family: var(--font-heading);
     font-size: 1.6rem;
     font-weight: 700;
-    margin-bottom: 0.8rem;
     line-height: 1.2;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
 }
 
-.case-summary {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-}
-
-.case-metrics {
-    display: flex;
-    gap: 2rem;
-    border-top: 1px solid var(--border-subtle);
-    padding-top: 1rem;
-}
-
-.metric-box {
-    display: flex;
-    flex-direction: column;
-}
-
-.metric-val {
+.pill-action-btn {
     font-family: var(--font-heading);
-    font-size: 1.4rem;
+    font-size: 0.85rem;
     font-weight: 700;
+    background-color: var(--bg-yellow);
+    color: #000000;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: transform 0.2s ease;
 }
 
-.metric-lbl {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--text-muted);
+.pill-capsule-card:hover .pill-action-btn {
+    transform: scale(1.08);
 }
 
 /* 11. ECOSYSTEM CANVAS */
@@ -930,7 +872,7 @@ button {
     color: var(--text-secondary);
 }
 
-/* 13. CONTACT SECTION & SOCIAL ICONS (EXACT COLIN MOY MATCH) */
+/* 13. CONTACT SECTION & SOCIAL ICONS */
 .editorial-contact-box {
     max-width: 1400px;
     margin: 0 auto;
@@ -1009,7 +951,6 @@ button {
     transform: translateY(-3px);
 }
 
-/* Minimalist Social Icon Row (Matching Screenshot in in/instagram/github format) */
 .social-icon-row {
     display: flex;
     align-items: center;
@@ -1031,7 +972,7 @@ button {
     transform: scale(1.3);
 }
 
-/* 14. FOOTER (EXACT MATCH TO SCREENSHOT: © Vedant Kapil 2026) */
+/* 14. FOOTER */
 .site-footer {
     width: 100%;
     border-top: 2px solid var(--border-color);
@@ -1146,11 +1087,15 @@ button {
         display: none;
     }
     .editorial-word {
-        font-size: 3rem;
+        font-size: 2.8rem;
     }
-    .solid-eye-node {
-        width: 2.5rem;
-        height: 2.5rem;
+    .expanding-letter-pill {
+        height: 2.8rem;
+        width: 2.8rem;
+    }
+    .section-title-bar:hover .expanding-letter-pill,
+    .section-title-bar.active .expanding-letter-pill {
+        width: 16rem;
     }
     .hero-subtext {
         flex-direction: column;
