@@ -1,6 +1,6 @@
 /* ==========================================================================
    VEDANT KAPIL — EDITORIAL AI ENGINEERING PORTFOLIO LOGIC
-   With Cursor Eye Rolling Counter, Red Eye Rage Boss Mode & Line-Locked Slow Ant
+   With Fixed Canvas Label Offsets, Chip Wrapping & Cursor Rolling Rage Detector
    ========================================================================== */
 
 let soundEnabled = false;
@@ -115,7 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 lastEyeAngle = currentAngle;
             } else {
-                // Reset rotation counter if cursor moves far away
                 totalEyeRollRotation = 0;
                 lastEyeAngle = null;
             }
@@ -222,10 +221,8 @@ function triggerRedEyeRageBossMode() {
         statusText.textContent = '🚨 WARNING: EYE ANGERED // CALLING BOSS!';
     }
 
-    // Play Alarm Siren Sound
     playRageAlarmSound();
 
-    // Auto-Open Ask VK-AI Copilot Terminal with Boss Warning!
     setTimeout(() => {
         if (terminalModal) terminalModal.classList.add('active');
         if (container) {
@@ -245,7 +242,6 @@ function playRageAlarmSound() {
         if (!AudioCtx) return;
         const ctx = new AudioCtx();
         
-        // Two-tone siren
         for (let i = 0; i < 4; i++) {
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
@@ -280,7 +276,6 @@ function triggerPortfolioWaveAnimation() {
 function triggerEyeVisionMode(e) {
     if (e) e.stopPropagation();
 
-    // If rage mode is on, turn it off
     if (isRageActive) {
         document.body.classList.remove('eye-rage-mode');
         isRageActive = false;
@@ -325,11 +320,9 @@ function animateCyberAntSlowLineCrawl() {
 
     isAntAnimating = true;
 
-    // Get Target Eye Center Position
     const eyeRect = eyeVedant.getBoundingClientRect();
     const targetX = eyeRect.left + eyeRect.width / 2;
 
-    // Reset Ant & Payload State
     antWrapper.style.display = 'flex';
     antWrapper.style.opacity = '1';
     antWrapper.style.left = '-180px';
@@ -340,30 +333,26 @@ function animateCyberAntSlowLineCrawl() {
 
     let currentX = -180;
     const totalDistance = targetX + 180;
-    const speed = totalDistance / 340; // Slow, deliberate cinematic crawling speed
+    const speed = totalDistance / 340;
 
     function stepCrawl() {
-        // DYNAMIC LINE-LOCKING: Recalculate exact line Y on every single frame!
         let currentLineY = window.innerHeight * 0.48;
         if (marqueeLine) {
             const mRect = marqueeLine.getBoundingClientRect();
-            currentLineY = mRect.top; // Locked directly on top edge of marquee line between VEDANT & KAPIL!
+            currentLineY = mRect.top;
         }
         antWrapper.style.top = `${currentLineY}px`;
 
         currentX += speed;
         antWrapper.style.left = `${currentX}px`;
 
-        // Calculate progress (0 to 1)
         const progress = Math.min(1, Math.max(0, (currentX + 180) / totalDistance));
 
-        // Slowly decrease transparency of skill payload badge (dissolves & absorbs into ant as it walks!)
         if (antPayload) {
             const opacityVal = Math.max(0, 1 - progress * 1.35);
             antPayload.style.opacity = opacityVal.toString();
         }
 
-        // Eyes Follow Ant Position along the Line!
         const antX = currentX + 20;
         const antY = currentLineY;
 
@@ -381,7 +370,6 @@ function animateCyberAntSlowLineCrawl() {
         if (currentX < targetX - 25) {
             requestAnimationFrame(stepCrawl);
         } else {
-            // Ant reaches Eye! Ant gets absorbed into the Eye!
             if (window.gsap) {
                 gsap.to(antWrapper, {
                     scale: 0.1,
@@ -391,7 +379,6 @@ function animateCyberAntSlowLineCrawl() {
                         antWrapper.style.display = 'none';
                         antWrapper.style.scale = '1';
 
-                        // Eye Performs Double Blink Animation!
                         if (eyeWhitesVedant) {
                             eyeWhitesVedant.classList.add('blinking');
                             if (soundEnabled) playClickSound(900, 0.15);
@@ -400,7 +387,6 @@ function animateCyberAntSlowLineCrawl() {
                                 eyeWhitesVedant.classList.remove('blinking');
                                 isAntAnimating = false;
 
-                                // Reveal Luxury Glassmorphism Telemetry Dashboard!
                                 if (progressPanel) {
                                     progressPanel.classList.add('active');
                                     progressPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -522,11 +508,11 @@ function sendTerminalPrompt(text) {
     }
 }
 
-function handleTerminalKeyPress(e) {
+handleTerminalKeyPress = function(e) {
     if (e.key === 'Enter') {
         sendTerminalMessage();
     }
-}
+};
 
 function sendTerminalMessage() {
     const input = document.getElementById('terminalInput');
@@ -572,7 +558,7 @@ function generateCopilotResponse(query) {
 }
 
 /* ==========================================================================
-   INTERACTIVE TECHNOLOGY ECOSYSTEM CANVAS
+   INTERACTIVE TECHNOLOGY ECOSYSTEM CANVAS (LABEL OVERLAP FIX)
    ========================================================================== */
 const techNodesData = [
     { id: 'ml', label: 'Machine Learning', category: 'Core ML', x: 0.25, y: 0.35, connects: ['dl', 'llm', 'fastapi', 'cloud'] },
@@ -665,9 +651,11 @@ function initEcosystemCanvas() {
             ctx.lineWidth = 2;
             ctx.stroke();
 
-            ctx.font = `${isActive ? 'bold 14px' : '500 12px'} "JetBrains Mono", monospace`;
+            // FIXED: CLEAN LABEL OFFSET THAT NEVER OVERLAPS THE NODE CIRCLE!
+            ctx.font = `${isActive ? 'bold 13px' : '600 11px'} "JetBrains Mono", monospace`;
             ctx.fillStyle = nodeColor;
-            ctx.fillText(node.label, nodeX + 16, nodeY + 4);
+            ctx.textBaseline = 'middle';
+            ctx.fillText(node.label, nodeX + (isActive ? 18 : 14), nodeY);
         });
     }
 

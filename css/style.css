@@ -1,6 +1,6 @@
 /* ==========================================================================
    VEDANT KAPIL — EDITORIAL AI ENGINEERING PORTFOLIO STYLES
-   With Red Eye Rage Boss Warning Mode & Line-Locked Ant Crawler
+   With Refined Ecosystem Network Canvas & Chip Layout Fixes
    ========================================================================== */
 
 :root {
@@ -45,7 +45,6 @@ body.ai-vision-mode {
     --border-subtle: rgba(56, 189, 248, 0.25);
 }
 
-/* RED EYE RAGE BOSS MODE (ACTIVATED BY ROLLING CURSOR IN CIRCLES AROUND EYE!) */
 body.eye-rage-mode {
     --bg-yellow: #0A0203;
     --bg-cream: #140507;
@@ -117,7 +116,7 @@ body.eye-rage-mode .title---eye-pupils {
 
 .ai-vision-banner.active { top: 1.2rem; }
 
-/* CYBER ANT CRAWLER & DISSOLVING SKILL PAYLOAD (HIDDEN BY DEFAULT!) */
+/* CYBER ANT CRAWLER & DISSOLVING SKILL PAYLOAD */
 .cyber-ant-wrapper {
     position: fixed;
     z-index: 600;
@@ -319,6 +318,54 @@ body.eye-rage-mode .title---eye-pupils {
     transition: width 1.2s var(--ease-smooth);
 }
 
+/* INTERACTIVE ECOSYSTEM DETAIL CARD & CHIPS FIX */
+.tech-detail-card {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    max-width: 440px;
+    width: calc(100% - 3rem);
+    background-color: var(--bg-yellow);
+    border: 2px solid var(--border-color);
+    padding: 1.6rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    z-index: 10;
+}
+
+.tech-detail-card h4 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+}
+
+.tech-detail-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.tech-card-connections {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.8rem;
+}
+
+.tech-card-connections .comp-chip {
+    white-space: nowrap;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.35rem 0.8rem;
+    border: 1.5px solid var(--border-color);
+    background-color: var(--bg-card);
+    border-radius: 4px;
+    display: inline-block;
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 html, body { width: 100%; min-height: 100vh; background-color: var(--bg-yellow); color: var(--text-primary); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; transition: background-color 0.4s ease, color 0.4s ease; }
 ::selection { background-color: var(--text-primary); color: var(--bg-yellow); }
@@ -458,7 +505,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .ecosystem-container { max-width: 1400px; margin: 0 auto; }
 .canvas-wrapper { position: relative; width: 100%; height: 520px; background-color: var(--bg-card); border: 2px solid var(--border-color); overflow: hidden; }
 #ecosystemCanvas { width: 100%; height: 100%; display: block; }
-.tech-detail-card { position: absolute; bottom: 1.5rem; right: 1.5rem; max-width: 380px; background-color: var(--bg-yellow); border: 2px solid var(--border-color); padding: 1.5rem; }
 
 .editorial-future-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
 .future-card { background-color: var(--bg-card); border: 2px solid var(--border-color); padding: 2.5rem; }
