@@ -19,41 +19,42 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="theme-editorial">
-    <!-- Custom Magnetic Cursor Follower -->
-    <div class="cursor-dot" id="cursorDot"></div>
-    <div class="cursor-ring" id="cursorRing"></div>
+    <!-- AI Vision Mode Banner Notification -->
+    <div class="ai-vision-banner" id="aiVisionBanner">
+        <span class="pulse-live"></span> 👁️ AI VISION MODE ACTIVATED // NEURAL SYSTEM UNLOCKED
+    </div>
 
     <!-- Top Navigation Bar -->
     <header class="site-header">
         <div class="nav-container">
-            <a href="#" class="brand-logo magnetic-target">
+            <a href="#" class="brand-logo">
                 <span class="dot pulse-live"></span> VK // AI ARCHITECT
             </a>
 
             <!-- System Live Status -->
             <div class="header-system-status">
                 <span class="status-indicator"></span>
-                <span class="status-text">AGENTIC SYSTEM // ONLINE</span>
+                <span class="status-text" id="headerStatusText">AGENTIC SYSTEM // ONLINE</span>
             </div>
 
             <nav class="nav-links">
-                <a href="#about" class="nav-item magnetic-target">ABOUT</a>
-                <a href="#thinking" class="nav-item magnetic-target">THINKING</a>
-                <a href="#systems" class="nav-item magnetic-target">SYSTEMS</a>
-                <a href="#portfolio" class="nav-item magnetic-target">PORTFOLIO</a>
-                <a href="#tech-ecosystem" class="nav-item magnetic-target">ECOSYSTEM</a>
-                <a href="#future" class="nav-item magnetic-target">FUTURE</a>
-                <a href="#contact" class="nav-item nav-btn magnetic-target">CONTACT</a>
+                <a href="#about" class="nav-item">ABOUT</a>
+                <a href="#thinking" class="nav-item">THINKING</a>
+                <a href="#systems" class="nav-item">SYSTEMS</a>
+                <a href="#portfolio" class="nav-item">PORTFOLIO</a>
+                <a href="#tech-ecosystem" class="nav-item">ECOSYSTEM</a>
+                <a href="#future" class="nav-item">FUTURE</a>
+                <a href="#contact" class="nav-item nav-btn">CONTACT</a>
             </nav>
 
             <div class="nav-controls">
                 <!-- Sound Toggle -->
-                <button class="sound-toggle magnetic-target" id="soundToggle" title="Toggle UI Audio Effects">
+                <button class="sound-toggle" id="soundToggle" title="Toggle UI Audio Effects">
                     <span id="soundIcon">🔇</span> SOUND
                 </button>
 
                 <!-- Theme Mode Toggle -->
-                <div class="theme-toggle magnetic-target" id="themeToggle" title="Toggle Dark/Light Mode">
+                <div class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
                     <span class="toggle-icon">👁️</span>
                     <span class="toggle-text">MODE</span>
                 </div>
@@ -70,7 +71,8 @@
                     <span class="title-char">V</span>
                     <span class="title-char">E</span>
                     <span class="title-char">D</span>
-                    <div class="title---eye-wrapper eye-interactive magnetic-target">
+                    <!-- Interactive Eye: Clicking triggers AI Vision Mode! -->
+                    <div class="title---eye-wrapper eye-interactive" id="heroEyeVedant" onclick="triggerEyeVisionMode(event)" title="Click to Activate AI Vision Mode!">
                         <span class="eye-letter-bg">A</span>
                         <div class="title---eye-whites">
                             <div class="title---eye-pupils"></div>
@@ -113,7 +115,8 @@
             <div class="title-container title---kapil">
                 <div class="title---line">
                     <span class="title-char">K</span>
-                    <div class="title---eye-wrapper eye-interactive magnetic-target">
+                    <!-- Interactive Eye: Clicking triggers AI Vision Mode! -->
+                    <div class="title---eye-wrapper eye-interactive" id="heroEyeKapil" onclick="triggerEyeVisionMode(event)" title="Click to Activate AI Vision Mode!">
                         <span class="eye-letter-bg">A</span>
                         <div class="title---eye-whites">
                             <div class="title---eye-pupils"></div>
@@ -132,7 +135,7 @@
                     <p class="tagline-text">Building deterministic reliability into non-deterministic AI intelligence.</p>
                 </div>
                 <div class="subtext-right">
-                    <a href="#about" class="scroll-indicator magnetic-target">
+                    <a href="#about" class="scroll-indicator">
                         <span>EXPLORE NARRATIVE</span>
                         <i data-lucide="arrow-down"></i>
                     </a>
@@ -140,11 +143,11 @@
             </div>
         </section>
 
-        <!-- SECTION 1: ABOUT (EXPANDING LETTER O PILL) -->
+        <!-- SECTION 1: ABOUT -->
         <section class="h2-band-section band-yellow" id="about">
-            <div class="section-title-bar magnetic-target" data-target="about-content">
+            <div class="section-title-bar" data-target="about-content">
                 <h2 class="editorial-word">
-                    AB<div class="expanding-letter-pill">
+                    AB<div class="expanding-letter-pill" onclick="triggerEyeVisionMode(event)">
                         <span class="pill-text-content">HELLO, I'M VEDANT KAPIL • AI ENGINEER & ARCHITECT</span>
                         <span class="inner-pupil"></span>
                     </div>UT
@@ -178,9 +181,9 @@
 
         <!-- SECTION 2: THINKING -->
         <section class="h2-band-section band-cream" id="thinking">
-            <div class="section-title-bar magnetic-target" data-target="thinking-content">
+            <div class="section-title-bar" data-target="thinking-content">
                 <h2 class="editorial-word">
-                    THI<div class="expanding-letter-pill">
+                    THI<div class="expanding-letter-pill" onclick="triggerEyeVisionMode(event)">
                         <span class="pill-text-content">SYSTEM OVER PROMPT • AGENTIC SELF-CORRECTION</span>
                         <span class="inner-pupil"></span>
                     </div>KING
@@ -190,10 +193,10 @@
             <div class="section-expand-content" id="thinking-content">
                 <div class="thinking-tabs-wrapper">
                     <div class="thinking-tab-headers">
-                        <button class="tab-btn active magnetic-target" data-tab="tab-1">01 / System over Prompt</button>
-                        <button class="tab-btn magnetic-target" data-tab="tab-2">02 / RAG vs Fine-Tuning</button>
-                        <button class="tab-btn magnetic-target" data-tab="tab-3">03 / Agentic Self-Correction</button>
-                        <button class="tab-btn magnetic-target" data-tab="tab-4">04 / Latency & MLOps</button>
+                        <button class="tab-btn active" data-tab="tab-1">01 / System over Prompt</button>
+                        <button class="tab-btn" data-tab="tab-2">02 / RAG vs Fine-Tuning</button>
+                        <button class="tab-btn" data-tab="tab-3">03 / Agentic Self-Correction</button>
+                        <button class="tab-btn" data-tab="tab-4">04 / Latency & MLOps</button>
                     </div>
                     <div class="thinking-tab-contents">
                         <div class="tab-pane active" id="tab-1">
@@ -228,11 +231,11 @@
             </div>
         </section>
 
-        <!-- SECTION 3: SYSTEMS (LIVE AGENT SIMULATION PLAYGROUND) -->
+        <!-- SECTION 3: SYSTEMS -->
         <section class="h2-band-section band-yellow" id="systems">
-            <div class="section-title-bar magnetic-target" data-target="systems-content">
+            <div class="section-title-bar" data-target="systems-content">
                 <h2 class="editorial-word">
-                    SYST<div class="expanding-letter-pill">
+                    SYST<div class="expanding-letter-pill" onclick="triggerEyeVisionMode(event)">
                         <span class="pill-text-content">LANGGRAPH DAG & HYBRID RAG ARCHITECTURE</span>
                         <span class="inner-pupil"></span>
                     </div>MS
@@ -246,15 +249,14 @@
                             <i data-lucide="workflow"></i> Live Agentic Execution Visualizer & Simulator
                         </div>
                         <div class="visualizer-controls">
-                            <button class="sys-toggle-btn active magnetic-target" data-diagram="langgraph">LangGraph Agentic Loop</button>
-                            <button class="sys-toggle-btn magnetic-target" data-diagram="rag">Hybrid Enterprise RAG</button>
-                            <button class="sys-toggle-btn run-sim-btn magnetic-target" id="runSimulationBtn" onclick="runLiveAgentSimulation()">
+                            <button class="sys-toggle-btn active" data-diagram="langgraph">LangGraph Agentic Loop</button>
+                            <button class="sys-toggle-btn" data-diagram="rag">Hybrid Enterprise RAG</button>
+                            <button class="sys-toggle-btn run-sim-btn" id="runSimulationBtn" onclick="runLiveAgentSimulation()">
                                 <i data-lucide="play"></i> RUN LIVE SIMULATION
                             </button>
                         </div>
                     </div>
 
-                    <!-- INTERACTIVE DIAGRAM STAGE -->
                     <div class="diagram-stage" id="diagramStage">
                         <div class="diagram-view active" id="diag-langgraph">
                             <div class="dag-container">
@@ -318,9 +320,9 @@
 
         <!-- SECTION 4: PORTFOLIO -->
         <section class="h2-band-section band-cream" id="portfolio">
-            <div class="section-title-bar magnetic-target" data-target="portfolio-content">
+            <div class="section-title-bar" data-target="portfolio-content">
                 <h2 class="editorial-word">
-                    PORTF<div class="expanding-letter-pill">
+                    PORTF<div class="expanding-letter-pill" onclick="triggerEyeVisionMode(event)">
                         <span class="pill-text-content">5 ENGINEERING CASE STUDIES // REAL AI BLUEPRINTS</span>
                         <span class="inner-pupil"></span>
                     </div>LIO
@@ -330,7 +332,7 @@
             <div class="section-expand-content active" id="portfolio-content">
                 <div class="pill-cards-carousel">
                     
-                    <article class="pill-capsule-card magnetic-target" onclick="openProjectModal(1)">
+                    <article class="pill-capsule-card" onclick="openProjectModal(1)">
                         <img src="assets/images/ai_data_analyst_copilot.jpg" alt="AI Data Analyst Copilot" class="pill-card-bg">
                         <div class="pill-card-overlay">
                             <span class="pill-tag">01 // AGENTIC SQL</span>
@@ -339,7 +341,7 @@
                         </div>
                     </article>
 
-                    <article class="pill-capsule-card magnetic-target" onclick="openProjectModal(2)">
+                    <article class="pill-capsule-card" onclick="openProjectModal(2)">
                         <img src="assets/images/amazon_product_rag.jpg" alt="Amazon Product RAG" class="pill-card-bg">
                         <div class="pill-card-overlay">
                             <span class="pill-tag">02 // HYBRID RAG</span>
@@ -348,7 +350,7 @@
                         </div>
                     </article>
 
-                    <article class="pill-capsule-card magnetic-target" onclick="openProjectModal(3)">
+                    <article class="pill-capsule-card" onclick="openProjectModal(3)">
                         <img src="assets/images/smart_school_ai.jpg" alt="Smart School AI" class="pill-card-bg">
                         <div class="pill-card-overlay">
                             <span class="pill-tag">03 // EDTECH AGENTS</span>
@@ -357,7 +359,7 @@
                         </div>
                     </article>
 
-                    <article class="pill-capsule-card magnetic-target" onclick="openProjectModal(4)">
+                    <article class="pill-capsule-card" onclick="openProjectModal(4)">
                         <img src="assets/images/sindhu_construction.jpg" alt="Sindhu Construction AI" class="pill-card-bg">
                         <div class="pill-card-overlay">
                             <span class="pill-tag">04 // DOC INTELLIGENCE</span>
@@ -366,7 +368,7 @@
                         </div>
                     </article>
 
-                    <article class="pill-capsule-card magnetic-target" onclick="openProjectModal(5)">
+                    <article class="pill-capsule-card" onclick="openProjectModal(5)">
                         <img src="assets/images/traffic_ml_project.jpg" alt="Traffic ML Project" class="pill-card-bg">
                         <div class="pill-card-overlay">
                             <span class="pill-tag">05 // COMPUTER VISION</span>
@@ -381,9 +383,9 @@
 
         <!-- SECTION 5: ECOSYSTEM -->
         <section class="h2-band-section band-yellow" id="tech-ecosystem">
-            <div class="section-title-bar magnetic-target" data-target="tech-content">
+            <div class="section-title-bar" data-target="tech-content">
                 <h2 class="editorial-word">
-                    EC<div class="expanding-letter-pill">
+                    EC<div class="expanding-letter-pill" onclick="triggerEyeVisionMode(event)">
                         <span class="pill-text-content">CONNECTED TECHNOLOGY ECOSYSTEM NETWORK</span>
                         <span class="inner-pupil"></span>
                     </div>SYSTEM
@@ -411,9 +413,9 @@
 
         <!-- SECTION 6: FUTURE -->
         <section class="h2-band-section band-cream" id="future">
-            <div class="section-title-bar magnetic-target" data-target="future-content">
+            <div class="section-title-bar" data-target="future-content">
                 <h2 class="editorial-word">
-                    FUTUR<div class="expanding-letter-pill">
+                    FUTUR<div class="expanding-letter-pill" onclick="triggerEyeVisionMode(event)">
                         <span class="pill-text-content">AUTONOMOUS MULTI-AGENT DAGS • EDGE LLMS</span>
                         <span class="inner-pupil"></span>
                     </div>E
@@ -422,17 +424,17 @@
 
             <div class="section-expand-content" id="future-content">
                 <div class="editorial-future-grid">
-                    <div class="future-card magnetic-target">
+                    <div class="future-card">
                         <span class="f-num">01</span>
                         <h4>Autonomous Agentic Frameworks</h4>
                         <p>Moving beyond single-agent LLM invocations to hierarchical, self-healing multi-agent DAGs that autonomously write, test, evaluate, and deploy software modules.</p>
                     </div>
-                    <div class="future-card magnetic-target">
+                    <div class="future-card">
                         <span class="f-num">02</span>
                         <h4>Enterprise Cognitive Knowledge Graphs</h4>
                         <p>Fusing structured Knowledge Graphs with unstructured vector databases to give AI models enterprise-wide long-term memory with mathematical accuracy.</p>
                     </div>
-                    <div class="future-card magnetic-target">
+                    <div class="future-card">
                         <span class="f-num">03</span>
                         <h4>Local Edge LLM Inference</h4>
                         <p>Optimizing small language models (SLMs) via quantization and hardware acceleration to run highly capable AI agents privately at low latency on edge infrastructure.</p>
@@ -443,9 +445,9 @@
 
         <!-- SECTION 7: CONTACT -->
         <section class="h2-band-section band-yellow" id="contact">
-            <div class="section-title-bar magnetic-target" data-target="contact-content">
+            <div class="section-title-bar" data-target="contact-content">
                 <h2 class="editorial-word">
-                    C<div class="expanding-letter-pill pill-contact">
+                    C<div class="expanding-letter-pill pill-contact" onclick="triggerEyeVisionMode(event)">
                         <span class="pill-text-content">HOW CAN I HELP? // LET'S BUILD INTELLIGENT SYSTEMS</span>
                         <span class="inner-pupil"></span>
                     </div>NTACT
@@ -460,23 +462,23 @@
                     <div class="contact-action-bar">
                         <div class="email-copy-box">
                             <span class="email-address" id="emailStr">vedantkapil.ai@gmail.com</span>
-                            <button class="copy-btn magnetic-target" id="copyEmailBtn" onclick="copyEmail()">
+                            <button class="copy-btn" id="copyEmailBtn" onclick="copyEmail()">
                                 <i data-lucide="copy"></i> COPY EMAIL
                             </button>
                         </div>
-                        <a href="mailto:vedantkapil.ai@gmail.com" class="direct-email-btn magnetic-target">
+                        <a href="mailto:vedantkapil.ai@gmail.com" class="direct-email-btn">
                             SEND DIRECT MESSAGE <i data-lucide="send"></i>
                         </a>
                     </div>
 
                     <div class="social-icon-row">
-                        <a href="https://linkedin.com" target="_blank" class="icon-link-btn magnetic-target" title="LinkedIn">
+                        <a href="https://linkedin.com" target="_blank" class="icon-link-btn" title="LinkedIn">
                             <i data-lucide="linkedin"></i>
                         </a>
-                        <a href="https://github.com" target="_blank" class="icon-link-btn magnetic-target" title="GitHub">
+                        <a href="https://github.com" target="_blank" class="icon-link-btn" title="GitHub">
                             <i data-lucide="github"></i>
                         </a>
-                        <a href="https://twitter.com" target="_blank" class="icon-link-btn magnetic-target" title="Twitter / X">
+                        <a href="https://twitter.com" target="_blank" class="icon-link-btn" title="Twitter / X">
                             <i data-lucide="twitter"></i>
                         </a>
                     </div>
@@ -486,7 +488,7 @@
     </main>
 
     <!-- FLOATING ASK VK-AI TERMINAL TRIGGER -->
-    <button class="vk-ai-floating-btn magnetic-target" onclick="toggleVkAiTerminal()">
+    <button class="vk-ai-floating-btn" onclick="toggleVkAiTerminal()">
         <span class="pulse-ring"></span>
         <i data-lucide="bot"></i> ASK VK-AI
     </button>

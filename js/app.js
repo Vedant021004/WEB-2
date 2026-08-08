@@ -1,6 +1,6 @@
 /* ==========================================================================
    VEDANT KAPIL — EDITORIAL AI ENGINEERING PORTFOLIO LOGIC
-   With Magnetic Cursor, Web Audio FX, Live Agent DAG Simulation & VK-AI Copilot Terminal
+   With Interactive Eye Vision Mode, VK-AI Copilot Terminal & Live DAG Simulator
    ========================================================================== */
 
 let soundEnabled = false;
@@ -11,10 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lucide.createIcons();
     }
 
-    // 2. Custom Magnetic Cursor
-    initMagneticCursor();
-
-    // 3. Audio Toggle
+    // 2. Audio Toggle
     const soundToggle = document.getElementById('soundToggle');
     const soundIcon = document.getElementById('soundIcon');
     if (soundToggle) {
@@ -25,10 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Theme Toggle (Editorial Yellow vs Dark)
+    // 3. Theme Toggle (Editorial Yellow vs Dark)
     const themeToggleBtn = document.getElementById('themeToggle');
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.remove('ai-vision-mode');
             document.body.classList.toggle('theme-dark');
             const isDark = document.body.classList.contains('theme-dark');
             const toggleText = themeToggleBtn.querySelector('.toggle-text');
@@ -40,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. Eye Pupil Tracking
+    // 4. Eye Pupil Cursor Motion Tracking
     const heroPupils = document.querySelectorAll('.title---eye-pupils');
     const nodePupils = document.querySelectorAll('.inner-pupil');
 
@@ -71,10 +69,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 6. Section Accordion Toggles
+    // 5. Section Accordion Toggles
     const titleBars = document.querySelectorAll('.section-title-bar');
     titleBars.forEach(bar => {
-        bar.addEventListener('click', () => {
+        bar.addEventListener('click', (e) => {
+            // Prevent double triggering if clicked directly on pill
+            if (e.target.closest('.expanding-letter-pill')) return;
+
             const targetId = bar.getAttribute('data-target');
             const targetContent = document.getElementById(targetId);
 
@@ -95,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 7. Thinking Section Tabs
+    // 6. Thinking Section Tabs
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
     tabBtns.forEach(btn => {
@@ -116,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 8. Systems Diagram Toggle Buttons
+    // 7. Systems Diagram Toggle Buttons
     const sysButtons = document.querySelectorAll('.sys-toggle-btn');
     const diagramViews = document.querySelectorAll('.diagram-view');
     sysButtons.forEach(btn => {
@@ -139,45 +140,63 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 9. Ecosystem Canvas
+    // 8. Ecosystem Canvas
     initEcosystemCanvas();
 });
 
 /* ==========================================================================
-   MAGNETIC CURSOR IMPLEMENTATION
+   INTERACTIVE EYE CLICK -> TRIGGER AI VISION NEURAL MODE
    ========================================================================== */
-function initMagneticCursor() {
-    const dot = document.getElementById('cursorDot');
-    const ring = document.getElementById('cursorRing');
-    if (!dot || !ring) return;
+function triggerEyeVisionMode(e) {
+    if (e) e.stopPropagation();
 
-    let mouseX = 0, mouseY = 0;
-    let ringX = 0, ringY = 0;
+    document.body.classList.toggle('ai-vision-mode');
+    const isVision = document.body.classList.contains('ai-vision-mode');
+    const banner = document.getElementById('aiVisionBanner');
+    const statusText = document.getElementById('headerStatusText');
 
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-    });
-
-    function renderRing() {
-        ringX += (mouseX - ringX) * 0.18;
-        ringY += (mouseY - ringY) * 0.18;
-        ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
-        requestAnimationFrame(renderRing);
+    if (banner) {
+        if (isVision) {
+            banner.classList.add('active');
+            setTimeout(() => banner.classList.remove('active'), 3500);
+        }
     }
-    requestAnimationFrame(renderRing);
 
-    // Hover effects on magnetic targets
-    const targets = document.querySelectorAll('.magnetic-target, button, a');
-    targets.forEach(el => {
-        el.addEventListener('mouseenter', () => ring.classList.add('active-hover'));
-        el.addEventListener('mouseleave', () => ring.classList.remove('active-hover'));
-    });
+    if (statusText) {
+        statusText.textContent = isVision ? '👁️ AI VISION MODE // NEURAL ACTIVE' : 'AGENTIC SYSTEM // ONLINE';
+    }
+
+    // Play futuristic sound effect
+    playFuturisticVisionSound();
+    renderEcosystemGraph();
+}
+
+function playFuturisticVisionSound() {
+    try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        
+        // Multi-frequency chime
+        const frequencies = [523.25, 659.25, 783.99, 1046.50];
+        frequencies.forEach((freq, idx) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.08);
+            gain.gain.setValueAtTime(0.12, ctx.currentTime + idx * 0.08);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.08 + 0.4);
+
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(ctx.currentTime + idx * 0.08);
+            osc.stop(ctx.currentTime + idx * 0.08 + 0.4);
+        });
+    } catch (err) { console.error(err); }
 }
 
 /* ==========================================================================
-   WEB AUDIO API SYNTHESIZED SOUND EFFECTS (0 External Files)
+   WEB AUDIO API SYNTHESIZED SOUND EFFECTS
    ========================================================================== */
 function playClickSound(freq = 440, duration = 0.05) {
     if (!soundEnabled) return;
@@ -217,7 +236,6 @@ function runLiveAgentSimulation() {
     const captionElem = document.getElementById('nodeCaption');
     let step = 0;
 
-    // Reset nodes
     nodes.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.classList.remove('node-active-sim');
@@ -277,7 +295,6 @@ function sendTerminalMessage() {
     const userText = input.value.trim();
     if (!userText) return;
 
-    // Append User Message
     const userDiv = document.createElement('div');
     userDiv.className = 'term-msg user-msg';
     userDiv.textContent = userText;
@@ -288,7 +305,6 @@ function sendTerminalMessage() {
 
     if (soundEnabled) playClickSound(700, 0.03);
 
-    // Bot Response Logic
     setTimeout(() => {
         const botDiv = document.createElement('div');
         botDiv.className = 'term-msg bot-msg';
@@ -367,10 +383,11 @@ function initEcosystemCanvas() {
     function draw() {
         ctx.clearRect(0, 0, width, height);
 
-        const isDark = document.body.classList.contains('theme-dark');
-        const nodeColor = isDark ? '#F5F4F0' : '#000000';
-        const lineBaseColor = isDark ? 'rgba(245, 244, 240, 0.15)' : 'rgba(0, 0, 0, 0.15)';
-        const lineActiveColor = isDark ? '#E2B859' : '#000000';
+        const isVision = document.body.classList.contains('ai-vision-mode');
+        const isDark = document.body.classList.contains('theme-dark') || isVision;
+        const nodeColor = isVision ? '#38BDF8' : (isDark ? '#F5F4F0' : '#000000');
+        const lineBaseColor = isVision ? 'rgba(56, 189, 248, 0.25)' : (isDark ? 'rgba(245, 244, 240, 0.15)' : 'rgba(0, 0, 0, 0.15)');
+        const lineActiveColor = isVision ? '#22C55E' : (isDark ? '#E2B859' : '#000000');
 
         techNodesData.forEach(node => {
             const nodeX = node.x * width;
@@ -400,7 +417,7 @@ function initEcosystemCanvas() {
 
             ctx.beginPath();
             ctx.arc(nodeX, nodeY, isActive ? 12 : 8, 0, Math.PI * 2);
-            ctx.fillStyle = isActive ? (isDark ? '#E2B859' : '#000000') : (isDark ? '#1A1D24' : '#FAF6EE');
+            ctx.fillStyle = isActive ? (isVision ? '#22C55E' : (isDark ? '#E2B859' : '#000000')) : (isDark ? '#1A1D24' : '#FAF6EE');
             ctx.fill();
             ctx.strokeStyle = nodeColor;
             ctx.lineWidth = 2;
