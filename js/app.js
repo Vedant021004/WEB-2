@@ -1,10 +1,15 @@
 /* ==========================================================================
    VEDANT KAPIL — EDITORIAL AI ENGINEERING PORTFOLIO LOGIC
-   With Slow Cinematic Ant Line Crawl, Glassmorphism Telemetry & Staggered Wave Cards
+   With Cursor Eye Rolling Counter, Red Eye Rage Boss Mode & Line-Locked Slow Ant
    ========================================================================== */
 
 let soundEnabled = false;
 let isAntAnimating = false;
+
+// Eye Cursor Circling / Rolling State Variables
+let totalEyeRollRotation = 0;
+let lastEyeAngle = null;
+let isRageActive = false;
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Initialize Lucide Icons
@@ -16,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.gsap && window.ScrollTrigger) {
         gsap.registerPlugin(ScrollTrigger);
         
-        // Trigger Wave Animation on Portfolio Cards when scrolling into view
         ScrollTrigger.create({
             trigger: "#portfolio",
             start: "top 75%",
@@ -39,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggleBtn = document.getElementById('themeToggle');
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
-            document.body.classList.remove('ai-vision-mode');
+            document.body.classList.remove('ai-vision-mode', 'eye-rage-mode');
             document.body.classList.toggle('theme-dark');
             const isDark = document.body.classList.contains('theme-dark');
             const toggleText = themeToggleBtn.querySelector('.toggle-text');
@@ -51,16 +55,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Standard Eye Pupil Cursor Motion Tracking
+    // 4. Standard Eye Pupil Tracking & CURSOR EYE ROLLING DETECTOR!
     const heroPupils = document.querySelectorAll('.title---eye-pupils');
     const nodePupils = document.querySelectorAll('.inner-pupil');
+    const heroEyeVedant = document.getElementById('heroEyeVedant');
 
     document.addEventListener('mousemove', (e) => {
-        if (isAntAnimating) return; // Ant animation takes over pupil tracking during crawl!
+        if (isAntAnimating) return;
 
         const mouseX = e.clientX;
         const mouseY = e.clientY;
 
+        // Pupil tracking
         heroPupils.forEach(pupil => {
             const rect = pupil.getBoundingClientRect();
             const pupilX = rect.left + rect.width / 2;
@@ -82,6 +88,38 @@ document.addEventListener('DOMContentLoaded', () => {
             const moveY = Math.sin(angle) * distance;
             pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
         });
+
+        // EYE CIRCLE / ROLLING DETECTOR (If user circles mouse around hero eye!)
+        if (heroEyeVedant) {
+            const eRect = heroEyeVedant.getBoundingClientRect();
+            const eyeCenterX = eRect.left + eRect.width / 2;
+            const eyeCenterY = eRect.top + eRect.height / 2;
+            const distToEye = Math.hypot(mouseX - eyeCenterX, mouseY - eyeCenterY);
+
+            // If mouse is within 180px of Eye
+            if (distToEye < 180) {
+                const currentAngle = Math.atan2(mouseY - eyeCenterY, mouseX - eyeCenterX);
+
+                if (lastEyeAngle !== null) {
+                    let diff = currentAngle - lastEyeAngle;
+                    if (diff > Math.PI) diff -= Math.PI * 2;
+                    if (diff < -Math.PI) diff += Math.PI * 2;
+
+                    totalEyeRollRotation += diff;
+
+                    // If user completes 3 full 360-degree circles (6 * PI) around the Eye!
+                    if (Math.abs(totalEyeRollRotation) >= Math.PI * 6 && !isRageActive) {
+                        triggerRedEyeRageBossMode();
+                        totalEyeRollRotation = 0; // reset
+                    }
+                }
+                lastEyeAngle = currentAngle;
+            } else {
+                // Reset rotation counter if cursor moves far away
+                totalEyeRollRotation = 0;
+                lastEyeAngle = null;
+            }
+        }
     });
 
     // 5. Section Accordion Toggles
@@ -163,6 +201,68 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
+   RED EYE RAGE BOSS MODE (TRIGGERED BY ROLLING CURSOR IN CIRCLES AROUND EYE!)
+   ========================================================================== */
+function triggerRedEyeRageBossMode() {
+    isRageActive = true;
+    document.body.classList.remove('ai-vision-mode');
+    document.body.classList.add('eye-rage-mode');
+
+    const warningBanner = document.getElementById('bossWarningBanner');
+    const statusText = document.getElementById('headerStatusText');
+    const terminalModal = document.getElementById('vkTerminalModal');
+    const container = document.getElementById('terminalMessages');
+
+    if (warningBanner) {
+        warningBanner.classList.add('active');
+        setTimeout(() => warningBanner.classList.remove('active'), 5000);
+    }
+
+    if (statusText) {
+        statusText.textContent = '🚨 WARNING: EYE ANGERED // CALLING BOSS!';
+    }
+
+    // Play Alarm Siren Sound
+    playRageAlarmSound();
+
+    // Auto-Open Ask VK-AI Copilot Terminal with Boss Warning!
+    setTimeout(() => {
+        if (terminalModal) terminalModal.classList.add('active');
+        if (container) {
+            const bossMsg = document.createElement('div');
+            bossMsg.className = 'term-msg bot-msg';
+            bossMsg.style.borderColor = '#EF4444';
+            bossMsg.innerHTML = `🚨 <strong>SYSTEM ALERT // BOSS VEDANT KAPIL:</strong> "Stop rolling your cursor around my Eye! Who gave you security clearance? Calling Boss Vedant Kapil right now... 📞⚡"`;
+            container.appendChild(bossMsg);
+            container.scrollTop = container.scrollHeight;
+        }
+    }, 600);
+}
+
+function playRageAlarmSound() {
+    try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        
+        // Two-tone siren
+        for (let i = 0; i < 4; i++) {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(i % 2 === 0 ? 880 : 440, ctx.currentTime + i * 0.15);
+            gain.gain.setValueAtTime(0.15, ctx.currentTime + i * 0.15);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.14);
+
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(ctx.currentTime + i * 0.15);
+            osc.stop(ctx.currentTime + i * 0.15 + 0.14);
+        }
+    } catch (e) { console.error(e); }
+}
+
+/* ==========================================================================
    PORTFOLIO STAGGERED WAVE CARDS ANIMATION
    ========================================================================== */
 function triggerPortfolioWaveAnimation() {
@@ -175,10 +275,16 @@ function triggerPortfolioWaveAnimation() {
 }
 
 /* ==========================================================================
-   SLOW CINEMATIC ANT LINE CRAWL & DISSOLVE PAYLOAD
+   SLOW CINEMATIC ANT LINE CRAWL & DISSOLVE PAYLOAD (LINE-LOCKED POSITION)
    ========================================================================== */
 function triggerEyeVisionMode(e) {
     if (e) e.stopPropagation();
+
+    // If rage mode is on, turn it off
+    if (isRageActive) {
+        document.body.classList.remove('eye-rage-mode');
+        isRageActive = false;
+    }
 
     document.body.classList.toggle('ai-vision-mode');
     const isVision = document.body.classList.contains('ai-vision-mode');
@@ -219,23 +325,14 @@ function animateCyberAntSlowLineCrawl() {
 
     isAntAnimating = true;
 
-    // Position Y EXACTLY on the horizontal dividing line between VEDANT & KAPIL
-    let lineY = window.innerHeight * 0.48;
-    if (marqueeLine) {
-        const mRect = marqueeLine.getBoundingClientRect();
-        lineY = mRect.top; // Exact line position!
-    }
-
     // Get Target Eye Center Position
     const eyeRect = eyeVedant.getBoundingClientRect();
     const targetX = eyeRect.left + eyeRect.width / 2;
-    const targetY = eyeRect.top + eyeRect.height / 2;
 
     // Reset Ant & Payload State
     antWrapper.style.display = 'flex';
     antWrapper.style.opacity = '1';
     antWrapper.style.left = '-180px';
-    antWrapper.style.top = `${lineY}px`;
 
     if (antPayload) {
         antPayload.style.opacity = '1';
@@ -243,10 +340,17 @@ function animateCyberAntSlowLineCrawl() {
 
     let currentX = -180;
     const totalDistance = targetX + 180;
-    // Slow, deliberate cinematic crawling speed (340 steps)
-    const speed = totalDistance / 340;
+    const speed = totalDistance / 340; // Slow, deliberate cinematic crawling speed
 
     function stepCrawl() {
+        // DYNAMIC LINE-LOCKING: Recalculate exact line Y on every single frame!
+        let currentLineY = window.innerHeight * 0.48;
+        if (marqueeLine) {
+            const mRect = marqueeLine.getBoundingClientRect();
+            currentLineY = mRect.top; // Locked directly on top edge of marquee line between VEDANT & KAPIL!
+        }
+        antWrapper.style.top = `${currentLineY}px`;
+
         currentX += speed;
         antWrapper.style.left = `${currentX}px`;
 
@@ -261,7 +365,7 @@ function animateCyberAntSlowLineCrawl() {
 
         // Eyes Follow Ant Position along the Line!
         const antX = currentX + 20;
-        const antY = lineY;
+        const antY = currentLineY;
 
         [eyePupilVedant, eyePupilKapil].forEach(pupil => {
             if (pupil) {
@@ -521,10 +625,11 @@ function initEcosystemCanvas() {
         ctx.clearRect(0, 0, width, height);
 
         const isVision = document.body.classList.contains('ai-vision-mode');
-        const isDark = document.body.classList.contains('theme-dark') || isVision;
-        const nodeColor = isVision ? '#38BDF8' : (isDark ? '#F5F4F0' : '#000000');
-        const lineBaseColor = isVision ? 'rgba(56, 189, 248, 0.25)' : (isDark ? 'rgba(245, 244, 240, 0.15)' : 'rgba(0, 0, 0, 0.15)');
-        const lineActiveColor = isVision ? '#22C55E' : (isDark ? '#E2B859' : '#000000');
+        const isRage = document.body.classList.contains('eye-rage-mode');
+        const isDark = document.body.classList.contains('theme-dark') || isVision || isRage;
+        const nodeColor = isRage ? '#EF4444' : (isVision ? '#38BDF8' : (isDark ? '#F5F4F0' : '#000000'));
+        const lineBaseColor = isRage ? 'rgba(239, 68, 68, 0.25)' : (isVision ? 'rgba(56, 189, 248, 0.25)' : (isDark ? 'rgba(245, 244, 240, 0.15)' : 'rgba(0, 0, 0, 0.15)'));
+        const lineActiveColor = isRage ? '#DC2626' : (isVision ? '#22C55E' : (isDark ? '#E2B859' : '#000000'));
 
         techNodesData.forEach(node => {
             const nodeX = node.x * width;
@@ -554,7 +659,7 @@ function initEcosystemCanvas() {
 
             ctx.beginPath();
             ctx.arc(nodeX, nodeY, isActive ? 12 : 8, 0, Math.PI * 2);
-            ctx.fillStyle = isActive ? (isVision ? '#22C55E' : (isDark ? '#E2B859' : '#000000')) : (isDark ? '#1A1D24' : '#FAF6EE');
+            ctx.fillStyle = isActive ? (isRage ? '#EF4444' : (isVision ? '#22C55E' : (isDark ? '#E2B859' : '#000000'))) : (isDark ? '#1A1D24' : '#FAF6EE');
             ctx.fill();
             ctx.strokeStyle = nodeColor;
             ctx.lineWidth = 2;

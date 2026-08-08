@@ -1,6 +1,6 @@
 /* ==========================================================================
    VEDANT KAPIL — EDITORIAL AI ENGINEERING PORTFOLIO STYLES
-   With Luxury Glassmorphism Telemetry Panel, Wave Cards & Cinematic Slow Ant
+   With Red Eye Rage Boss Warning Mode & Line-Locked Ant Crawler
    ========================================================================== */
 
 :root {
@@ -45,23 +45,55 @@ body.ai-vision-mode {
     --border-subtle: rgba(56, 189, 248, 0.25);
 }
 
-body.ai-vision-mode .title---eye-wrapper {
-    box-shadow: 0 0 40px #38BDF8, inset 0 0 20px #38BDF8;
-    animation: eyeGlowPulse 1.2s infinite alternate;
+/* RED EYE RAGE BOSS MODE (ACTIVATED BY ROLLING CURSOR IN CIRCLES AROUND EYE!) */
+body.eye-rage-mode {
+    --bg-yellow: #0A0203;
+    --bg-cream: #140507;
+    --bg-card: #1F070A;
+    --text-primary: #EF4444;
+    --text-secondary: #FCA5A5;
+    --text-muted: #991B1B;
+    --border-color: #EF4444;
+    --border-subtle: rgba(239, 68, 68, 0.3);
 }
 
-body.ai-vision-mode .expanding-letter-pill {
-    background-color: #38BDF8;
-    color: #05080E;
-    box-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
+body.eye-rage-mode .title---eye-whites {
+    background-color: #EF4444 !important;
+    box-shadow: 0 0 50px #EF4444, inset 0 0 20px #7F1D1D;
+    animation: eyeRageShake 0.08s infinite alternate;
 }
 
-body.ai-vision-mode .pill-text-content { color: #05080E; }
-
-@keyframes eyeGlowPulse {
-    0% { transform: scale(1); box-shadow: 0 0 20px #38BDF8; }
-    100% { transform: scale(1.1); box-shadow: 0 0 50px #22C55E; }
+body.eye-rage-mode .title---eye-pupils {
+    background-color: #000000 !important;
+    box-shadow: 0 0 25px #EF4444;
 }
+
+@keyframes eyeRageShake {
+    0% { transform: scale(1) translate(-2px, 1px); }
+    100% { transform: scale(1.08) translate(2px, -1px); }
+}
+
+.boss-warning-banner {
+    position: fixed;
+    top: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #DC2626, #991B1B);
+    color: #FFFFFF;
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    font-weight: 800;
+    padding: 0.7rem 2rem;
+    border-radius: 30px;
+    z-index: 1000;
+    box-shadow: 0 10px 40px rgba(220, 38, 38, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: top 0.4s var(--ease-bounce);
+}
+
+.boss-warning-banner.active { top: 1.2rem; }
 
 .ai-vision-banner {
     position: fixed;
@@ -131,7 +163,6 @@ body.ai-vision-mode .pill-text-content { color: #05080E; }
     50% { transform: scaleY(0.05); }
 }
 
-/* REFINED LOGO STYLING */
 .brand-logo {
     display: flex;
     align-items: center;
@@ -156,7 +187,6 @@ body.ai-vision-mode .pill-text-content { color: #05080E; }
 .brand-sep { opacity: 0.4; font-weight: 400; }
 .brand-role { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.08em; }
 
-/* RE-DESIGNED LUXURY GLASSMORPHISM TELEMETRY PANEL */
 .live-progress-panel {
     max-width: 1400px;
     margin: 2rem auto;
@@ -319,7 +349,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .title---eye-wrapper:hover { transform: scale(1.15) rotate(5deg); }
 
 .eye-letter-bg { position: absolute; font-family: var(--font-heading); font-size: clamp(3.5rem, 13vw, 12rem); font-weight: 700; opacity: 0.15; }
-.title---eye-whites { width: 55%; height: 55%; background-color: #FFFFFF; border-radius: 50%; position: relative; display: flex; align-items: center; justify-content: center; }
+.title---eye-whites { width: 55%; height: 55%; background-color: #FFFFFF; border-radius: 50%; position: relative; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s ease; }
 .title---eye-pupils { width: 45%; height: 45%; background-color: #000000; border-radius: 50%; position: absolute; transition: transform 0.05s linear; }
 .title---eye-pupils::after { content: ''; position: absolute; top: 20%; right: 20%; width: 30%; height: 30%; background-color: #FFFFFF; border-radius: 50%; }
 
