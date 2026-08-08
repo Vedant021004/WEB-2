@@ -1,6 +1,6 @@
 /* ==========================================================================
    VEDANT KAPIL — EDITORIAL AI ENGINEERING PORTFOLIO LOGIC
-   With Updated Email Address (vedantkp79@gmail.com)
+   With Updated GitHub (Vedant021004) and LinkedIn Links
    ========================================================================== */
 
 let soundEnabled = false;
@@ -589,8 +589,8 @@ function generateCopilotResponse(query) {
         return "Vedant's Amazon Product RAG engine uses Hybrid Retrieval (Dense Vector + BM25 Sparse) paired with Cohere cross-encoder re-ranking, indexing over 100K+ catalog items with +42% search relevance.";
     } else if (q.includes('copilot') || q.includes('data analyst')) {
         return "The AI Data Analyst Copilot is built on LangGraph with stateful cyclic self-correction. It converts natural language into SQL, runs sandboxed validation, and achieves 98.4% accuracy.";
-    } else if (q.includes('contact') || q.includes('hire') || q.includes('email')) {
-        return "You can reach Vedant directly via email at <strong>vedantkp79@gmail.com</strong> or via LinkedIn/GitHub links on this site!";
+    } else if (q.includes('contact') || q.includes('hire') || q.includes('email') || q.includes('github') || q.includes('linkedin')) {
+        return "You can reach Vedant directly via email at <strong>vedantkp79@gmail.com</strong>, view his GitHub at <a href='https://github.com/Vedant021004' target='_blank' style='color:#38BDF8;text-decoration:underline;'>github.com/Vedant021004</a>, or connect on LinkedIn at <a href='https://www.linkedin.com/in/vedant-kapil-8a786740a/' target='_blank' style='color:#38BDF8;text-decoration:underline;'>linkedin.com/in/vedant-kapil-8a786740a/</a>!";
     } else {
         return "Vedant is an AI Engineer dedicated to building deterministic reliability into non-deterministic AI intelligence. Feel free to explore his Systems visualizer and project blueprints!";
     }
