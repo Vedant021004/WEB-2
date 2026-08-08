@@ -13,30 +13,50 @@
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- GSAP for Smooth Pill Morph & Motion -->
+    <!-- GSAP for Smooth Motion -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="theme-editorial">
+    <!-- Custom Magnetic Cursor Follower -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
     <!-- Top Navigation Bar -->
     <header class="site-header">
         <div class="nav-container">
-            <a href="#" class="brand-logo">
-                <span class="dot"></span> VK // AI ARCHITECT
+            <a href="#" class="brand-logo magnetic-target">
+                <span class="dot pulse-live"></span> VK // AI ARCHITECT
             </a>
+
+            <!-- System Live Status -->
+            <div class="header-system-status">
+                <span class="status-indicator"></span>
+                <span class="status-text">AGENTIC SYSTEM // ONLINE</span>
+            </div>
+
             <nav class="nav-links">
-                <a href="#about" class="nav-item">ABOUT</a>
-                <a href="#thinking" class="nav-item">THINKING</a>
-                <a href="#systems" class="nav-item">SYSTEMS</a>
-                <a href="#portfolio" class="nav-item">PORTFOLIO</a>
-                <a href="#tech-ecosystem" class="nav-item">ECOSYSTEM</a>
-                <a href="#future" class="nav-item">FUTURE</a>
-                <a href="#contact" class="nav-item nav-btn">CONTACT</a>
+                <a href="#about" class="nav-item magnetic-target">ABOUT</a>
+                <a href="#thinking" class="nav-item magnetic-target">THINKING</a>
+                <a href="#systems" class="nav-item magnetic-target">SYSTEMS</a>
+                <a href="#portfolio" class="nav-item magnetic-target">PORTFOLIO</a>
+                <a href="#tech-ecosystem" class="nav-item magnetic-target">ECOSYSTEM</a>
+                <a href="#future" class="nav-item magnetic-target">FUTURE</a>
+                <a href="#contact" class="nav-item nav-btn magnetic-target">CONTACT</a>
             </nav>
-            <div class="theme-toggle" id="themeToggle" title="Toggle Theme">
-                <span class="toggle-icon">👁️</span>
-                <span class="toggle-text">MODE</span>
+
+            <div class="nav-controls">
+                <!-- Sound Toggle -->
+                <button class="sound-toggle magnetic-target" id="soundToggle" title="Toggle UI Audio Effects">
+                    <span id="soundIcon">🔇</span> SOUND
+                </button>
+
+                <!-- Theme Mode Toggle -->
+                <div class="theme-toggle magnetic-target" id="themeToggle" title="Toggle Dark/Light Mode">
+                    <span class="toggle-icon">👁️</span>
+                    <span class="toggle-text">MODE</span>
+                </div>
             </div>
         </div>
     </header>
@@ -50,7 +70,7 @@
                     <span class="title-char">V</span>
                     <span class="title-char">E</span>
                     <span class="title-char">D</span>
-                    <div class="title---eye-wrapper eye-interactive">
+                    <div class="title---eye-wrapper eye-interactive magnetic-target">
                         <span class="eye-letter-bg">A</span>
                         <div class="title---eye-whites">
                             <div class="title---eye-pupils"></div>
@@ -93,7 +113,7 @@
             <div class="title-container title---kapil">
                 <div class="title---line">
                     <span class="title-char">K</span>
-                    <div class="title---eye-wrapper eye-interactive">
+                    <div class="title---eye-wrapper eye-interactive magnetic-target">
                         <span class="eye-letter-bg">A</span>
                         <div class="title---eye-whites">
                             <div class="title---eye-pupils"></div>
@@ -112,7 +132,7 @@
                     <p class="tagline-text">Building deterministic reliability into non-deterministic AI intelligence.</p>
                 </div>
                 <div class="subtext-right">
-                    <a href="#about" class="scroll-indicator">
+                    <a href="#about" class="scroll-indicator magnetic-target">
                         <span>EXPLORE NARRATIVE</span>
                         <i data-lucide="arrow-down"></i>
                     </a>
@@ -120,9 +140,9 @@
             </div>
         </section>
 
-        <!-- SECTION 1: ABOUT (EXPANDING O PILL CAPSULE) -->
+        <!-- SECTION 1: ABOUT (EXPANDING LETTER O PILL) -->
         <section class="h2-band-section band-yellow" id="about">
-            <div class="section-title-bar" data-target="about-content">
+            <div class="section-title-bar magnetic-target" data-target="about-content">
                 <h2 class="editorial-word">
                     AB<div class="expanding-letter-pill">
                         <span class="pill-text-content">HELLO, I'M VEDANT KAPIL • AI ENGINEER & ARCHITECT</span>
@@ -158,7 +178,7 @@
 
         <!-- SECTION 2: THINKING -->
         <section class="h2-band-section band-cream" id="thinking">
-            <div class="section-title-bar" data-target="thinking-content">
+            <div class="section-title-bar magnetic-target" data-target="thinking-content">
                 <h2 class="editorial-word">
                     THI<div class="expanding-letter-pill">
                         <span class="pill-text-content">SYSTEM OVER PROMPT • AGENTIC SELF-CORRECTION</span>
@@ -170,10 +190,10 @@
             <div class="section-expand-content" id="thinking-content">
                 <div class="thinking-tabs-wrapper">
                     <div class="thinking-tab-headers">
-                        <button class="tab-btn active" data-tab="tab-1">01 / System over Prompt</button>
-                        <button class="tab-btn" data-tab="tab-2">02 / RAG vs Fine-Tuning</button>
-                        <button class="tab-btn" data-tab="tab-3">03 / Agentic Self-Correction</button>
-                        <button class="tab-btn" data-tab="tab-4">04 / Latency & MLOps</button>
+                        <button class="tab-btn active magnetic-target" data-tab="tab-1">01 / System over Prompt</button>
+                        <button class="tab-btn magnetic-target" data-tab="tab-2">02 / RAG vs Fine-Tuning</button>
+                        <button class="tab-btn magnetic-target" data-tab="tab-3">03 / Agentic Self-Correction</button>
+                        <button class="tab-btn magnetic-target" data-tab="tab-4">04 / Latency & MLOps</button>
                     </div>
                     <div class="thinking-tab-contents">
                         <div class="tab-pane active" id="tab-1">
@@ -208,9 +228,9 @@
             </div>
         </section>
 
-        <!-- SECTION 3: SYSTEMS -->
+        <!-- SECTION 3: SYSTEMS (LIVE AGENT SIMULATION PLAYGROUND) -->
         <section class="h2-band-section band-yellow" id="systems">
-            <div class="section-title-bar" data-target="systems-content">
+            <div class="section-title-bar magnetic-target" data-target="systems-content">
                 <h2 class="editorial-word">
                     SYST<div class="expanding-letter-pill">
                         <span class="pill-text-content">LANGGRAPH DAG & HYBRID RAG ARCHITECTURE</span>
@@ -223,50 +243,51 @@
                 <div class="systems-visualizer">
                     <div class="visualizer-header">
                         <div class="visualizer-title">
-                            <i data-lucide="workflow"></i> Live System Architecture Visualizer
+                            <i data-lucide="workflow"></i> Live Agentic Execution Visualizer & Simulator
                         </div>
                         <div class="visualizer-controls">
-                            <button class="sys-toggle-btn active" data-diagram="langgraph">LangGraph Agentic Loop</button>
-                            <button class="sys-toggle-btn" data-diagram="rag">Hybrid Enterprise RAG</button>
+                            <button class="sys-toggle-btn active magnetic-target" data-diagram="langgraph">LangGraph Agentic Loop</button>
+                            <button class="sys-toggle-btn magnetic-target" data-diagram="rag">Hybrid Enterprise RAG</button>
+                            <button class="sys-toggle-btn run-sim-btn magnetic-target" id="runSimulationBtn" onclick="runLiveAgentSimulation()">
+                                <i data-lucide="play"></i> RUN LIVE SIMULATION
+                            </button>
                         </div>
                     </div>
 
                     <!-- INTERACTIVE DIAGRAM STAGE -->
                     <div class="diagram-stage" id="diagramStage">
-                        <!-- LangGraph Diagram -->
                         <div class="diagram-view active" id="diag-langgraph">
                             <div class="dag-container">
-                                <div class="dag-node node-input" data-info="Receives user query & sets initial state">
+                                <div class="dag-node node-input" id="node-input" data-info="Receives user query & sets initial state">
                                     <span class="node-type">INPUT</span>
                                     <span class="node-name">User Query</span>
                                 </div>
                                 <div class="dag-arrow">➔</div>
-                                <div class="dag-node node-router" data-info="LLM Router evaluates query intent & selects tool path">
+                                <div class="dag-node node-router" id="node-router" data-info="LLM Router evaluates query intent & selects tool path">
                                     <span class="node-type">ROUTER</span>
                                     <span class="node-name">Supervisor Agent</span>
                                 </div>
                                 <div class="dag-arrow">➔</div>
-                                <div class="dag-node node-tool" data-info="Executes Python / SQL sandbox or RAG vector lookup">
+                                <div class="dag-node node-tool" id="node-tool" data-info="Executes Python / SQL sandbox or RAG vector lookup">
                                     <span class="node-type">ACTION</span>
                                     <span class="node-name">Tool Execution</span>
                                 </div>
                                 <div class="dag-arrow">➔</div>
-                                <div class="dag-node node-eval" data-info="Evaluates result completeness & triggers self-correction loop if needed">
+                                <div class="dag-node node-eval" id="node-eval" data-info="Evaluates result completeness & triggers self-correction loop if needed">
                                     <span class="node-type">EVALUATOR</span>
                                     <span class="node-name">Validator Node</span>
                                 </div>
                                 <div class="dag-arrow">➔</div>
-                                <div class="dag-node node-output" data-info="Final grounded response formatted and returned to client">
+                                <div class="dag-node node-output" id="node-output" data-info="Final grounded response formatted and returned to client">
                                     <span class="node-type">OUTPUT</span>
                                     <span class="node-name">Validated Result</span>
                                 </div>
                             </div>
                             <div class="diagram-caption" id="nodeCaption">
-                                💡 Click or hover over any system node above to inspect node state parameters.
+                                💡 Click "RUN LIVE SIMULATION" above to watch live state tokens flow through Vedant's LangGraph DAG!
                             </div>
                         </div>
 
-                        <!-- RAG Diagram -->
                         <div class="diagram-view" id="diag-rag">
                             <div class="dag-container">
                                 <div class="dag-node node-input" data-info="Document ingestion pipeline splits text into semantic chunks">
@@ -295,9 +316,9 @@
             </div>
         </section>
 
-        <!-- SECTION 4: PORTFOLIO (PILL CAPSULE CARDS MATCHING SCREENSHOT) -->
+        <!-- SECTION 4: PORTFOLIO -->
         <section class="h2-band-section band-cream" id="portfolio">
-            <div class="section-title-bar" data-target="portfolio-content">
+            <div class="section-title-bar magnetic-target" data-target="portfolio-content">
                 <h2 class="editorial-word">
                     PORTF<div class="expanding-letter-pill">
                         <span class="pill-text-content">5 ENGINEERING CASE STUDIES // REAL AI BLUEPRINTS</span>
@@ -307,11 +328,9 @@
             </div>
 
             <div class="section-expand-content active" id="portfolio-content">
-                <!-- HORIZONTAL PILL CAPSULE CARDS GRID (EXACT COLIN MOY MATCH) -->
                 <div class="pill-cards-carousel">
                     
-                    <!-- PILL CARD 1: AI DATA ANALYST COPILOT -->
-                    <article class="pill-capsule-card" onclick="openProjectModal(1)">
+                    <article class="pill-capsule-card magnetic-target" onclick="openProjectModal(1)">
                         <img src="assets/images/ai_data_analyst_copilot.jpg" alt="AI Data Analyst Copilot" class="pill-card-bg">
                         <div class="pill-card-overlay">
                             <span class="pill-tag">01 // AGENTIC SQL</span>
@@ -320,8 +339,7 @@
                         </div>
                     </article>
 
-                    <!-- PILL CARD 2: AMAZON PRODUCT RAG -->
-                    <article class="pill-capsule-card" onclick="openProjectModal(2)">
+                    <article class="pill-capsule-card magnetic-target" onclick="openProjectModal(2)">
                         <img src="assets/images/amazon_product_rag.jpg" alt="Amazon Product RAG" class="pill-card-bg">
                         <div class="pill-card-overlay">
                             <span class="pill-tag">02 // HYBRID RAG</span>
@@ -330,8 +348,7 @@
                         </div>
                     </article>
 
-                    <!-- PILL CARD 3: SMART SCHOOL AI -->
-                    <article class="pill-capsule-card" onclick="openProjectModal(3)">
+                    <article class="pill-capsule-card magnetic-target" onclick="openProjectModal(3)">
                         <img src="assets/images/smart_school_ai.jpg" alt="Smart School AI" class="pill-card-bg">
                         <div class="pill-card-overlay">
                             <span class="pill-tag">03 // EDTECH AGENTS</span>
@@ -340,8 +357,7 @@
                         </div>
                     </article>
 
-                    <!-- PILL CARD 4: SINDHU CONSTRUCTION -->
-                    <article class="pill-capsule-card" onclick="openProjectModal(4)">
+                    <article class="pill-capsule-card magnetic-target" onclick="openProjectModal(4)">
                         <img src="assets/images/sindhu_construction.jpg" alt="Sindhu Construction AI" class="pill-card-bg">
                         <div class="pill-card-overlay">
                             <span class="pill-tag">04 // DOC INTELLIGENCE</span>
@@ -350,8 +366,7 @@
                         </div>
                     </article>
 
-                    <!-- PILL CARD 5: TRAFFIC ML PROJECT -->
-                    <article class="pill-capsule-card" onclick="openProjectModal(5)">
+                    <article class="pill-capsule-card magnetic-target" onclick="openProjectModal(5)">
                         <img src="assets/images/traffic_ml_project.jpg" alt="Traffic ML Project" class="pill-card-bg">
                         <div class="pill-card-overlay">
                             <span class="pill-tag">05 // COMPUTER VISION</span>
@@ -366,7 +381,7 @@
 
         <!-- SECTION 5: ECOSYSTEM -->
         <section class="h2-band-section band-yellow" id="tech-ecosystem">
-            <div class="section-title-bar" data-target="tech-content">
+            <div class="section-title-bar magnetic-target" data-target="tech-content">
                 <h2 class="editorial-word">
                     EC<div class="expanding-letter-pill">
                         <span class="pill-text-content">CONNECTED TECHNOLOGY ECOSYSTEM NETWORK</span>
@@ -396,7 +411,7 @@
 
         <!-- SECTION 6: FUTURE -->
         <section class="h2-band-section band-cream" id="future">
-            <div class="section-title-bar" data-target="future-content">
+            <div class="section-title-bar magnetic-target" data-target="future-content">
                 <h2 class="editorial-word">
                     FUTUR<div class="expanding-letter-pill">
                         <span class="pill-text-content">AUTONOMOUS MULTI-AGENT DAGS • EDGE LLMS</span>
@@ -407,17 +422,17 @@
 
             <div class="section-expand-content" id="future-content">
                 <div class="editorial-future-grid">
-                    <div class="future-card">
+                    <div class="future-card magnetic-target">
                         <span class="f-num">01</span>
                         <h4>Autonomous Agentic Frameworks</h4>
                         <p>Moving beyond single-agent LLM invocations to hierarchical, self-healing multi-agent DAGs that autonomously write, test, evaluate, and deploy software modules.</p>
                     </div>
-                    <div class="future-card">
+                    <div class="future-card magnetic-target">
                         <span class="f-num">02</span>
                         <h4>Enterprise Cognitive Knowledge Graphs</h4>
                         <p>Fusing structured Knowledge Graphs with unstructured vector databases to give AI models enterprise-wide long-term memory with mathematical accuracy.</p>
                     </div>
-                    <div class="future-card">
+                    <div class="future-card magnetic-target">
                         <span class="f-num">03</span>
                         <h4>Local Edge LLM Inference</h4>
                         <p>Optimizing small language models (SLMs) via quantization and hardware acceleration to run highly capable AI agents privately at low latency on edge infrastructure.</p>
@@ -426,9 +441,9 @@
             </div>
         </section>
 
-        <!-- SECTION 7: CONTACT (EXACT COLIN MOY MATCH WITH HOW CAN I HELP PILL) -->
+        <!-- SECTION 7: CONTACT -->
         <section class="h2-band-section band-yellow" id="contact">
-            <div class="section-title-bar" data-target="contact-content">
+            <div class="section-title-bar magnetic-target" data-target="contact-content">
                 <h2 class="editorial-word">
                     C<div class="expanding-letter-pill pill-contact">
                         <span class="pill-text-content">HOW CAN I HELP? // LET'S BUILD INTELLIGENT SYSTEMS</span>
@@ -445,24 +460,23 @@
                     <div class="contact-action-bar">
                         <div class="email-copy-box">
                             <span class="email-address" id="emailStr">vedantkapil.ai@gmail.com</span>
-                            <button class="copy-btn" id="copyEmailBtn" onclick="copyEmail()">
+                            <button class="copy-btn magnetic-target" id="copyEmailBtn" onclick="copyEmail()">
                                 <i data-lucide="copy"></i> COPY EMAIL
                             </button>
                         </div>
-                        <a href="mailto:vedantkapil.ai@gmail.com" class="direct-email-btn">
+                        <a href="mailto:vedantkapil.ai@gmail.com" class="direct-email-btn magnetic-target">
                             SEND DIRECT MESSAGE <i data-lucide="send"></i>
                         </a>
                     </div>
 
-                    <!-- MINIMALIST SOCIAL ICONS -->
                     <div class="social-icon-row">
-                        <a href="https://linkedin.com" target="_blank" class="icon-link-btn" title="LinkedIn">
+                        <a href="https://linkedin.com" target="_blank" class="icon-link-btn magnetic-target" title="LinkedIn">
                             <i data-lucide="linkedin"></i>
                         </a>
-                        <a href="https://github.com" target="_blank" class="icon-link-btn" title="GitHub">
+                        <a href="https://github.com" target="_blank" class="icon-link-btn magnetic-target" title="GitHub">
                             <i data-lucide="github"></i>
                         </a>
-                        <a href="https://twitter.com" target="_blank" class="icon-link-btn" title="Twitter / X">
+                        <a href="https://twitter.com" target="_blank" class="icon-link-btn magnetic-target" title="Twitter / X">
                             <i data-lucide="twitter"></i>
                         </a>
                     </div>
@@ -470,6 +484,45 @@
             </div>
         </section>
     </main>
+
+    <!-- FLOATING ASK VK-AI TERMINAL TRIGGER -->
+    <button class="vk-ai-floating-btn magnetic-target" onclick="toggleVkAiTerminal()">
+        <span class="pulse-ring"></span>
+        <i data-lucide="bot"></i> ASK VK-AI
+    </button>
+
+    <!-- INTERACTIVE VK-AI COPILOT TERMINAL MODAL -->
+    <div class="vk-terminal-modal" id="vkTerminalModal">
+        <div class="vk-terminal-window">
+            <div class="vk-terminal-header">
+                <div class="terminal-dots">
+                    <span class="t-dot close" onclick="toggleVkAiTerminal()"></span>
+                    <span class="t-dot min"></span>
+                    <span class="t-dot max"></span>
+                </div>
+                <div class="terminal-title">VK-AI COPILOT // REASONING ENGINE v2.4</div>
+            </div>
+            
+            <div class="vk-terminal-messages" id="terminalMessages">
+                <div class="term-msg bot-msg">
+                    <strong>VK-AI:</strong> Hello! I am Vedant Kapil's synthetic assistant. Ask me anything about Vedant's projects, RAG architecture, or AI engineering background.
+                </div>
+            </div>
+
+            <div class="vk-terminal-quick-prompts">
+                <button class="prompt-chip" onclick="sendTerminalPrompt('What are Vedant\'s top AI skills?')">Skills</button>
+                <button class="prompt-chip" onclick="sendTerminalPrompt('Tell me about the Amazon RAG project')">Amazon RAG</button>
+                <button class="prompt-chip" onclick="sendTerminalPrompt('Explain the Data Analyst Copilot')">Data Analyst Copilot</button>
+                <button class="prompt-chip" onclick="sendTerminalPrompt('How can I contact Vedant?')">Contact Info</button>
+            </div>
+
+            <div class="vk-terminal-input-bar">
+                <span class="prompt-symbol">&gt;</span>
+                <input type="text" id="terminalInput" placeholder="Type a message or click a prompt..." onkeypress="handleTerminalKeyPress(event)">
+                <button class="term-send-btn" onclick="sendTerminalMessage()"><i data-lucide="send"></i></button>
+            </div>
+        </div>
+    </div>
 
     <!-- FOOTER STATEMENT -->
     <footer class="site-footer">

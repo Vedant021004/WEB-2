@@ -1,9 +1,8 @@
 /* ==========================================================================
    VEDANT KAPIL — EDITORIAL AI ENGINEERING PORTFOLIO STYLES
-   Colin Moy Expanding Pill Capsule Animations & Vertical Pill Cards
+   With Magnetic Cursor, Audio Feedback, Ask VK-AI Copilot Terminal & Live DAG Simulation
    ========================================================================== */
 
-/* 1. CSS VARIABLES & THEME TOKENS */
 :root {
     --bg-yellow: #F8CB74;
     --bg-cream: #FAF6EE;
@@ -35,7 +34,6 @@ body.theme-dark {
     --border-subtle: rgba(255, 255, 255, 0.15);
 }
 
-/* 2. BASE RESET & TYPOGRAPHY */
 * {
     margin: 0;
     padding: 0;
@@ -71,7 +69,38 @@ button {
     background: none;
 }
 
-/* 3. HEADER & NAVIGATION */
+/* 1. CUSTOM MAGNETIC CURSOR FOLLOWERS */
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--text-primary);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.05s linear;
+}
+
+.cursor-ring {
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid var(--text-primary);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out, width 0.2s ease, height 0.2s ease;
+}
+
+.cursor-ring.active-hover {
+    width: 55px;
+    height: 55px;
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+/* 2. HEADER & LIVE SYSTEM STATUS */
 .site-header {
     position: fixed;
     top: 0;
@@ -105,15 +134,44 @@ button {
 .brand-logo .dot {
     width: 10px;
     height: 10px;
-    background-color: var(--text-primary);
+    background-color: #22C55E;
     border-radius: 50%;
     display: inline-block;
+    box-shadow: 0 0 8px #22C55E;
+}
+
+.pulse-live {
+    animation: pulseDot 1.5s infinite;
+}
+
+@keyframes pulseDot {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0.5; }
+}
+
+.header-system-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    background-color: var(--border-subtle);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+}
+
+.status-indicator {
+    width: 7px;
+    height: 7px;
+    background-color: #22C55E;
+    border-radius: 50%;
 }
 
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1.8rem;
 }
 
 .nav-item {
@@ -148,10 +206,16 @@ button {
     color: var(--bg-yellow);
 }
 
-.theme-toggle {
+.nav-controls {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.8rem;
+}
+
+.sound-toggle, .theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
     cursor: pointer;
     border: 2px solid var(--border-color);
     padding: 0.4rem 0.8rem;
@@ -160,9 +224,10 @@ button {
     font-size: 0.75rem;
     font-weight: 700;
     user-select: none;
+    background-color: var(--bg-card);
 }
 
-/* 4. HERO SECTION */
+/* 3. HERO SECTION */
 .hero-section {
     min-height: 100vh;
     padding-top: 5rem;
@@ -258,7 +323,6 @@ button {
     border-radius: 50%;
 }
 
-/* Marquee Banner */
 .marquee-wrapper {
     width: 100%;
     overflow: hidden;
@@ -339,7 +403,7 @@ button {
     letter-spacing: 0.05em;
 }
 
-/* 5. ALTERNATING BANDS & DYNAMIC EXPANDING LETTER "O" PILL CAPSULE */
+/* 4. ALTERNATING BANDS & EXPANDING LETTER "O" PILL */
 .h2-band-section {
     width: 100%;
     border-bottom: 2px solid var(--border-color);
@@ -378,7 +442,6 @@ button {
     color: var(--text-primary);
 }
 
-/* DYNAMIC EXPANDING LETTER PILL (EXACT COLIN MOY MATCH TO IMAGE 2) */
 .expanding-letter-pill {
     display: inline-flex;
     align-items: center;
@@ -434,7 +497,7 @@ button {
     opacity: 0;
 }
 
-/* 6. EXPANDABLE CONTENT CONTAINER */
+/* 5. EXPANDABLE CONTENT CONTAINER */
 .section-expand-content {
     max-height: 0;
     overflow: hidden;
@@ -450,7 +513,6 @@ button {
     border-top: 1px solid var(--border-subtle);
 }
 
-/* 7. IDENTITY (ABOUT) GRID */
 .editorial-grid {
     max-width: 1400px;
     margin: 0 auto;
@@ -497,7 +559,7 @@ button {
     background-color: var(--bg-card);
 }
 
-/* 8. THINKING TABS */
+/* 6. THINKING & SYSTEMS */
 .thinking-tabs-wrapper {
     max-width: 1400px;
     margin: 0 auto;
@@ -563,7 +625,6 @@ button {
     font-size: 0.9rem;
 }
 
-/* 9. SYSTEMS VISUALIZER */
 .systems-visualizer {
     max-width: 1400px;
     margin: 0 auto;
@@ -609,6 +670,15 @@ button {
     color: var(--bg-yellow);
 }
 
+.run-sim-btn {
+    background-color: #22C55E !important;
+    color: #FFFFFF !important;
+    border-color: #16A34A !important;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
 .diagram-view {
     display: none;
 }
@@ -634,11 +704,14 @@ button {
     padding: 1.2rem;
     text-align: center;
     cursor: pointer;
-    transition: transform var(--ease-bounce);
+    transition: transform var(--ease-bounce), box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
-.dag-node:hover {
-    transform: translateY(-6px);
+.dag-node.node-active-sim {
+    background-color: #22C55E !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 0 25px rgba(34, 197, 94, 0.8);
+    transform: scale(1.1);
 }
 
 .node-type {
@@ -671,7 +744,7 @@ button {
     margin-top: 1rem;
 }
 
-/* 10. PORTFOLIO PILL-SHAPED VERTICAL CAPSULE CARDS (EXACT COLIN MOY MATCH TO IMAGE 1) */
+/* 7. PORTFOLIO PILL CARDS */
 .pill-cards-carousel {
     max-width: 1500px;
     margin: 0 auto;
@@ -735,7 +808,6 @@ button {
     color: var(--bg-yellow);
     padding: 0.3rem 0.8rem;
     border-radius: 20px;
-    letter-spacing: 0.05em;
 }
 
 .pill-card-title {
@@ -743,8 +815,6 @@ button {
     font-size: 1.6rem;
     font-weight: 700;
     line-height: 1.2;
-    letter-spacing: 0.02em;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
 }
 
 .pill-action-btn {
@@ -758,348 +828,233 @@ button {
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    transition: transform 0.2s ease;
 }
 
-.pill-capsule-card:hover .pill-action-btn {
-    transform: scale(1.08);
-}
-
-/* 11. ECOSYSTEM CANVAS */
-.ecosystem-container {
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.ecosystem-intro {
-    margin-bottom: 2rem;
-}
-
-.eco-tag {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--text-muted);
-}
-
-.eco-desc {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    margin-top: 0.5rem;
-}
-
-.canvas-wrapper {
-    position: relative;
-    width: 100%;
-    height: 520px;
-    background-color: var(--bg-card);
-    border: 2px solid var(--border-color);
-    overflow: hidden;
-}
-
-#ecosystemCanvas {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-
-.tech-detail-card {
-    position: absolute;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    max-width: 380px;
-    background-color: var(--bg-yellow);
-    border: 2px solid var(--border-color);
-    padding: 1.5rem;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-
-.tech-detail-card h4 {
-    font-family: var(--font-heading);
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-.tech-detail-card p {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
-}
-
-.tech-card-connections {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-}
-
-/* 12. FUTURE GRID */
-.editorial-future-grid {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-}
-
-.future-card {
-    background-color: var(--bg-card);
-    border: 2px solid var(--border-color);
-    padding: 2.5rem;
-}
-
-.f-num {
-    font-family: var(--font-heading);
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--text-muted);
-    opacity: 0.5;
-    display: block;
-    line-height: 1;
-    margin-bottom: 1rem;
-}
-
-.future-card h4 {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.future-card p {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--text-secondary);
-}
-
-/* 13. CONTACT SECTION & SOCIAL ICONS */
-.editorial-contact-box {
-    max-width: 1400px;
-    margin: 0 auto;
-    background-color: var(--bg-card);
-    border: 2px solid var(--border-color);
-    padding: 4rem 3rem;
-    text-align: center;
-}
-
-.contact-headline {
-    font-family: var(--font-heading);
-    font-size: clamp(2rem, 4.5vw, 4rem);
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 1rem;
-}
-
-.contact-sub {
-    font-size: 1.2rem;
-    color: var(--text-secondary);
-    max-width: 700px;
-    margin: 0 auto 3rem auto;
-}
-
-.contact-action-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 3.5rem;
-}
-
-.email-copy-box {
-    display: flex;
-    align-items: center;
-    border: 2px solid var(--border-color);
-    background-color: var(--bg-yellow);
-    padding: 0.4rem;
-}
-
-.email-address {
-    font-family: var(--font-mono);
-    font-weight: 700;
-    padding: 0.6rem 1.2rem;
-    font-size: 1.05rem;
-}
-
-.copy-btn {
-    font-family: var(--font-heading);
-    font-size: 0.9rem;
-    font-weight: 700;
+/* 8. FLOATING ASK VK-AI COPILOT TERMINAL & MODAL */
+.vk-ai-floating-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 150;
     background-color: var(--text-primary);
     color: var(--bg-yellow);
-    padding: 0.6rem 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-}
-
-.direct-email-btn {
-    font-family: var(--font-heading);
-    font-size: 1rem;
-    font-weight: 700;
-    background-color: var(--text-primary);
-    color: var(--bg-yellow);
-    padding: 1rem 2rem;
     border: 2px solid var(--border-color);
+    padding: 0.8rem 1.4rem;
+    border-radius: 30px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.85rem;
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    transition: transform 0.2s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    transition: transform var(--ease-bounce);
 }
 
-.direct-email-btn:hover {
-    transform: translateY(-3px);
+.vk-ai-floating-btn:hover {
+    transform: scale(1.08);
 }
 
-.social-icon-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 2rem;
+.pulse-ring {
+    width: 8px;
+    height: 8px;
+    background-color: #22C55E;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #22C55E;
 }
 
-.icon-link-btn {
-    font-size: 1.8rem;
-    color: var(--text-primary);
-    transition: transform var(--ease-bounce), color 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.icon-link-btn:hover {
-    transform: scale(1.3);
-}
-
-/* 14. FOOTER */
-.site-footer {
-    width: 100%;
-    border-top: 2px solid var(--border-color);
-    background-color: var(--bg-yellow);
-    padding: 2.5rem 0;
-    text-align: center;
-}
-
-.footer-container {
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
-.footer-copy {
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--text-primary);
-}
-
-/* 15. MODAL & TOAST */
-.modal-backdrop {
+.vk-terminal-modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(8px);
-    z-index: 200;
+    background-color: rgba(0,0,0,0.7);
+    backdrop-filter: blur(6px);
+    z-index: 250;
     display: none;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding: 1.5rem;
 }
 
-.modal-backdrop.active {
+.vk-terminal-modal.active {
     display: flex;
     animation: fadeIn 0.3s ease;
 }
 
-.modal-container {
-    background-color: var(--bg-card);
-    border: 2px solid var(--border-color);
-    max-width: 900px;
+.vk-terminal-window {
     width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
-    padding: 3rem;
+    max-width: 650px;
+    background-color: #0E1015;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    color: #E2E8F0;
+    font-family: var(--font-mono);
 }
 
-.modal-close-btn {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    width: 40px;
-    height: 40px;
-    border: 2px solid var(--border-color);
-    background-color: var(--bg-yellow);
+.vk-terminal-header {
+    background-color: #181B22;
+    padding: 0.8rem 1.2rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
+    justify-content: space-between;
+    border-bottom: 1px solid #2A2E39;
 }
 
-.toast-notification {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    background-color: var(--text-primary);
-    color: var(--bg-yellow);
-    padding: 1rem 1.5rem;
+.terminal-dots {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.t-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.t-dot.close { background-color: #EF4444; }
+.t-dot.min { background-color: #F59E0B; }
+.t-dot.max { background-color: #10B981; }
+
+.terminal-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #94A3B8;
+}
+
+.vk-terminal-messages {
+    height: 320px;
+    padding: 1.2rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.term-msg {
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    max-width: 85%;
+}
+
+.term-msg.bot-msg {
+    background-color: #1A1D26;
+    border-left: 3px solid #E2B859;
+    align-self: flex-start;
+}
+
+.term-msg.user-msg {
+    background-color: #2563EB;
+    color: #FFFFFF;
+    align-self: flex-end;
+}
+
+.vk-terminal-quick-prompts {
+    padding: 0.6rem 1.2rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    background-color: #141720;
+    border-top: 1px solid #2A2E39;
+}
+
+.prompt-chip {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    background-color: #222634;
+    color: #E2E8F0;
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    border: 1px solid #374151;
+    transition: background-color 0.2s ease;
+}
+
+.prompt-chip:hover {
+    background-color: #E2B859;
+    color: #000000;
+}
+
+.vk-terminal-input-bar {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1.2rem;
+    background-color: #0E1015;
+    border-top: 1px solid #2A2E39;
+    gap: 0.6rem;
+}
+
+.prompt-symbol {
+    color: #22C55E;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+#terminalInput {
+    flex: 1;
+    background: none;
+    border: none;
+    color: #FFFFFF;
     font-family: var(--font-mono);
     font-size: 0.9rem;
-    font-weight: 700;
-    border-radius: 4px;
-    z-index: 300;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    transform: translateY(100px);
-    opacity: 0;
-    transition: all 0.4s ease;
+    outline: none;
 }
 
-.toast-notification.active {
-    transform: translateY(0);
-    opacity: 1;
+.term-send-btn {
+    color: #E2B859;
+    font-size: 1.1rem;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+/* ECOSYSTEM & FOOTER */
+.ecosystem-container { max-width: 1400px; margin: 0 auto; }
+.canvas-wrapper { position: relative; width: 100%; height: 520px; background-color: var(--bg-card); border: 2px solid var(--border-color); overflow: hidden; }
+#ecosystemCanvas { width: 100%; height: 100%; display: block; }
+.tech-detail-card { position: absolute; bottom: 1.5rem; right: 1.5rem; max-width: 380px; background-color: var(--bg-yellow); border: 2px solid var(--border-color); padding: 1.5rem; }
+
+.editorial-future-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+.future-card { background-color: var(--bg-card); border: 2px solid var(--border-color); padding: 2.5rem; }
+.f-num { font-family: var(--font-heading); font-size: 3rem; font-weight: 700; color: var(--text-muted); opacity: 0.5; display: block; margin-bottom: 1rem; }
+
+.editorial-contact-box { max-width: 1400px; margin: 0 auto; background-color: var(--bg-card); border: 2px solid var(--border-color); padding: 4rem 3rem; text-align: center; }
+.contact-headline { font-family: var(--font-heading); font-size: clamp(2rem, 4.5vw, 4rem); font-weight: 700; margin-bottom: 1rem; }
+.contact-sub { font-size: 1.2rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto 3rem auto; }
+.contact-action-bar { display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+
+.email-copy-box { display: flex; align-items: center; border: 2px solid var(--border-color); background-color: var(--bg-yellow); padding: 0.4rem; }
+.email-address { font-family: var(--font-mono); font-weight: 700; padding: 0.6rem 1.2rem; font-size: 1.05rem; }
+.copy-btn { font-family: var(--font-heading); font-size: 0.9rem; font-weight: 700; background-color: var(--text-primary); color: var(--bg-yellow); padding: 0.6rem 1.2rem; display: flex; align-items: center; gap: 0.4rem; }
+.direct-email-btn { font-family: var(--font-heading); font-size: 1rem; font-weight: 700; background-color: var(--text-primary); color: var(--bg-yellow); padding: 1rem 2rem; border: 2px solid var(--border-color); display: flex; align-items: center; gap: 0.6rem; }
+.social-icon-row { display: flex; align-items: center; justify-content: center; gap: 2rem; margin-top: 2rem; }
+.icon-link-btn { font-size: 1.8rem; color: var(--text-primary); transition: transform var(--ease-bounce); }
+.icon-link-btn:hover { transform: scale(1.3); }
+
+.site-footer { width: 100%; border-top: 2px solid var(--border-color); background-color: var(--bg-yellow); padding: 2.5rem 0; text-align: center; }
+.footer-container { max-width: 1600px; margin: 0 auto; padding: 0 2rem; }
+.footer-copy { font-family: var(--font-body); font-size: 0.95rem; font-weight: 500; color: var(--text-primary); }
+
+.modal-backdrop { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.75); backdrop-filter: blur(8px); z-index: 200; display: none; align-items: center; justify-content: center; padding: 2rem; }
+.modal-backdrop.active { display: flex; animation: fadeIn 0.3s ease; }
+.modal-container { background-color: var(--bg-card); border: 2px solid var(--border-color); max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; padding: 3rem; }
+.modal-close-btn { position: absolute; top: 1.5rem; right: 1.5rem; width: 40px; height: 40px; border: 2px solid var(--border-color); background-color: var(--bg-yellow); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+.toast-notification { position: fixed; bottom: 2rem; right: 2rem; background-color: var(--text-primary); color: var(--bg-yellow); padding: 1rem 1.5rem; font-family: var(--font-mono); font-size: 0.9rem; font-weight: 700; border-radius: 4px; z-index: 300; display: flex; align-items: center; gap: 0.6rem; transform: translateY(100px); opacity: 0; transition: all 0.4s ease; }
+.toast-notification.active { transform: translateY(0); opacity: 1; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 @media (max-width: 1024px) {
-    .editorial-grid, .thinking-tabs-wrapper {
-        grid-template-columns: 1fr;
-    }
-    .dag-container {
-        flex-direction: column;
-    }
-    .dag-arrow {
-        transform: rotate(90deg);
-    }
+    .editorial-grid, .thinking-tabs-wrapper { grid-template-columns: 1fr; }
+    .dag-container { flex-direction: column; }
+    .dag-arrow { transform: rotate(90deg); }
 }
-
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-    .editorial-word {
-        font-size: 2.8rem;
-    }
-    .expanding-letter-pill {
-        height: 2.8rem;
-        width: 2.8rem;
-    }
-    .section-title-bar:hover .expanding-letter-pill,
-    .section-title-bar.active .expanding-letter-pill {
-        width: 16rem;
-    }
-    .hero-subtext {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.5rem;
-    }
+    .nav-links, .header-system-status { display: none; }
+    .editorial-word { font-size: 2.8rem; }
+    .expanding-letter-pill { height: 2.8rem; width: 2.8rem; }
+    .section-title-bar:hover .expanding-letter-pill, .section-title-bar.active .expanding-letter-pill { width: 16rem; }
+    .hero-subtext { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
 }

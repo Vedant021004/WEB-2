@@ -1,7 +1,9 @@
 /* ==========================================================================
    VEDANT KAPIL — EDITORIAL AI ENGINEERING PORTFOLIO LOGIC
-   GSAP Motion & Interactive Eye Nodes
+   With Magnetic Cursor, Web Audio FX, Live Agent DAG Simulation & VK-AI Copilot Terminal
    ========================================================================== */
+
+let soundEnabled = false;
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Initialize Lucide Icons
@@ -9,7 +11,21 @@ document.addEventListener('DOMContentLoaded', () => {
         lucide.createIcons();
     }
 
-    // 2. Theme Toggle (Editorial Yellow vs Midnight Dark)
+    // 2. Custom Magnetic Cursor
+    initMagneticCursor();
+
+    // 3. Audio Toggle
+    const soundToggle = document.getElementById('soundToggle');
+    const soundIcon = document.getElementById('soundIcon');
+    if (soundToggle) {
+        soundToggle.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            if (soundIcon) soundIcon.textContent = soundEnabled ? '🔊' : '🔇';
+            if (soundEnabled) playClickSound(600, 0.05);
+        });
+    }
+
+    // 4. Theme Toggle (Editorial Yellow vs Dark)
     const themeToggleBtn = document.getElementById('themeToggle');
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
@@ -19,11 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (toggleText) {
                 toggleText.textContent = isDark ? 'DARK' : 'MODE';
             }
+            if (soundEnabled) playClickSound(400, 0.08);
             renderEcosystemGraph();
         });
     }
 
-    // 3. Eye Pupil Motion Tracking for Hero & Solid Letter Nodes (.inner-pupil & .title---eye-pupils)
+    // 5. Eye Pupil Tracking
     const heroPupils = document.querySelectorAll('.title---eye-pupils');
     const nodePupils = document.querySelectorAll('.inner-pupil');
 
@@ -31,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const mouseX = e.clientX;
         const mouseY = e.clientY;
 
-        // Track Hero Pupils
         heroPupils.forEach(pupil => {
             const rect = pupil.getBoundingClientRect();
             const pupilX = rect.left + rect.width / 2;
@@ -43,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
             pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
         });
 
-        // Track Band Section Letter Pupils
         nodePupils.forEach(pupil => {
             const rect = pupil.getBoundingClientRect();
             const pupilX = rect.left + rect.width / 2;
@@ -56,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. GSAP Accordion Section Toggles
+    // 6. Section Accordion Toggles
     const titleBars = document.querySelectorAll('.section-title-bar');
     titleBars.forEach(bar => {
         bar.addEventListener('click', () => {
@@ -65,24 +80,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (targetContent) {
                 const isActive = bar.classList.contains('active');
-                
-                // Toggle active state
                 bar.classList.toggle('active');
                 targetContent.classList.toggle('active');
 
-                if (window.gsap && targetContent) {
-                    if (!isActive) {
-                        gsap.fromTo(targetContent, 
-                            { opacity: 0, y: -15 }, 
-                            { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
-                        );
-                    }
+                if (soundEnabled) playClickSound(isActive ? 300 : 500, 0.06);
+
+                if (window.gsap && targetContent && !isActive) {
+                    gsap.fromTo(targetContent, 
+                        { opacity: 0, y: -15 }, 
+                        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+                    );
                 }
             }
         });
     });
 
-    // 5. Thinking Section Tabs
+    // 7. Thinking Section Tabs
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
     tabBtns.forEach(btn => {
@@ -95,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetPane = document.getElementById(tabId);
             if (targetPane) {
                 targetPane.classList.add('active');
+                if (soundEnabled) playClickSound(550, 0.04);
                 if (window.gsap) {
                     gsap.fromTo(targetPane, { opacity: 0, x: 10 }, { opacity: 1, x: 0, duration: 0.4 });
                 }
@@ -102,12 +116,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 6. Systems Architecture Visualizer Controls
+    // 8. Systems Diagram Toggle Buttons
     const sysButtons = document.querySelectorAll('.sys-toggle-btn');
     const diagramViews = document.querySelectorAll('.diagram-view');
     sysButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            sysButtons.forEach(b => b.classList.remove('active'));
+            if (btn.classList.contains('run-sim-btn')) return;
+
+            sysButtons.forEach(b => { if (!b.classList.contains('run-sim-btn')) b.classList.remove('active'); });
             diagramViews.forEach(v => v.classList.remove('active'));
 
             btn.classList.add('active');
@@ -115,6 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetDiag = document.getElementById(`diag-${diagramType}`);
             if (targetDiag) {
                 targetDiag.classList.add('active');
+                if (soundEnabled) playClickSound(500, 0.05);
                 if (window.gsap) {
                     gsap.fromTo(targetDiag, { opacity: 0, scale: 0.98 }, { opacity: 1, scale: 1, duration: 0.4 });
                 }
@@ -122,25 +139,183 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // DAG Node Info Tooltip Click
-    const dagNodes = document.querySelectorAll('.dag-node');
-    const nodeCaption = document.getElementById('nodeCaption');
-    dagNodes.forEach(node => {
-        node.addEventListener('click', () => {
-            const info = node.getAttribute('data-info');
-            const name = node.querySelector('.node-name')?.textContent || 'Node';
-            if (nodeCaption && info) {
-                nodeCaption.innerHTML = `<strong>${name}:</strong> ${info}`;
-            }
-        });
-    });
-
-    // 7. Interactive Technology Ecosystem Canvas
+    // 9. Ecosystem Canvas
     initEcosystemCanvas();
 });
 
 /* ==========================================================================
-   INTERACTIVE TECHNOLOGY ECOSYSTEM CANVAS (CONNECTED GRAPH)
+   MAGNETIC CURSOR IMPLEMENTATION
+   ========================================================================== */
+function initMagneticCursor() {
+    const dot = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    if (!dot || !ring) return;
+
+    let mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+    });
+
+    function renderRing() {
+        ringX += (mouseX - ringX) * 0.18;
+        ringY += (mouseY - ringY) * 0.18;
+        ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
+        requestAnimationFrame(renderRing);
+    }
+    requestAnimationFrame(renderRing);
+
+    // Hover effects on magnetic targets
+    const targets = document.querySelectorAll('.magnetic-target, button, a');
+    targets.forEach(el => {
+        el.addEventListener('mouseenter', () => ring.classList.add('active-hover'));
+        el.addEventListener('mouseleave', () => ring.classList.remove('active-hover'));
+    });
+}
+
+/* ==========================================================================
+   WEB AUDIO API SYNTHESIZED SOUND EFFECTS (0 External Files)
+   ========================================================================== */
+function playClickSound(freq = 440, duration = 0.05) {
+    if (!soundEnabled) return;
+    try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(0.08, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+    } catch (e) { console.error(e); }
+}
+
+/* ==========================================================================
+   LIVE AGENTIC DAG SIMULATION (SYSTEMS SECTION)
+   ========================================================================== */
+function runLiveAgentSimulation() {
+    const nodes = ['node-input', 'node-router', 'node-tool', 'node-eval', 'node-output'];
+    const captions = [
+        "1/5 📥 User Query Ingested: 'Analyze quarterly SQL sales metrics & generate chart.'",
+        "2/5 🧠 Supervisor Agent Routing: Assessing intent... Selected tool: [SQL_Sandbox_Runner].",
+        "3/5 ⚡ Action Executing: Executing SQL query against sandboxed database cluster...",
+        "4/5 🔍 Evaluator Validating: Checking response completeness... Syntax verified 100%.",
+        "5/5 ✅ Output Grounded: Result synthesized with dynamic chart configuration! Latency: 42ms."
+    ];
+
+    const captionElem = document.getElementById('nodeCaption');
+    let step = 0;
+
+    // Reset nodes
+    nodes.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove('node-active-sim');
+    });
+
+    function nextStep() {
+        if (step > 0) {
+            const prevEl = document.getElementById(nodes[step - 1]);
+            if (prevEl) prevEl.classList.remove('node-active-sim');
+        }
+
+        if (step < nodes.length) {
+            const curEl = document.getElementById(nodes[step]);
+            if (curEl) curEl.classList.add('node-active-sim');
+            if (captionElem) captionElem.innerHTML = `<strong>SIMULATION:</strong> ${captions[step]}`;
+            if (soundEnabled) playClickSound(300 + step * 100, 0.1);
+            step++;
+            setTimeout(nextStep, 900);
+        } else {
+            if (captionElem) captionElem.innerHTML = "🎉 <strong>SIMULATION COMPLETE:</strong> Agentic loop executed successfully with zero errors!";
+        }
+    }
+
+    nextStep();
+}
+
+/* ==========================================================================
+   INTERACTIVE ASK VK-AI COPILOT TERMINAL
+   ========================================================================== */
+function toggleVkAiTerminal() {
+    const modal = document.getElementById('vkTerminalModal');
+    if (modal) {
+        modal.classList.toggle('active');
+        if (soundEnabled) playClickSound(500, 0.08);
+    }
+}
+
+function sendTerminalPrompt(text) {
+    const input = document.getElementById('terminalInput');
+    if (input) {
+        input.value = text;
+        sendTerminalMessage();
+    }
+}
+
+function handleTerminalKeyPress(e) {
+    if (e.key === 'Enter') {
+        sendTerminalMessage();
+    }
+}
+
+function sendTerminalMessage() {
+    const input = document.getElementById('terminalInput');
+    const container = document.getElementById('terminalMessages');
+    if (!input || !container) return;
+
+    const userText = input.value.trim();
+    if (!userText) return;
+
+    // Append User Message
+    const userDiv = document.createElement('div');
+    userDiv.className = 'term-msg user-msg';
+    userDiv.textContent = userText;
+    container.appendChild(userDiv);
+
+    input.value = '';
+    container.scrollTop = container.scrollHeight;
+
+    if (soundEnabled) playClickSound(700, 0.03);
+
+    // Bot Response Logic
+    setTimeout(() => {
+        const botDiv = document.createElement('div');
+        botDiv.className = 'term-msg bot-msg';
+        botDiv.innerHTML = `<strong>VK-AI:</strong> ${generateCopilotResponse(userText)}`;
+        container.appendChild(botDiv);
+        container.scrollTop = container.scrollHeight;
+        if (soundEnabled) playClickSound(450, 0.06);
+    }, 400);
+}
+
+function generateCopilotResponse(query) {
+    const q = query.toLowerCase();
+    if (q.includes('skill') || q.includes('stack') || q.includes('tech')) {
+        return "Vedant specializes in Machine Learning, Deep Learning, LLMs, Agentic AI (LangChain & LangGraph), RAG, FastAPI microservices, MLOps, and Cloud AI infrastructure.";
+    } else if (q.includes('rag') || q.includes('amazon')) {
+        return "Vedant's Amazon Product RAG engine uses Hybrid Retrieval (Dense Vector + BM25 Sparse) paired with Cohere cross-encoder re-ranking, indexing over 100K+ catalog items with +42% search relevance.";
+    } else if (q.includes('copilot') || q.includes('data analyst')) {
+        return "The AI Data Analyst Copilot is built on LangGraph with stateful cyclic self-correction. It converts natural language into SQL, runs sandboxed validation, and achieves 98.4% accuracy.";
+    } else if (q.includes('contact') || q.includes('hire') || q.includes('email')) {
+        return "You can reach Vedant directly via email at <strong>vedantkapil.ai@gmail.com</strong> or via LinkedIn/GitHub links on this site!";
+    } else {
+        return "Vedant is an AI Engineer dedicated to building deterministic reliability into non-deterministic AI intelligence. Feel free to explore his Systems visualizer and project blueprints!";
+    }
+}
+
+/* ==========================================================================
+   INTERACTIVE TECHNOLOGY ECOSYSTEM CANVAS
    ========================================================================== */
 const techNodesData = [
     { id: 'ml', label: 'Machine Learning', category: 'Core ML', x: 0.25, y: 0.35, connects: ['dl', 'llm', 'fastapi', 'cloud'] },
@@ -197,7 +372,6 @@ function initEcosystemCanvas() {
         const lineBaseColor = isDark ? 'rgba(245, 244, 240, 0.15)' : 'rgba(0, 0, 0, 0.15)';
         const lineActiveColor = isDark ? '#E2B859' : '#000000';
 
-        // Connection Lines
         techNodesData.forEach(node => {
             const nodeX = node.x * width;
             const nodeY = node.y * height;
@@ -219,7 +393,6 @@ function initEcosystemCanvas() {
             });
         });
 
-        // Nodes
         techNodesData.forEach(node => {
             const nodeX = node.x * width;
             const nodeY = node.y * height;
@@ -253,6 +426,7 @@ function initEcosystemCanvas() {
                 activeNodeId = node.id;
                 updateTechDetailCard(node);
                 draw();
+                if (soundEnabled) playClickSound(650, 0.04);
             }
         });
     });
@@ -282,7 +456,7 @@ function renderEcosystemGraph() {
 }
 
 /* ==========================================================================
-   CASE STUDY MODAL BLUEPRINT DATA
+   CASE STUDY MODAL DATA
    ========================================================================== */
 const projectsData = {
     1: {
@@ -435,6 +609,7 @@ function openProjectModal(id) {
             </div>
         `;
         modal.classList.add('active');
+        if (soundEnabled) playClickSound(550, 0.08);
     }
 }
 
@@ -446,26 +621,21 @@ function closeProjectModal() {
 }
 
 function escapeHtml(str) {
-    return str.replace(/&/g, "&amp;")
-              .replace(/</g, "&lt;")
-              .replace(/>/g, "&gt;");
+    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 function copyEmail() {
     const emailText = "vedantkapil.ai@gmail.com";
     navigator.clipboard.writeText(emailText).then(() => {
         showToast();
-    }).catch(err => {
-        console.error("Clipboard copy failed:", err);
-    });
+    }).catch(err => console.error(err));
 }
 
 function showToast() {
     const toast = document.getElementById('toast');
     if (toast) {
         toast.classList.add('active');
-        setTimeout(() => {
-            toast.classList.remove('active');
-        }, 3000);
+        if (soundEnabled) playClickSound(800, 0.1);
+        setTimeout(() => toast.classList.remove('active'), 3000);
     }
 }
