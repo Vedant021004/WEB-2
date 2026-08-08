@@ -358,18 +358,27 @@ body.ai-vision-mode .live-progress-panel.active {
     transform: scale(1.1);
 }
 
+.ecosystem-layout-grid {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
 .tech-detail-card {
-    position: absolute;
-    bottom: 1.5rem;
-    left: 1.5rem;
-    right: auto;
-    max-width: 420px;
-    width: calc(100% - 3rem);
+    position: relative;
+    width: 100%;
+    height: 100%;
     background-color: var(--bg-yellow);
     border: 2px solid var(--border-color);
-    padding: 1.6rem;
+    padding: 1.8rem;
     border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     z-index: 10;
 }
 
@@ -591,10 +600,11 @@ body {
 }
 
 @media (max-width: 1024px) {
-    .editorial-grid, .thinking-tabs-wrapper { grid-template-columns: 1fr; }
+    .editorial-grid, .thinking-tabs-wrapper, .ecosystem-layout-grid { grid-template-columns: 1fr; }
     .dag-container { flex-direction: column; }
     .dag-arrow { transform: rotate(90deg); }
     .live-progress-panel { width: 92%; }
+    .canvas-wrapper { height: 420px; }
 }
 
 @media (max-width: 768px) {
