@@ -86,7 +86,7 @@ body.eye-rage-mode .title---eye-pupils {
     border-radius: 30px;
     z-index: 1100;
     box-shadow: 0 10px 40px rgba(220, 38, 38, 0.8);
-    display: flex;
+    display: none !important;
     align-items: center;
     gap: 0.6rem;
     opacity: 0;
@@ -94,7 +94,7 @@ body.eye-rage-mode .title---eye-pupils {
     transition: top 0.4s var(--ease-bounce), opacity 0.3s ease;
 }
 
-.boss-warning-banner.active { top: 1.2rem; opacity: 1; pointer-events: auto; }
+.boss-warning-banner.active { display: flex !important; top: 1.2rem; opacity: 1; pointer-events: auto; }
 
 .ai-vision-banner {
     position: fixed;
@@ -110,7 +110,7 @@ body.eye-rage-mode .title---eye-pupils {
     border-radius: 30px;
     z-index: 1099;
     box-shadow: 0 10px 30px rgba(56, 189, 248, 0.6);
-    display: flex;
+    display: none !important;
     align-items: center;
     gap: 0.6rem;
     opacity: 0;
@@ -118,7 +118,7 @@ body.eye-rage-mode .title---eye-pupils {
     transition: top 0.4s var(--ease-bounce), opacity 0.3s ease;
 }
 
-.ai-vision-banner.active { top: 1.2rem; opacity: 1; pointer-events: auto; }
+.ai-vision-banner.active { display: flex !important; top: 1.2rem; opacity: 1; pointer-events: auto; }
 
 /* CYBER ANT CRAWLER */
 .cyber-ant-wrapper {
@@ -667,6 +667,15 @@ body {
     
     .live-progress-panel { width: 95%; padding: 1rem; margin: 0.8rem auto; }
     .progress-items-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+
+    .systems-visualizer { padding: 1.2rem 0.8rem; }
+    .visualizer-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .visualizer-controls { flex-direction: column; width: 100%; gap: 0.5rem; }
+    .sys-toggle-btn { width: 100%; text-align: center; justify-content: center; font-size: 0.78rem; padding: 0.6rem; }
+    .dag-container { flex-direction: column; align-items: center; padding: 1.5rem 0.5rem; gap: 0.8rem; }
+    .dag-node { width: 100%; max-width: 280px; min-width: auto; padding: 0.8rem; }
+    .dag-arrow { transform: rotate(90deg); margin: 0.2rem 0; font-size: 1.3rem; }
+    .diagram-caption { font-size: 0.78rem; padding: 0.8rem; }
 
     .pill-cards-carousel { flex-direction: column; align-items: center; gap: 1.2rem; }
     .pill-capsule-card { width: 88vw; max-width: 320px; height: 380px; border-radius: 32px; }
