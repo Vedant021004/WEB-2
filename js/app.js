@@ -40,15 +40,22 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(raf);
         }
 
-        // Smooth scroll for internal anchor links
+        // Smooth scroll for internal anchor links + Auto-Expand Section Popup
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', (e) => {
-                const targetId = anchor.getAttribute('href');
-                if (targetId && targetId !== '#') {
-                    const targetEl = document.querySelector(targetId);
+                const targetHref = anchor.getAttribute('href');
+                if (targetHref && targetHref !== '#') {
+                    const targetEl = document.querySelector(targetHref);
                     if (targetEl) {
                         e.preventDefault();
-                        lenis.scrollTo(targetEl, { offset: -50, duration: 2.0, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+                        
+                        const sectionId = targetHref.replace('#', '');
+                        const contentId = `${sectionId}-content`;
+                        if (window.expandSectionWithPopup) {
+                            window.expandSectionWithPopup(contentId);
+                        }
+
+                        lenis.scrollTo(targetEl, { offset: -50, duration: 1.8, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
                     }
                 }
             });
@@ -112,20 +119,69 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Global helper function to expand section accordion with elastic popup animation
+    window.expandSectionWithPopup = function(targetContentId) {
+        const targetContent = document.getElementById(targetContentId);
+        if (!targetContent) return;
+
+        const titleBar = document.querySelector(`.section-title-bar[data-target="${targetContentId}"]`);
+        
+        if (!targetContent.classList.contains('active')) {
+            if (titleBar) titleBar.classList.add('active');
+            targetContent.classList.add('active');
+
+            if (typeof soundEnabled !== 'undefined' && soundEnabled && typeof playClickSound === 'function') {
+                playClickSound(520, 0.08);
+            }
+
+            if (targetContentId === 'portfolio-content' && typeof triggerPortfolioWaveAnimation === 'function') {
+                triggerPortfolioWaveAnimation();
+            }
+
+            if (window.gsap) {
+                gsap.fromTo(targetContent, 
+                    { opacity: 0, y: 35, scale: 0.97 }, 
+                    { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "back.out(1.2)" }
+                );
+            }
+        }
+    };
+
     // 2. Initialize Lucide Icons
     if (window.lucide) {
         lucide.createIcons();
     }
 
-    // 3. GSAP ScrollTrigger Smooth Reveals
+    // 3. GSAP ScrollTrigger Smooth Reveals & Auto-Expand Section Popup Animations
     if (window.gsap && window.ScrollTrigger) {
         gsap.registerPlugin(ScrollTrigger);
         
+        // Auto-expand section accordion with popup animation when scrolling reaches section
+        const navSections = [
+            { secId: 'about', contentId: 'about-content' },
+            { secId: 'thinking', contentId: 'thinking-content' },
+            { secId: 'systems', contentId: 'systems-content' },
+            { secId: 'portfolio', contentId: 'portfolio-content' },
+            { secId: 'future', contentId: 'future-content' }
+        ];
+
+        navSections.forEach(item => {
+            ScrollTrigger.create({
+                trigger: `#${item.secId}`,
+                start: "top 75%",
+                onEnter: () => window.expandSectionWithPopup(item.contentId)
+            });
+        });
+
         // Portfolio wave animation
         ScrollTrigger.create({
             trigger: "#portfolio",
             start: "top 80%",
-            onEnter: () => triggerPortfolioWaveAnimation()
+            onEnter: () => {
+                if (typeof triggerPortfolioWaveAnimation === 'function') {
+                    triggerPortfolioWaveAnimation();
+                }
+            }
         });
 
         // Smooth staggered section title bar reveals
