@@ -64,12 +64,12 @@
                 <span class="brand-name">VK</span>
             </a>
 
-            <nav class="nav-links">
+            <nav class="nav-links" id="mainNavLinks">
+                <div class="nav-glass-indicator" id="navGlassIndicator"></div>
                 <a href="#about" class="nav-item">ABOUT</a>
                 <a href="#thinking" class="nav-item">THINKING</a>
                 <a href="#systems" class="nav-item">SYSTEMS</a>
                 <a href="#portfolio" class="nav-item">PORTFOLIO</a>
-                <a href="#tech-ecosystem" class="nav-item">ECOSYSTEM</a>
                 <a href="#future" class="nav-item">FUTURE</a>
                 <a href="#contact" class="nav-item nav-btn">CONTACT</a>
             </nav>
@@ -220,7 +220,7 @@
                 </h2>
             </div>
             
-            <div class="section-expand-content active" id="about-content">
+            <div class="section-expand-content" id="about-content">
                 <div class="editorial-grid">
                     <div class="grid-col-lead">
                         <h3 class="lead-title">VEDANT KAPIL</h3>
@@ -447,38 +447,7 @@
             </div>
         </section>
 
-        <!-- SECTION 5: ECOSYSTEM -->
-        <section class="h2-band-section band-yellow" id="tech-ecosystem">
-            <div class="section-title-bar" data-target="tech-content">
-                <h2 class="editorial-word">
-                    EC<div class="expanding-letter-pill" onclick="triggerEyeVisionMode(event)">
-                        <span class="pill-text-content">CONNECTED TECHNOLOGY ECOSYSTEM NETWORK</span>
-                        <span class="inner-pupil"></span>
-                    </div>SYSTEM
-                </h2>
-            </div>
 
-            <div class="section-expand-content active" id="tech-content">
-                <div class="ecosystem-container">
-                    <div class="ecosystem-intro">
-                        <span class="eco-tag">INTERACTIVE TECH ECOSYSTEM MAP</span>
-                        <p class="eco-desc">Technologies are not isolated badges. They form an interconnected web of cognitive capabilities. Click any node to see dependency links and project applications.</p>
-                    </div>
-
-                    <div class="ecosystem-flex-container">
-                        <div class="tech-detail-card" id="techDetailCard">
-                            <h4 id="techCardTitle">Select a Technology Node</h4>
-                            <p id="techCardDesc">Click any node in the graph to view how Vedant applies it in real-world intelligent systems.</p>
-                            <div class="tech-card-connections" id="techCardConn"></div>
-                        </div>
-
-                        <div class="canvas-wrapper">
-                            <canvas id="ecosystemCanvas"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- SECTION 6: FUTURE -->
         <section class="h2-band-section band-cream" id="future">

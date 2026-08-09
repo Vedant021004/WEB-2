@@ -53,6 +53,63 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+
+        // 🌊 Watery Glass Transparent Sliding Active Indicator Engine
+        const navGlassIndicator = document.getElementById('navGlassIndicator');
+        const navItems = document.querySelectorAll('.nav-links .nav-item');
+        const mainNavLinks = document.getElementById('mainNavLinks');
+
+        function updateNavGlassIndicator(targetEl) {
+            if (!navGlassIndicator || !targetEl || !mainNavLinks) return;
+            const navRect = mainNavLinks.getBoundingClientRect();
+            const targetRect = targetEl.getBoundingClientRect();
+            const leftPos = targetRect.left - navRect.left;
+            const widthVal = targetRect.width;
+            navGlassIndicator.style.left = `${leftPos}px`;
+            navGlassIndicator.style.width = `${widthVal}px`;
+            navGlassIndicator.style.opacity = '1';
+        }
+
+        navItems.forEach(item => {
+            item.addEventListener('mouseenter', () => updateNavGlassIndicator(item));
+            item.addEventListener('focus', () => updateNavGlassIndicator(item));
+        });
+
+        if (mainNavLinks) {
+            mainNavLinks.addEventListener('mouseleave', () => {
+                const currentActive = document.querySelector('.nav-links .nav-item.active');
+                if (currentActive) {
+                    updateNavGlassIndicator(currentActive);
+                } else {
+                    if (navGlassIndicator) navGlassIndicator.style.opacity = '0';
+                }
+            });
+        }
+
+        // ScrollSpy to update active nav link as user scrolls up or down
+        const sections = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', () => {
+            let currentSectionId = '';
+            const scrollPos = window.scrollY + 200;
+
+            sections.forEach(sec => {
+                const top = sec.offsetTop;
+                const height = sec.offsetHeight;
+                if (scrollPos >= top && scrollPos < top + height) {
+                    currentSectionId = sec.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                const href = item.getAttribute('href');
+                if (href === `#${currentSectionId}`) {
+                    item.classList.add('active');
+                    updateNavGlassIndicator(item);
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        });
     }
 
     // 2. Initialize Lucide Icons
