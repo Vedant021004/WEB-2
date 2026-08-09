@@ -182,7 +182,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 5. Global Animated Theme Toggle Function
-    window.toggleTheme = function() {
+    window.toggleTheme = function(e) {
+        if (e && e.stopPropagation) e.stopPropagation();
         if (typeof rageTimeoutId !== 'undefined') clearTimeout(rageTimeoutId);
         document.body.classList.remove('ai-vision-mode', 'eye-rage-mode');
         if (typeof isRageActive !== 'undefined') isRageActive = false;
@@ -205,6 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const themeToggleBtn = document.getElementById('themeToggle');
     if (themeToggleBtn) {
+        themeToggleBtn.removeEventListener('click', window.toggleTheme);
         themeToggleBtn.addEventListener('click', window.toggleTheme);
     }
 
