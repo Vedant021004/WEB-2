@@ -914,38 +914,43 @@ body.theme-dark .nav-item.active, body.theme-dark .nav-item:hover {
     margin-top: 0.4rem;
 }
 
+.resume-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+    flex-wrap: wrap;
+}
+
+.lottie-resume-badge {
+    width: 130px;
+    height: 130px;
+    background-color: #0E1015;
+    border: 2px solid var(--border-color);
+    border-radius: 18px;
+    padding: 0.6rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s var(--ease-bounce), box-shadow 0.3s ease, border-color 0.3s ease;
+    overflow: hidden;
+}
+
+.lottie-resume-badge:hover {
+    transform: translateY(-4px) scale(1.05);
+    border-color: var(--bg-yellow);
+    box-shadow: 0 15px 40px rgba(226, 184, 89, 0.35);
+}
+
+.lottie-resume-badge svg {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+}
+
 .resume-download-btn {
     padding: 1.1rem 2.4rem !important;
     font-size: 0.95rem !important;
-}
-
-.resume-icon-box {
-    width: 22px;
-    height: 22px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 0.3rem;
-}
-
-.resume-doc-svg {
-    width: 22px;
-    height: 22px;
-    color: currentColor;
-    transition: transform 0.35s var(--ease-bounce);
-}
-
-.window-blinds-btn:hover .resume-doc-svg {
-    transform: translateY(-2px) scale(1.18);
-}
-
-.doc-corner {
-    transition: transform 0.35s ease;
-    transform-origin: 14px 2px;
-}
-
-.window-blinds-btn:hover .doc-corner {
-    transform: translate(-1px, 1px);
 }
 
 .resume-grid {
