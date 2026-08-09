@@ -572,16 +572,25 @@ body.theme-dark .wb-shade {
 }
 
 .lottie-theme-icon {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    overflow: visible;
 }
 
 .lottie-theme-icon svg {
-    width: 100% !important;
-    height: 100% !important;
+    width: 28px !important;
+    height: 28px !important;
+    display: block !important;
+    transform: scale(1.4) !important;
+    transform-origin: center center !important;
+}
+
+.lottie-theme-icon path {
+    fill: var(--text-primary) !important;
 }
 
 /* APPLE GLASSMORPHISM DESIGN SYSTEM */
