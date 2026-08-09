@@ -64,7 +64,7 @@
                 <div class="nav-glass-indicator" id="navGlassIndicator"></div>
                 <a href="#about" class="nav-item">ABOUT</a>
                 <a href="#thinking" class="nav-item">THINKING</a>
-                <a href="#systems" class="nav-item">SYSTEMS</a>
+                <a href="#resume" class="nav-item">RESUME</a>
                 <a href="#portfolio" class="nav-item">PORTFOLIO</a>
                 <a href="#future" class="nav-item">FUTURE</a>
                 <a href="#contact" class="nav-item nav-btn">CONTACT</a>
@@ -323,85 +323,116 @@
             </div>
         </section>
 
-        <!-- SECTION 3: SYSTEMS -->
-        <section class="h2-band-section band-yellow" id="systems">
-            <div class="section-title-bar" data-target="systems-content">
+        <!-- SECTION 3: RESUME -->
+        <section class="h2-band-section band-yellow" id="resume">
+            <div class="section-title-bar" data-target="resume-content">
                 <h2 class="editorial-word">
-                    SYST<div class="expanding-letter-pill" onclick="triggerEyeVisionMode(event)">
-                        <span class="pill-text-content">LANGGRAPH DAG & HYBRID RAG ARCHITECTURE</span>
+                    RES<div class="expanding-letter-pill" onclick="triggerEyeVisionMode(event)">
+                        <span class="pill-text-content">AI ENGINEER • VERIFIED RESUME & TECHNICAL HIGHLIGHTS</span>
                         <span class="inner-pupil"></span>
-                    </div>MS
+                    </div>UME
                 </h2>
             </div>
 
-            <div class="section-expand-content" id="systems-content">
-                <div class="systems-visualizer">
-                    <div class="visualizer-header">
-                        <div class="visualizer-title">
-                            <i data-lucide="workflow"></i> Live Agentic Execution Visualizer & Simulator
+            <div class="section-expand-content" id="resume-content">
+                <div class="resume-wrapper">
+                    <!-- Top Action Header with Download Button -->
+                    <div class="resume-header-bar">
+                        <div class="resume-info">
+                            <h3 class="resume-name">VEDANT KAPIL</h3>
+                            <p class="resume-title">AI Engineer & Intelligent Systems Architect</p>
+                            <p class="resume-contact">vedantkp79@gmail.com • GitHub: Vedant021004 • LinkedIn: Vedant Kapil</p>
                         </div>
-                        <div class="visualizer-controls">
-                            <button class="sys-toggle-btn active" data-diagram="langgraph">LangGraph Agentic Loop</button>
-                            <button class="sys-toggle-btn" data-diagram="rag">Hybrid Enterprise RAG</button>
-                            <button class="sys-toggle-btn run-sim-btn" id="runSimulationBtn" onclick="runLiveAgentSimulation()">
-                                <i data-lucide="play"></i> RUN LIVE SIMULATION
-                            </button>
+                        <div class="resume-actions">
+                            <a href="assets/documents/Vedant_Kapil_AI_Engineer_Resume.pdf" download="Vedant_Kapil_AI_Engineer_Resume.pdf" target="_blank" class="window-blinds-btn resume-download-btn">
+                                <div class="wb-glow"></div>
+                                <div class="wb-light"></div>
+                                <div class="wb-shades-wrapper">
+                                    <div class="wb-shade"></div>
+                                    <div class="wb-shade"></div>
+                                    <div class="wb-shade"></div>
+                                    <div class="wb-shade"></div>
+                                    <div class="wb-shade"></div>
+                                </div>
+                                <div class="wb-cord-wrap">
+                                    <div class="wb-cord-line"></div>
+                                    <div class="wb-cord-nib"></div>
+                                </div>
+                                <span class="wb-text">DOWNLOAD RESUME (PDF) <i data-lucide="download"></i></span>
+                            </a>
                         </div>
                     </div>
 
-                    <div class="diagram-stage" id="diagramStage">
-                        <div class="diagram-view active" id="diag-langgraph">
-                            <div class="dag-container">
-                                <div class="dag-node node-input" id="node-input" data-info="Receives user query & sets initial state">
-                                    <span class="node-type">INPUT</span>
-                                    <span class="node-name">User Query</span>
-                                </div>
-                                <div class="dag-arrow">➔</div>
-                                <div class="dag-node node-router" id="node-router" data-info="LLM Router evaluates query intent & selects tool path">
-                                    <span class="node-type">ROUTER</span>
-                                    <span class="node-name">Supervisor Agent</span>
-                                </div>
-                                <div class="dag-arrow">➔</div>
-                                <div class="dag-node node-tool" id="node-tool" data-info="Executes Python / SQL sandbox or RAG vector lookup">
-                                    <span class="node-type">ACTION</span>
-                                    <span class="node-name">Tool Execution</span>
-                                </div>
-                                <div class="dag-arrow">➔</div>
-                                <div class="dag-node node-eval" id="node-eval" data-info="Evaluates result completeness & triggers self-correction loop if needed">
-                                    <span class="node-type">EVALUATOR</span>
-                                    <span class="node-name">Validator Node</span>
-                                </div>
-                                <div class="dag-arrow">➔</div>
-                                <div class="dag-node node-output" id="node-output" data-info="Final grounded response formatted and returned to client">
-                                    <span class="node-type">OUTPUT</span>
-                                    <span class="node-name">Validated Result</span>
+                    <!-- Resume Content Grid -->
+                    <div class="resume-grid">
+                        <!-- Left Column: Core Technical Stack & Education -->
+                        <div class="resume-col">
+                            <div class="resume-block">
+                                <h4 class="resume-block-heading"><i data-lucide="cpu"></i> TECHNICAL PROFICIENCIES</h4>
+                                <div class="resume-skill-group">
+                                    <div class="skill-cat">
+                                        <strong>Agentic AI & State Machines:</strong>
+                                        <p>LangChain, LangGraph, Multi-Agent Supervisors, ReAct Framework, Tool Calling, Stateful Graphs</p>
+                                    </div>
+                                    <div class="skill-cat">
+                                        <strong>RAG & Vector Retrieval:</strong>
+                                        <p>Hybrid Vector Search, ChromaDB, FAISS, Pinecone, BM25 Sparse Matching, Dense Embeddings</p>
+                                    </div>
+                                    <div class="skill-cat">
+                                        <strong>Machine Learning & Deep Learning:</strong>
+                                        <p>Python, PyTorch, TensorFlow, Scikit-Learn, Transformer Fine-tuning, Feature Engineering</p>
+                                    </div>
+                                    <div class="skill-cat">
+                                        <strong>Backend & MLOps Infrastructure:</strong>
+                                        <p>FastAPI, Docker, REST APIs, Git, Streamlit, PostgreSQL, Automated CI/CD Pipelines</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="diagram-caption" id="nodeCaption">
-                                💡 Click "RUN LIVE SIMULATION" above to watch live state tokens flow through Vedant's LangGraph DAG!
+
+                            <div class="resume-block">
+                                <h4 class="resume-block-heading"><i data-lucide="graduation-cap"></i> EDUCATION</h4>
+                                <div class="resume-item">
+                                    <div class="item-title">Bachelor of Technology in Computer Science & Engineering</div>
+                                    <div class="item-sub">Specialization in Artificial Intelligence & Machine Learning</div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="diagram-view" id="diag-rag">
-                            <div class="dag-container">
-                                <div class="dag-node node-input" data-info="Document ingestion pipeline splits text into semantic chunks">
-                                    <span class="node-type">INGEST</span>
-                                    <span class="node-name">Raw Data / PDFs</span>
+                        <!-- Right Column: Key Projects & Accomplishments -->
+                        <div class="resume-col">
+                            <div class="resume-block">
+                                <h4 class="resume-block-heading"><i data-lucide="zap"></i> FEATURED AI PROJECTS</h4>
+                                
+                                <div class="resume-item">
+                                    <div class="item-header">
+                                        <span class="item-title">Amazon Product Catalog RAG Pipeline</span>
+                                        <span class="item-badge">RAG / LangChain</span>
+                                    </div>
+                                    <p class="item-desc">Engineered an end-to-end Hybrid RAG product retrieval system combining dense semantic embeddings with BM25 keyword matching for e-commerce query resolution with 94%+ precision.</p>
                                 </div>
-                                <div class="dag-arrow">➔</div>
-                                <div class="dag-node node-router" data-info="Calculates dense vector embeddings & BM25 sparse index">
-                                    <span class="node-type">EMBED</span>
-                                    <span class="node-name">Hybrid Retriever</span>
+
+                                <div class="resume-item">
+                                    <div class="item-header">
+                                        <span class="item-title">AI Data Analyst Copilot</span>
+                                        <span class="item-badge">LangGraph / Agents</span>
+                                    </div>
+                                    <p class="item-desc">Architected an autonomous SQL-generating data analyst agent utilizing LangGraph state machines, multi-step query validation, and dynamic chart generation.</p>
                                 </div>
-                                <div class="dag-arrow">➔</div>
-                                <div class="dag-node node-tool" data-info="Cross-encoder model re-ranks top-k contextual passages">
-                                    <span class="node-type">RE-RANK</span>
-                                    <span class="node-name">Cohere / Cross-Encoder</span>
+
+                                <div class="resume-item">
+                                    <div class="item-header">
+                                        <span class="item-title">Smart School Management AI System</span>
+                                        <span class="item-badge">Full-Stack AI</span>
+                                    </div>
+                                    <p class="item-desc">Built an automated academic management platform incorporating intelligent student progress tracking, automated report generation, and NLP query interfaces.</p>
                                 </div>
-                                <div class="dag-arrow">➔</div>
-                                <div class="dag-node node-output" data-info="Synthesizes final answer with inline citations">
-                                    <span class="node-type">SYNTHESIS</span>
-                                    <span class="node-name">LLM Context Engine</span>
+
+                                <div class="resume-item">
+                                    <div class="item-header">
+                                        <span class="item-title">Traffic Prediction ML Model</span>
+                                        <span class="item-badge">Machine Learning</span>
+                                    </div>
+                                    <p class="item-desc">Developed time-series machine learning models predicting urban traffic congestion patterns using historical flow telemetry with PyTorch and Scikit-Learn.</p>
                                 </div>
                             </div>
                         </div>

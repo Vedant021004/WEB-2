@@ -868,6 +868,159 @@ body.theme-dark .nav-item.active, body.theme-dark .nav-item:hover {
 .sys-toggle-btn.active { background-color: var(--text-primary); color: var(--bg-yellow); }
 .run-sim-btn { background-color: #22C55E !important; color: #FFFFFF !important; border-color: #16A34A !important; display: flex; align-items: center; gap: 0.4rem; }
 
+/* ==========================================================================
+   RESUME SECTION & DOWNLOAD BUTTON STYLING
+   ========================================================================== */
+.resume-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    background-color: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.resume-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    border-bottom: 2px solid var(--border-subtle);
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.resume-name {
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.resume-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: 0.3rem;
+}
+
+.resume-contact {
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+}
+
+.resume-download-btn {
+    padding: 1.1rem 2.4rem !important;
+    font-size: 0.95rem !important;
+}
+
+.resume-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 3.5rem;
+}
+
+@media (max-width: 900px) {
+    .resume-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    .resume-header-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+.resume-block {
+    margin-bottom: 2.5rem;
+}
+
+.resume-block-heading {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    border-bottom: 1.5px solid var(--border-color);
+    padding-bottom: 0.6rem;
+}
+
+.resume-skill-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.skill-cat strong {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.2rem;
+    color: var(--text-primary);
+}
+
+.skill-cat p {
+    font-size: 0.98rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.resume-item {
+    background-color: rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 1.2rem;
+}
+
+body.theme-dark .resume-item {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+    gap: 1rem;
+}
+
+.item-title {
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+}
+
+.item-badge {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    background-color: var(--text-primary);
+    color: var(--bg-yellow);
+    border-radius: 4px;
+}
+
+.item-sub {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.item-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+}
+
 .diagram-view { display: none; }
 .diagram-view.active { display: block; }
 .dag-container { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 3rem 1rem; overflow-x: auto; }

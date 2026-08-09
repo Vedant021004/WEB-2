@@ -1,0 +1,80 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 485 >>
+stream
+BT
+/F1 22 Tf
+50 720 Td
+(VEDANT KAPIL - AI Engineer & Intelligent Systems Architect) Tj
+/F1 12 Tf
+0 -30 Td
+(Email: vedantkp79@gmail.com | GitHub: github.com/Vedant021004) Tj
+0 -30 Td
+(------------------------------------------------------------------------------------------------) Tj
+0 -25 Td
+/F1 16 Tf
+(CORE COMPETENCIES) Tj
+0 -20 Td
+/F1 11 Tf
+(- Agentic AI & State Machines: LangChain, LangGraph, ReAct Framework, Multi-Agent Systems) Tj
+0 -18 Td
+(- RAG & Vector Databases: ChromaDB, FAISS, Pinecone, BM25 Hybrid Retrieval, Dense Embeddings) Tj
+0 -18 Td
+(- Machine Learning & Deep Learning: PyTorch, TensorFlow, Scikit-Learn, Transformers, Python) Tj
+0 -18 Td
+(- Backend & Infrastructure: FastAPI, Docker, REST APIs, Git, PostgreSQL, Streamlit) Tj
+0 -30 Td
+/F1 16 Tf
+(FEATURED PROJECTS) Tj
+0 -20 Td
+/F1 12 Tf
+(1. Amazon Product Catalog RAG Pipeline) Tj
+0 -16 Td
+/F1 10 Tf
+(   Dense semantic embeddings + BM25 keyword retrieval for e-commerce search with 94%+ precision.) Tj
+0 -20 Td
+/F1 12 Tf
+(2. AI Data Analyst Copilot) Tj
+0 -16 Td
+/F1 10 Tf
+(   Autonomous SQL-generating data analyst agent using LangGraph state machines & dynamic chart viz.) Tj
+0 -20 Td
+/F1 12 Tf
+(3. Smart School Management AI System) Tj
+0 -16 Td
+/F1 10 Tf
+(   Automated academic management platform with NLP query interface & automated progress reports.) Tj
+0 -30 Td
+/F1 16 Tf
+(EDUCATION) Tj
+0 -20 Td
+/F1 11 Tf
+(Bachelor of Technology in Computer Science & Engineering (AI & ML Specialization)) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000236 00000 n 
+0000000772 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+844
+%%EOF
