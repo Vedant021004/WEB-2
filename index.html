@@ -78,12 +78,8 @@
                 <div class="theme-toggle glass-btn" id="themeToggle" title="Toggle Dark/Light Mode">
                     <div class="theme-toggle-svg-icon" id="themeSvgIcon">
                         <svg class="sun-moon-svg" viewBox="0 0 24 24" width="22" height="22">
-                            <mask id="moonMask">
-                                <rect x="0" y="0" width="24" height="24" fill="white" />
-                                <circle class="moon-cutout" id="moonCutout" cx="26" cy="-2" r="7" fill="black" />
-                            </mask>
-                            <circle class="sun-body" id="sunBody" cx="12" cy="12" r="5" fill="#E2B859" mask="url(#moonMask)" />
-                            <g class="sun-rays" id="sunRays" stroke="#E2B859" stroke-width="2.2" stroke-linecap="round">
+                            <!-- Sun Rays -->
+                            <g class="sun-rays" id="sunRays">
                                 <line x1="12" y1="1" x2="12" y2="3" />
                                 <line x1="12" y1="21" x2="12" y2="23" />
                                 <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
@@ -93,6 +89,10 @@
                                 <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
                                 <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
                             </g>
+                            <!-- Sun / Moon Main Circle -->
+                            <circle class="sun-body" id="sunBody" cx="12" cy="12" r="5" />
+                            <!-- Moon Cutout Overlay Circle -->
+                            <circle class="moon-overlay" id="moonOverlay" cx="12" cy="12" r="5" />
                         </svg>
                     </div>
                     <span class="toggle-text">MODE</span>

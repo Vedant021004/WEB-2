@@ -590,27 +590,32 @@ body.theme-dark .wb-shade {
 
 #sunBody {
     transition: transform 0.45s var(--ease-bounce), fill 0.35s ease, r 0.35s ease;
-    transform-origin: center center;
+    transform-origin: 12px 12px;
 }
 
-#moonCutout {
-    transition: cx 0.45s cubic-bezier(0.4, 0, 0.2, 1), cy 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+#moonOverlay {
+    fill: #1A1D26;
+    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease, r 0.35s ease, fill 0.35s ease;
+    transform-origin: 12px 12px;
 }
 
 #sunRays {
+    stroke: #E2B859;
+    stroke-width: 2.2;
+    stroke-linecap: round;
     transition: transform 0.45s var(--ease-bounce), opacity 0.35s ease, stroke 0.35s ease;
-    transform-origin: center center;
+    transform-origin: 12px 12px;
 }
 
 /* Light Mode: Golden Radiant Sun ☀️ */
 body:not(.theme-dark) #sunBody { fill: #E2B859; r: 5; }
+body:not(.theme-dark) #moonOverlay { transform: translate(14px, -14px); opacity: 0; r: 5; }
 body:not(.theme-dark) #sunRays { opacity: 1; transform: scale(1) rotate(0deg); stroke: #E2B859; }
-body:not(.theme-dark) #moonCutout { cx: 26; cy: -2; }
 
-/* Dark Mode: Glowing Silver Crescent Moon 🌙 */
-body.theme-dark #sunBody { fill: #FEF08A; r: 8; }
+/* Dark Mode: Glowing Silver/Gold Crescent Moon 🌙 */
+body.theme-dark #sunBody { fill: #FEF08A; r: 7; }
+body.theme-dark #moonOverlay { transform: translate(4px, -4px); opacity: 1; r: 7; fill: #161822; }
 body.theme-dark #sunRays { opacity: 0; transform: scale(0) rotate(90deg); stroke: #FEF08A; }
-body.theme-dark #moonCutout { cx: 16; cy: 8; }
 
 /* APPLE GLASSMORPHISM DESIGN SYSTEM */
 .glass-btn, 
