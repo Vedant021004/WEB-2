@@ -919,20 +919,33 @@ body.theme-dark .nav-item.active, body.theme-dark .nav-item:hover {
     font-size: 0.95rem !important;
 }
 
-.lottie-resume-icon {
-    width: 26px;
-    height: 26px;
+.resume-icon-box {
+    width: 22px;
+    height: 22px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    overflow: visible;
+    margin-right: 0.3rem;
 }
 
-.lottie-resume-icon svg {
-    width: 26px !important;
-    height: 26px !important;
-    display: block !important;
+.resume-doc-svg {
+    width: 22px;
+    height: 22px;
+    color: currentColor;
+    transition: transform 0.35s var(--ease-bounce);
+}
+
+.window-blinds-btn:hover .resume-doc-svg {
+    transform: translateY(-2px) scale(1.18);
+}
+
+.doc-corner {
+    transition: transform 0.35s ease;
+    transform-origin: 14px 2px;
+}
+
+.window-blinds-btn:hover .doc-corner {
+    transform: translate(-1px, 1px);
 }
 
 .resume-grid {
