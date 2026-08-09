@@ -181,49 +181,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. Animated Vector Theme Toggle Engine
-    const themeToggleBtn = document.getElementById('themeToggle');
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
-            clearTimeout(rageTimeoutId);
-            document.body.classList.remove('ai-vision-mode', 'eye-rage-mode');
-            isRageActive = false;
-            document.body.classList.toggle('theme-dark');
-            const isDark = document.body.classList.contains('theme-dark');
-            
-            const toggleText = themeToggleBtn.querySelector('.toggle-text');
+    // 5. Global Animated Theme Toggle Function
+    window.toggleTheme = function() {
+        if (typeof rageTimeoutId !== 'undefined') clearTimeout(rageTimeoutId);
+        document.body.classList.remove('ai-vision-mode', 'eye-rage-mode');
+        if (typeof isRageActive !== 'undefined') isRageActive = false;
+        
+        document.body.classList.toggle('theme-dark');
+        const isDark = document.body.classList.contains('theme-dark');
+        
+        const toggleBtn = document.getElementById('themeToggle');
+        if (toggleBtn) {
+            const toggleText = toggleBtn.querySelector('.toggle-text');
             if (toggleText) {
                 toggleText.textContent = isDark ? 'DARK' : 'LIGHT';
             }
+        }
 
-            if (soundEnabled) playClickSound(400, 0.08);
-        });
-    }
+        if (typeof soundEnabled !== 'undefined' && soundEnabled && typeof playClickSound === 'function') {
+            playClickSound(400, 0.08);
+        }
+    };
 
     const themeToggleBtn = document.getElementById('themeToggle');
     if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
-            clearTimeout(rageTimeoutId);
-            document.body.classList.remove('ai-vision-mode', 'eye-rage-mode');
-            isRageActive = false;
-            document.body.classList.toggle('theme-dark');
-            const isDark = document.body.classList.contains('theme-dark');
-            
-            const toggleText = themeToggleBtn.querySelector('.toggle-text');
-            if (toggleText) {
-                toggleText.textContent = isDark ? 'DARK' : 'LIGHT';
-            }
-
-            if (lottieAnim) {
-                if (isDark) {
-                    lottieAnim.playSegments([0, 64], true);
-                } else {
-                    lottieAnim.playSegments([64, 124], true);
-                }
-            }
-
-            if (soundEnabled) playClickSound(400, 0.08);
-        });
+        themeToggleBtn.addEventListener('click', window.toggleTheme);
     }
 
     // 6. Smooth Pupil Tracking & ULTRA-RESPONSIVE CURSOR EYE ROLLING DETECTOR
