@@ -429,6 +429,148 @@ html, body { width: 100%; min-height: 100vh; background-color: var(--bg-yellow);
     display: none !important;
 }
 
+/* ==========================================================================
+   INTERACTIVE WINDOW BLINDS BUTTON (WEBBAE INSPIRATION)
+   ========================================================================== */
+.window-blinds-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.95rem 2.2rem;
+    border-radius: 14px;
+    background-color: #0E1015;
+    color: #FFFFFF !important;
+    font-family: var(--font-heading);
+    font-size: 0.92rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    transition: transform 0.35s var(--ease-bounce), box-shadow 0.35s ease;
+    user-select: none;
+    text-decoration: none;
+    z-index: 5;
+}
+
+.window-blinds-btn:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 16px 40px rgba(226, 184, 89, 0.4);
+}
+
+/* Background Glowing Aura & Light Layer */
+.wb-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(250, 204, 21, 0.6) 0%, rgba(226, 184, 89, 0) 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+}
+
+.window-blinds-btn:hover .wb-glow {
+    opacity: 1;
+}
+
+.wb-light {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #E2B859, #FACC15, #FEF08A);
+    z-index: 1;
+}
+
+/* Shades Wrapper & 5 Individual Venetian Blind Slats */
+.wb-shades-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.wb-shade {
+    flex: 1;
+    width: 100%;
+    background-color: #12141C;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transform-origin: top center;
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.theme-dark .wb-shade {
+    background-color: #0A0C14;
+}
+
+/* Staggered opening of window blind slats on hover */
+.window-blinds-btn:hover .wb-shade:nth-child(1) { transform: scaleY(0); transition-delay: 0.00s; }
+.window-blinds-btn:hover .wb-shade:nth-child(2) { transform: scaleY(0); transition-delay: 0.05s; }
+.window-blinds-btn:hover .wb-shade:nth-child(3) { transform: scaleY(0); transition-delay: 0.10s; }
+.window-blinds-btn:hover .wb-shade:nth-child(4) { transform: scaleY(0); transition-delay: 0.15s; }
+.window-blinds-btn:hover .wb-shade:nth-child(5) { transform: scaleY(0); transition-delay: 0.20s; }
+
+/* Interactive Pull Cord & Knob (Nib) */
+.wb-cord-wrap {
+    position: absolute;
+    right: 14px;
+    top: -12px;
+    height: 150%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 4;
+    pointer-events: none;
+    transition: transform 0.4s var(--ease-bounce);
+}
+
+.wb-cord-line {
+    width: 2px;
+    height: 70%;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.wb-cord-nib {
+    width: 8px;
+    height: 12px;
+    background-color: #E2B859;
+    border-radius: 4px;
+    border: 1.5px solid #000;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.window-blinds-btn:hover .wb-cord-wrap {
+    transform: translateY(16px);
+}
+
+/* Button Text Layer */
+.wb-text {
+    position: relative;
+    z-index: 3;
+    color: #FFFFFF !important;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: color 0.3s ease;
+}
+
+.window-blinds-btn:hover .wb-text {
+    color: #000000 !important;
+}
+
 /* APPLE GLASSMORPHISM DESIGN SYSTEM */
 .glass-btn, 
 .sound-toggle, 
