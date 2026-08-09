@@ -152,26 +152,9 @@ document.addEventListener('DOMContentLoaded', () => {
         lucide.createIcons();
     }
 
-    // 3. GSAP ScrollTrigger Smooth Reveals & Auto-Expand Section Popup Animations
+    // 3. GSAP ScrollTrigger Smooth Reveals
     if (window.gsap && window.ScrollTrigger) {
         gsap.registerPlugin(ScrollTrigger);
-        
-        // Auto-expand section accordion with popup animation when scrolling reaches section
-        const navSections = [
-            { secId: 'about', contentId: 'about-content' },
-            { secId: 'thinking', contentId: 'thinking-content' },
-            { secId: 'systems', contentId: 'systems-content' },
-            { secId: 'portfolio', contentId: 'portfolio-content' },
-            { secId: 'future', contentId: 'future-content' }
-        ];
-
-        navSections.forEach(item => {
-            ScrollTrigger.create({
-                trigger: `#${item.secId}`,
-                start: "top 75%",
-                onEnter: () => window.expandSectionWithPopup(item.contentId)
-            });
-        });
 
         // Portfolio wave animation
         ScrollTrigger.create({
