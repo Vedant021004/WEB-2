@@ -181,7 +181,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. Theme Toggle
+    // 5. Lottie Vector Theme Toggle Engine
+    const lottieThemeContainer = document.getElementById('lottieThemeContainer');
+    let lottieAnim = null;
+
+    if (lottieThemeContainer && window.lottie) {
+        lottieAnim = lottie.loadAnimation({
+            container: lottieThemeContainer,
+            renderer: 'svg',
+            loop: false,
+            autoplay: false,
+            path: 'assets/lottie/theme-toggle.json'
+        });
+
+        lottieAnim.addEventListener('DOMLoaded', () => {
+            if (document.body.classList.contains('theme-dark')) {
+                lottieAnim.goToAndStop(64, true);
+            } else {
+                lottieAnim.goToAndStop(0, true);
+            }
+        });
+    }
+
     const themeToggleBtn = document.getElementById('themeToggle');
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
@@ -190,12 +211,21 @@ document.addEventListener('DOMContentLoaded', () => {
             isRageActive = false;
             document.body.classList.toggle('theme-dark');
             const isDark = document.body.classList.contains('theme-dark');
+            
             const toggleText = themeToggleBtn.querySelector('.toggle-text');
             if (toggleText) {
-                toggleText.textContent = isDark ? 'DARK' : 'MODE';
+                toggleText.textContent = isDark ? 'DARK' : 'LIGHT';
             }
+
+            if (lottieAnim) {
+                if (isDark) {
+                    lottieAnim.playSegments([0, 64], true);
+                } else {
+                    lottieAnim.playSegments([64, 124], true);
+                }
+            }
+
             if (soundEnabled) playClickSound(400, 0.08);
-            renderEcosystemGraph();
         });
     }
 

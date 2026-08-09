@@ -571,6 +571,19 @@ body.theme-dark .wb-shade {
     color: #000000 !important;
 }
 
+.lottie-theme-icon {
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lottie-theme-icon svg {
+    width: 100% !important;
+    height: 100% !important;
+}
+
 /* APPLE GLASSMORPHISM DESIGN SYSTEM */
 .glass-btn, 
 .sound-toggle, 

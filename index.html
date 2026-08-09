@@ -19,6 +19,8 @@
     <!-- Lenis Smooth Scroll -->
     <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.9/dist/lenis.css">
+    <!-- Lottie Web for Vector Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
     
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -28,31 +30,25 @@
         <span class="pulse-live"></span> 👁️ AI VISION MODE ACTIVATED // NEURAL SYSTEM UNLOCKED
     </div>
 
-    <!-- RED EYE RAGE BOSS WARNING BANNER -->
+    <!-- Red Eye Boss Warning Banner -->
     <div class="boss-warning-banner" id="bossWarningBanner">
-        🚨 WARNING: EYE ANGERED! CALLING BOSS VEDANT KAPIL... 📞⚡
+        🚨 WARNING: RED EYE RAGE BOSS MODE ACTIVATED! (AUTO-DEACTIVATING IN 10s)
     </div>
 
-    <!-- CYBER ANT CRAWLER & DISSOLVING SKILL PAYLOAD -->
+    <!-- Cyber Ant Container -->
     <div class="cyber-ant-wrapper" id="cyberAntWrapper">
-        <div class="ant-payload-badge" id="antPayload">
-            <span class="payload-icon">⚡</span> LANGGRAPH & TRANSFORMER FINE-TUNING
-        </div>
-        <!-- SVG Cyber Ant Walking on Line -->
-        <svg class="cyber-ant-svg" viewBox="0 0 100 100" width="42" height="42">
-            <ellipse cx="50" cy="70" rx="15" ry="18" fill="#22C55E" />
-            <ellipse cx="50" cy="45" rx="9" ry="11" fill="#16A34A" />
-            <circle cx="50" cy="25" r="9" fill="#22C55E" />
-            <!-- Ant Eyes -->
-            <circle cx="46" cy="20" r="2.5" fill="#FFFFFF" />
-            <circle cx="54" cy="20" r="2.5" fill="#FFFFFF" />
+        <div class="ant-payload-badge">🐜 AI AGENT CRAWLER</div>
+        <svg class="cyber-ant-svg" viewBox="0 0 100 100" width="45" height="45">
+            <!-- Abdomen & Thorax -->
+            <ellipse cx="50" cy="72" rx="14" ry="18" fill="#10B981" />
+            <ellipse cx="50" cy="45" rx="10" ry="12" fill="#22C55E" />
+            <circle cx="50" cy="22" r="9" fill="#22C55E" />
+            <!-- Glowing Cyber Eyes -->
             <circle cx="46" cy="20" r="1.2" fill="#000000" />
             <circle cx="54" cy="20" r="1.2" fill="#000000" />
             <!-- Walking Legs -->
             <path d="M 40 45 L 18 35 M 40 50 L 12 50 M 40 55 L 18 65" stroke="#22C55E" stroke-width="3" stroke-linecap="round"/>
             <path d="M 60 45 L 82 35 M 60 50 L 88 50 M 60 55 L 82 65" stroke="#22C55E" stroke-width="3" stroke-linecap="round"/>
-            <!-- Antennae -->
-            <path d="M 45 18 L 35 5 M 55 18 L 65 5" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round"/>
         </svg>
     </div>
 
@@ -80,7 +76,7 @@
                 </button>
 
                 <div class="theme-toggle glass-btn" id="themeToggle" title="Toggle Dark/Light Mode">
-                    <span class="toggle-icon">👁️</span>
+                    <div id="lottieThemeContainer" class="lottie-theme-icon"></div>
                     <span class="toggle-text">MODE</span>
                 </div>
             </div>
