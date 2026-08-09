@@ -919,6 +919,22 @@ body.theme-dark .nav-item.active, body.theme-dark .nav-item:hover {
     font-size: 0.95rem !important;
 }
 
+.lottie-resume-icon {
+    width: 26px;
+    height: 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: visible;
+}
+
+.lottie-resume-icon svg {
+    width: 26px !important;
+    height: 26px !important;
+    display: block !important;
+}
+
 .resume-grid {
     display: grid;
     grid-template-columns: 1fr 1.3fr;
