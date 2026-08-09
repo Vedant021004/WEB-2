@@ -592,9 +592,25 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* Smooth Scroll Baseline */
+/* Smooth Scroll Baseline & Lenis Helpers */
+html.lenis, html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
 html {
-    scroll-behavior: auto !important; /* Lenis handles smooth scroll interpolation */
+    scroll-behavior: auto !important;
     overflow-x: hidden;
     width: 100%;
 }

@@ -14,32 +14,30 @@ let isRageActive = false;
 let rageTimeoutId = null;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Initialize Lenis Smooth Scroll Engine with Luxurious Cinematic Weight & Inertia
+    // 1. Initialize Lenis Smooth Scroll Engine with Ultra-Smooth Motion
     if (window.Lenis) {
         lenis = new Lenis({
-            duration: 2.2,
+            duration: 1.6,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            lerp: 0.05,
-            touchMultiplier: 1.5,
-            wheelMultiplier: 0.85,
-            infinite: false,
+            touchMultiplier: 1.2,
+            wheelMultiplier: 1.0,
             smoothWheel: true,
             smoothTouch: true
         });
 
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-
-        // Sync GSAP ScrollTrigger with Lenis
+        // Sync GSAP ScrollTrigger cleanly without duplicate RAF loops
         if (window.gsap && window.ScrollTrigger) {
             lenis.on('scroll', ScrollTrigger.update);
             gsap.ticker.add((time) => {
                 lenis.raf(time * 1000);
             });
             gsap.ticker.lagSmoothing(0);
+        } else {
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
         }
 
         // Smooth scroll for internal anchor links
